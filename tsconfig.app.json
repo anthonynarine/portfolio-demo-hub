@@ -1,0 +1,8 @@
+// ✅ New Code
+// # Filename: tsconfig.app.json
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"]
+  }
+}

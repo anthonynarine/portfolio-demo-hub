@@ -1,0 +1,83 @@
+/* ✅ New Code */
+/* # Filename: src/index.css */
+
+@import "tailwindcss";
+
+/* ---------------------------
+   # Step 1: Hard reset
+   Removes Vite starter layout rules that cause centering/offset issues
+---------------------------- */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Ensure the React root can take full width/height */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ---------------------------
+   # Step 2: Typography baseline
+---------------------------- */
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Let Tailwind handle colors via classes (light/dark) */
+  color-scheme: light dark;
+}
+
+/* Links: keep them simple; Tailwind will style most UI links */
+a {
+  text-decoration: inherit;
+}
+
+/* ---------------------------
+   # Step 3: Premium background texture (optional)
+   Attach class "bg-noise" to your top-level wrapper (you already do)
+---------------------------- */
+.bg-noise {
+  position: relative;
+}
+
+/* Subtle dot-grid + vignette mask */
+.bg-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at 50% 10%, black 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Slightly stronger contrast in dark mode */
+.dark .bg-noise::before {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.09) 1px,
+    transparent 0
+  );
+  opacity: 0.45;
+}
