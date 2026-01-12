@@ -1,8 +1,22 @@
-// ✅ New Code
+
 // # Filename: tsconfig.app.json
 {
   "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
     "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"]
-  }
+    "types": ["vite/client", "react", "react-dom"],
+
+    "strict": true
+  },
+  "include": ["src"]
 }

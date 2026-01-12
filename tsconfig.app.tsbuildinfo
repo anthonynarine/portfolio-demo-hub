@@ -1,0 +1,1 @@
+{"root":["./vite.config.ts","./src/app.tsx","./src/main.tsx","./src/components/footer.tsx","./src/components/header.tsx","./src/components/projectcard.tsx","./src/components/projectsgrid.tsx","./src/components/themetoggle.tsx","./src/data/projects.ts","./src/types/project.ts"],"errors":true,"version":"5.9.3"}
