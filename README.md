@@ -1,6 +1,6 @@
 # Portfolio Demo Hub
 
-This repository powers a simple, focused demo hub I use to showcase **shipped full-stack systems**.
+This repository powers a simple, focused demo hub I use to showcase **shipped full-stack systems**, along with my learning journey over the past four years.
 
 Each project is presented the way I’d want to evaluate someone else’s work:
 - what it does (in plain English)
@@ -12,9 +12,9 @@ Each project is presented the way I’d want to evaluate someone else’s work:
 The demo hub highlights four projects, each representing a different systems problem:
 
 - **Authentication & Identity**
-  - JWT auth, refresh flows, reusable auth integration, and centralized identity
+  - JWT authentication, refresh flows, reusable auth integration, and centralized identity
 - **Real-time Multiplayer + Presence**
-  - WebSockets, Redis, live state sync, chat, invites, and online/offline awareness
+  - WebSockets, Redis, live state synchronization, chat, invites, and online/offline awareness
 - **Healthcare Reporting System (Lumen)**
   - Domain-driven backend design, structured clinical data, and AI-assisted workflows
 - **Shared Infrastructure**
@@ -24,7 +24,7 @@ Each card includes a short **“Try this”** path so you can evaluate the syste
 
 ## Why this exists
 
-I’ve found that resumes and bullet points don’t do a great job showing:
+Resumes and bullet points don’t do a great job showing:
 - how systems are structured
 - how real-time and async problems are handled
 - how AI can be used responsibly inside production workflows
@@ -33,14 +33,16 @@ This hub is meant to bridge that gap.
 
 ## Tech stack
 
+**Frontend**
 - React + TypeScript (Vite)
 - Tailwind CSS
-- Deployed on Netlify
 
-The projects themselves use:
+**Backend / Systems**
 - Django / DRF
 - FastAPI
 - Redis + WebSockets
 - PostgreSQL / SQL
 - LangChain / LangGraph for AI-assisted features
 
+**Deployment**
+- Netlify
