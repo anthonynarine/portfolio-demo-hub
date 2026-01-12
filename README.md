@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+# Portfolio Demo Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository powers a simple, focused demo hub I use to showcase **shipped full-stack systems**.
 
-Currently, two official plugins are available:
+Each project is presented the way I’d want to evaluate someone else’s work:
+- what it does (in plain English)
+- what it proves technically
+- where to click first to understand it quickly
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What you’ll see
 
-## React Compiler
+The demo hub highlights four projects, each representing a different systems problem:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Authentication & Identity**
+  - JWT auth, refresh flows, reusable auth integration, and centralized identity
+- **Real-time Multiplayer + Presence**
+  - WebSockets, Redis, live state sync, chat, invites, and online/offline awareness
+- **Healthcare Reporting System (Lumen)**
+  - Domain-driven backend design, structured clinical data, and AI-assisted workflows
+- **Shared Infrastructure**
+  - Reusable logging, auth integration, and internal tooling built to support multiple services
 
-## Expanding the ESLint configuration
+Each card includes a short **“Try this”** path so you can evaluate the system without reading code first.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Why this exists
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+I’ve found that resumes and bullet points don’t do a great job showing:
+- how systems are structured
+- how real-time and async problems are handled
+- how AI can be used responsibly inside production workflows
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+This hub is meant to bridge that gap.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- React + TypeScript (Vite)
+- Tailwind CSS
+- Deployed on Netlify
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The projects themselves use:
+- Django / DRF
+- FastAPI
+- Redis + WebSockets
+- PostgreSQL / SQL
+- LangChain / LangGraph for AI-assisted features
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
