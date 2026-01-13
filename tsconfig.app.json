@@ -1,4 +1,4 @@
-
+// ✅ New Code
 // # Filename: tsconfig.app.json
 {
   "compilerOptions": {
@@ -6,17 +6,15 @@
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "moduleResolution": "Bundler",
     "skipLibCheck": true,
-
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-
     "jsx": "react-jsx",
-    "types": ["vite/client", "react", "react-dom"],
-
-    "strict": true
+    "strict": true,
+    "types": ["vite/client"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
+

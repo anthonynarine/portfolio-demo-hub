@@ -1,4 +1,4 @@
-// ✅ New Code
+
 // # Filename: src/components/Header.tsx
 
 import { Github, Linkedin, FileText, Mail, Hand } from "lucide-react";
