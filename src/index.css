@@ -9,6 +9,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #020617; /* slate-950 */
+  color: #f8fafc; /* slate-50 */
 }
 
 body {

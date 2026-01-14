@@ -8,12 +8,11 @@ import { projects } from "./data/projects";
 
 export default function App() {
   return (
-    <div className="bg-noise min-h-screen w-full bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50">
+    <div className="bg-noise min-h-screen w-full bg-slate-950 text-slate-50">
       {/* Glow */}
       <div
         className="pointer-events-none fixed inset-0
-        bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,0.14),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(34,211,238,0.10),transparent_50%),radial-gradient(circle_at_50%_90%,rgba(16,185,129,0.08),transparent_45%)]
-        dark:bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,0.18),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(34,211,238,0.12),transparent_50%),radial-gradient(circle_at_50%_90%,rgba(16,185,129,0.10),transparent_45%)]
+        bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,0.18),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(34,211,238,0.12),transparent_50%),radial-gradient(circle_at_50%_90%,rgba(16,185,129,0.10),transparent_45%)]
       "
       />
 
@@ -25,32 +24,62 @@ export default function App() {
         />
 
         {/* About (employers + clients) */}
-        <section className="mt-6 rounded-3xl border border-slate-200/70 bg-white/70 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/45 sm:p-7">
+        <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/45 p-6 shadow-sm backdrop-blur sm:p-7">
           <h2 className="text-base font-semibold">About</h2>
 
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700 dark:text-slate-200/90">
-            I build full-stack systems that are secure, fast to evaluate, and easy to maintain — from
-            APIs and data models to polished UI. When it helps, I build in-app documentation assistants
-            (RAG) so teams can self-serve answers instead of hunting through scattered docs.
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-200/90">
+            I build full-stack systems that are secure and maintainable — from APIs and data models to
+            polished UI. I’ve also been exploring in-app documentation assistants powered by RAG agents,
+            so teams can self-serve answers instead of hunting through scattered documentation.
           </p>
 
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-700 dark:text-slate-200/90">
-            Before software, I spent 17 years as a vascular technologist — which gave me deep exposure
-            to real clinical workflows, edge cases, and the cost of slow or confusing tools. That
-            perspective directly shaped how I design systems like Lumen.
+          {/* Client-friendly capability chips (quieter + shorter) */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
+              Security: JWT + RBAC
+            </span>
+
+            <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
+              Real-time: WebSockets + Redis
+            </span>
+
+            <span
+              title="LangChain + LangGraph"
+              className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45"
+            >
+              AI Docs: RAG
+            </span>
+
+            <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
+              Deploy: Heroku + Netlify
+            </span>
+          </div>
+
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-200/90">
+            I spent 17 years working as a vascular technologist before transitioning into software. That
+            path began with a free Python course from Harvard (CS50), led into a web development bootcamp,
+            and continued through three years of self-directed learning while building and shipping real
+            systems.
           </p>
 
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-700 dark:text-slate-200/90">
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-200/90">
+            The applications I build are systems I wanted a deeper understanding of — authentication,
+            real-time coordination, clinical workflows, and developer tooling. AI has significantly
+            accelerated how I learn and how I build, allowing me to move faster while staying intentional
+            about architecture, correctness, and long-term maintainability.
+          </p>
+
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-200/90">
             I’m open to full-stack, backend, or frontend roles (remote-first preferred). I also take on
-            selective project work where I can own a feature or system end-to-end — from scoping to
-            launch.
+            selective project work where I can own a feature or system end-to-end, from scoping to launch.
           </p>
         </section>
 
         <div className="mt-8">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-300/80">
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-300/80">
             Shipped projects
           </h3>
+
           <ProjectsGrid projects={projects} />
         </div>
 

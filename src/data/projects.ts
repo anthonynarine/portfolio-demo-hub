@@ -30,9 +30,9 @@ const LINKS = {
 export const projects: Project[] = [
   {
     id: "tictactoe-ws",
-    title: "Real-time Multiplayer Tic-Tac-Toe + Chat",
+    title: "Real-time Multiplayer Gaming Platform + Chat",
     description:
-      "A full-stack real-time game platform: multiplayer tic-tac-toe with chat, friend presence, and notifications—built to keep state correct across two clients.",
+      "A full-stack real-time game platform: multiplayer tic-tac-toe with chat, friend presence, game invites, and notifications—built to keep state correct across two clients.",
     highlights: [
       "Real-time correctness: turn enforcement + shared state across clients",
       "Social layer: friends list + online/offline presence + notification signals",
