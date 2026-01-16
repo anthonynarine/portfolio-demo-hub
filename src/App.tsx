@@ -28,12 +28,13 @@ export default function App() {
           <h2 className="text-base font-semibold">About</h2>
 
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-200/90">
-            I build full-stack systems that are secure and maintainable — from APIs and data models to
-            polished UI. I’ve also been exploring in-app documentation assistants powered by RAG agents,
-            so teams can self-serve answers instead of hunting through scattered documentation.
+            I build full-stack systems that are secure, maintainable, and designed to handle real-world
+            complexity — from APIs and data models to polished user interfaces. Lately, I’ve been
+            exploring in-app documentation assistants powered by RAG agents, so teams can self-serve
+            answers instead of hunting through scattered docs.
           </p>
 
-          {/* Client-friendly capability chips (quieter + shorter) */}
+          {/* Capability chips */}
           <div className="mt-4 flex flex-wrap gap-2">
             <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
               Security: JWT + RBAC
@@ -56,22 +57,23 @@ export default function App() {
           </div>
 
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-200/90">
-            I spent 17 years working as a vascular technologist before transitioning into software. That
-            path began with a free Python course from Harvard (CS50), led into a web development bootcamp,
-            and continued through three years of self-directed learning while building and shipping real
-            systems.
+            I spent 17 years working as a vascular technologist before transitioning into software
+            engineering. That path began with Harvard’s CS50, continued through a web development
+            bootcamp, and evolved into several years of self-directed learning while building and
+            shipping real systems.
           </p>
 
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-200/90">
             The applications I build are systems I wanted a deeper understanding of — authentication,
             real-time coordination, clinical workflows, and developer tooling. AI has significantly
-            accelerated how I learn and how I build, allowing me to move faster while staying intentional
+            accelerated how I learn and build, allowing me to move faster while staying intentional
             about architecture, correctness, and long-term maintainability.
           </p>
 
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-200/90">
             I’m open to full-stack, backend, or frontend roles (remote-first preferred). I also take on
-            selective project work where I can own a feature or system end-to-end, from scoping to launch.
+            selective project work where I can own a feature or system end-to-end, from scoping to
+            launch.
           </p>
         </section>
 

@@ -1,4 +1,4 @@
-// ✅ New Code
+
 // # Filename: src/data/projects.ts
 
 import type { Project } from "../types/project";
@@ -24,7 +24,7 @@ const LINKS = {
   lumenVideo: "https://your-lumen-video.example.com",
 
   // docs
-  gaitPostmanDocs: "https://documenter.getpostman.com/view/23868442/2sA3QsAXmU",
+  gaitPostmanDocs: "https://documenter.getpostman.com/view/23868442/2sA3XY6xgj",
 };
 
 export const projects: Project[] = [
@@ -32,11 +32,12 @@ export const projects: Project[] = [
     id: "tictactoe-ws",
     title: "Real-time Multiplayer Gaming Platform + Chat",
     description:
-      "A full-stack real-time game platform: multiplayer tic-tac-toe with chat, friend presence, game invites, and notifications—built to keep state correct across two clients.",
+      "A server authoritative real time multiplayer platform using WebSockets and Redis, focused on correctness, invite lifecycles, and resilient client rehydration. The game UI serves as a constrained domain for system design ",
     highlights: [
-      "Real-time correctness: turn enforcement + shared state across clients",
-      "Social layer: friends list + online/offline presence + notification signals",
-      "Includes single-player mode and an in-app assistant for quick “how does this work?” help",
+      "Server-authoritative state and turn enforcement",
+      "Real-time gameplay, chat, and notifications over WebSockets",
+      "Invite lifecycle management with expiry and rehydration",
+      "Friends, presence, and lobby-based social features",
     ],
     tryThis: [
       "Log in as Player1 + Player2 in two tabs → watch presence update.",
@@ -51,13 +52,14 @@ export const projects: Project[] = [
 
   {
     id: "gait-auth",
-    title: "Gait — Auth Platform (built for Lumen, reusable by design)",
+    title: "Gait — Authentication Platform (Reusable Auth Service)",
     description:
-      "A centralized auth service that issues JWT access/refresh tokens and supports real product flows like logout and password reset—plus a clean integration path for downstream services.",
+      "A centralized authentication service issuing JWT access and refresh tokens, designed for real-world product flows such as login, logout, and password reset, with a clean integration path for downstream services.",
     highlights: [
-      "JWT lifecycle: access + refresh + protected endpoints with clear failure states",
-      "Role-aware foundation for clinical apps (admin / physician / technologist)",
-      "Reusable integration: other services verify identity from one source of truth",
+      "JWT access + refresh lifecycle with clear failure states",
+      "RBAC-ready foundation for multi-role applications",
+      "Password reset and logout flows handled server-side",
+      "Designed as a standalone auth service for reuse across apps"
     ],
     tryThis: [
       "Register → login → hit a protected endpoint → refresh → logout.",
@@ -78,11 +80,13 @@ export const projects: Project[] = [
     id: "lumen",
     title: "Lumen — Vascular Reporting System (Video Demo)",
     description:
-      "A full-stack clinical workflow system for vascular ultrasound reporting: patient context → exam selection → segment entry → save/reload → report-ready output (video walkthrough).",
+      "A template-driven, multi-service clinical workflow system for vascular ultrasound reporting from patient context to reprt ready output ",
       highlights: [
-        "Template-driven exams: structured workflows built from real clinical protocols",
-        "RAG assistant for protocol + criteria Q&A (baseline + lab-specific knowledge layer)",
-        "Developer CLI to standardize local setup and manage the multi-service workflow from one interface",
+        "Microservice-based architecture",
+        "Template-driven exam workflows based on real clinical protoco",
+        "RAG assistant for protocol + procedures + criteria Q&A",
+        "PDF and HL7-ready reporting pipeline",
+        "Centralized auth via Gait and shared observability across services"
       ],
     tryThis: [
       "Watch the demo end-to-end: Patient → Exam → Segments → Save/Reload → Output.",
@@ -101,13 +105,13 @@ export const projects: Project[] = [
 
   {
     id: "infra-packages",
-    title: "Reusable Infrastructure Packages (Auth + Observability)",
+    title: "Reusable Backend Building Blocks (Auth + Observability)",
     description:
-      "Two reusable building blocks I extracted while building Lumen: one for centralized auth integration and one for consistent logging and traceability across services.",
+      "Two reusable backend components extracted while building Lumen: a centralized auth integration layer and a shared logging system for traceabilityacross services.",
     highlights: [
       "auth_integration: verifies JWT via a central Auth API to avoid duplicating auth logic",
       "lumen-logger: structured logging + correlation IDs for debugging across modules/services",
-      "Built for reuse: consistent patterns you can drop into other Django/FastAPI projects",
+      "Designed for reuse across Django and FastAPI projects",
     ],
     tryThis: [
       "Open auth_integration and follow the token → identity verification → role enforcement path.",
