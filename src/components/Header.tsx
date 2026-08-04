@@ -76,7 +76,7 @@ function WorkPreview() {
           {[
             ["EstateIQ", "Production SaaS", "Ledger-first financial workflows with Stripe + AI Copilot"],
             ["Gait", "Auth platform", "JWT lifecycle, protected APIs, reusable service boundary"],
-            ["OneVOne", "Realtime platform", "Games, group chat, presence, lobbies, notifications"],
+            ["OneVOne", "Realtime platform", "Poker tournaments, multiplayer tables, chat, presence"],
           ].map(([name, type, detail], index) => (
             <div
               key={name}

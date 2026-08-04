@@ -65,31 +65,31 @@ export const projects: Project[] = [
     id: "tictactoe-ws",
     title: "OneVOne",
     description:
-      "A real-time social gaming platform with multiplayer board and card games, AI opponents, friends, lobbies, direct messages, group chat, notifications, and server-authoritative gameplay.",
+      "A real-time social gaming platform with poker tournaments, 2-9 player multiplayer poker tables, board games, AI opponents, friends, lobbies, direct messages, group chat, notifications, and server-authoritative gameplay.",
     highlights: [
-      "Multi-game platform: Tic-Tac-Toe, Connect Four, Checkers, Poker, and Sudoku",
-      "Server-authoritative game state with turn validation and real-time synchronization",
+      "Poker tournaments with registration, rosters, scheduled starts, table creation, and tournament-to-game handoff",
+      "Multiplayer Texas Hold'em tables with configurable blinds, starting chips, turn timers, and up to 9 seats",
       "Friends, presence, lobbies, invites, notifications, DMs, and group chat",
-      "Recruiter demo mode supports two-player testing across separate browser tabs",
+      "Shared platform for Tic-Tac-Toe, Connect Four, Checkers, Poker, Sudoku, AI modes, and realtime multiplayer",
     ],
     tryThis: [
       "Use the recruiter demo to sign in as Player 1 and Player 2 in separate tabs.",
-      "Create a multiplayer lobby, invite the second player, play a match, and test chat/notifications.",
+      "Create a poker lobby or tournament, invite players, then test table sync, chat, and notifications.",
     ],
     links: {
       liveDemo: LINKS.tttDemo,
       repo: LINKS.tttRepo,
     },
-    badges: ["React", "Django", "Channels", "Redis", "Group Chat"],
+    badges: ["Poker", "Tournaments", "WebSockets", "Django Channels", "Redis"],
     featured: true,
     screenshot: {
       src: "/screenshots/onevone-home.png",
       alt: "OneVOne game hub showing multiplayer games, AI opponents, and live chat",
-      caption: "OneVOne game hub: multiple live games sharing auth, lobby, chat, invite, and realtime infrastructure.",
+      caption: "OneVOne game hub: poker, tournaments, board games, chat, invites, and realtime multiplayer infrastructure.",
     },
     architecture: {
       architecture:
-        "Django/DRF owns authoritative state, Channels and Redis handle realtime coordination, and React contexts keep the UI rehydrated across routes.",
+        "Django/DRF owns game, tournament, registration, and table state; Channels and Redis handle realtime poker/table updates, lobby coordination, chat, presence, and notifications.",
     },
   },
 
