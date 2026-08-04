@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anthony Narine Resume</title>
+    <style>
+      :root {
+        color: #111827;
+        background: #f8fafc;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.45;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 32px;
+      }
+
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        padding: 40px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 34px;
+        letter-spacing: -0.03em;
+      }
+
+      h2 {
+        margin-top: 26px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #d1d5db;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+
+      a {
+        color: #0f766e;
+        text-decoration: none;
+      }
+
+      ul {
+        margin: 8px 0 0;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-top: 5px;
+      }
+
+      .contact {
+        margin-top: 8px;
+        color: #4b5563;
+        font-size: 14px;
+      }
+
+      .summary {
+        margin-top: 18px;
+        color: #374151;
+      }
+
+      .item {
+        margin-top: 16px;
+      }
+
+      .meta {
+        margin-top: 2px;
+        color: #6b7280;
+        font-size: 13px;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 24px;
+        margin-top: 12px;
+      }
+
+      .skill-label {
+        font-weight: 700;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          background: #ffffff;
+        }
+
+        main {
+          max-width: none;
+          border: 0;
+          padding: 24px 30px;
+        }
+
+        a {
+          color: #111827;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Anthony Narine</h1>
+        <p class="contact">
+          Full-Stack Software Engineer |
+          <a href="mailto:fanarine@pm.me">fanarine@pm.me</a> |
+          <a href="https://github.com/anthonynarine">github.com/anthonynarine</a> |
+          <a href="https://www.linkedin.com/in/anthony-narine-9ab567245">LinkedIn</a>
+        </p>
+        <p class="summary">
+          Full-stack developer building product systems from planning and design to production.
+          Background includes 17 years in healthcare before moving into software engineering. Focused
+          on clear workflows, explicit state, secure architecture, transaction-safe financial
+          systems, real-time communication, and AI features grounded in verified data.
+        </p>
+      </header>
+
+      <section>
+        <h2>Technical Skills</h2>
+        <div class="skills">
+          <p><span class="skill-label">Frontend:</span> React, Next.js, TypeScript, JavaScript, Tailwind CSS</p>
+          <p><span class="skill-label">Backend:</span> Django, Django REST Framework, FastAPI, Python</p>
+          <p><span class="skill-label">Data:</span> PostgreSQL, SQL, Redis, ledger-style data modeling</p>
+          <p><span class="skill-label">Realtime:</span> Django Channels, WebSockets, Redis channel layers</p>
+          <p><span class="skill-label">AI:</span> RAG, LangChain, LangGraph, grounded assistant workflows</p>
+          <p><span class="skill-label">Infrastructure:</span> Heroku, Netlify, AWS S3, AWS SES, Stripe, Heroku Scheduler</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Selected Projects</h2>
+
+        <div class="item">
+          <h3>EstateIQ - Production SaaS Financial Operating System</h3>
+          <p class="meta">
+            React, Django/FastAPI, PostgreSQL, Stripe, AWS S3/SES, AI Copilot |
+            <a href="https://estateiq.me">estateiq.me</a>
+          </p>
+          <ul>
+            <li>Built a SaaS platform for small landlords with organization-scoped data access and subscription billing.</li>
+            <li>Designed ledger-first financial workflows where charges, payments, allocations, and balances reconcile from source records.</li>
+            <li>Integrated Stripe billing, plan tiers, feature gating, and webhook-driven subscription state.</li>
+            <li>Built an AI Copilot architecture that explains computed portfolio data instead of inventing financial answers.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>OneVOne - Real-Time Social Gaming Platform</h3>
+          <p class="meta">
+            React, Django, DRF, Channels, Redis, WebSockets, JWT |
+            <a href="https://onevone.net">onevone.net</a> |
+            <a href="https://github.com/anthonynarine/tic_tac_toe">GitHub</a>
+          </p>
+          <ul>
+            <li>Expanded a tic-tac-toe project into a multi-game platform with Tic-Tac-Toe, Connect Four, Checkers, Poker, and Sudoku.</li>
+            <li>Implemented server-authoritative game state, turn validation, lobbies, rematches, and real-time synchronization.</li>
+            <li>Built friends, presence, invites, notifications, direct messages, and group chat across REST and WebSocket flows.</li>
+            <li>Created recruiter/demo flows for testing multiplayer behavior across separate browser tabs.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>Gait Auth Platform - Reusable Authentication Service</h3>
+          <p class="meta">
+            Django, DRF, JWT, 2FA, password reset, protected APIs |
+            <a href="https://gait.netlify.app">Live demo</a> |
+            <a href="https://github.com/anthonynarine/django_auth">GitHub</a>
+          </p>
+          <ul>
+            <li>Built a reusable authentication service with JWT access/refresh tokens, 2FA, logout, protected endpoints, and password reset flows.</li>
+            <li>Added a guest sign-in path so recruiters can test authenticated flows quickly without creating an account.</li>
+            <li>Designed the service to be reused by downstream applications without duplicating identity and auth logic.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <h3>Lumen Vascular Reporting - Clinical Workflow System</h3>
+          <p class="meta">Django/FastAPI, clinical templates, RAG assistant, shared auth and observability</p>
+          <ul>
+            <li>Designing a template-driven vascular ultrasound reporting system shaped by clinical protocols and structured exam workflows.</li>
+            <li>Explores clinical software boundaries such as privacy, data consistency, workflow clarity, and report-ready output.</li>
+            <li>Uses shared auth and logging components to support a multi-service architecture.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+        <div class="item">
+          <h3>Vascular Technologist</h3>
+          <p class="meta">Healthcare | 17 years</p>
+          <ul>
+            <li>Worked in clinical environments where workflows, accuracy, documentation, and clear communication directly affected patient care.</li>
+            <li>Brought that operational mindset into software: explicit state, readable workflows, careful permissions, and systems users can trust.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Focus</h2>
+        <ul>
+          <li>Full-stack product development from foundations to production.</li>
+          <li>Secure auth, multi-tenant data access, financial workflows, real-time systems, and grounded AI features.</li>
+          <li>Open to full-stack product work, feature ownership, backend systems, frontend workflows, and production app builds.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

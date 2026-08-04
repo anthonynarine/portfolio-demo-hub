@@ -21,13 +21,11 @@ function getInitialTheme(): ThemeMode {
 }
 
 export function ThemeToggle() {
-  const [mode, setMode] = useState<ThemeMode>("dark");
+  const [mode, setMode] = useState<ThemeMode>(() => getInitialTheme());
 
   useEffect(() => {
-    const initial = getInitialTheme();
-    setMode(initial);
-    setHtmlTheme(initial);
-  }, []);
+    setHtmlTheme(mode);
+  }, [mode]);
 
   function toggleTheme() {
     const next: ThemeMode = mode === "dark" ? "light" : "dark";

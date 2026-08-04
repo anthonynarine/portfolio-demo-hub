@@ -10,12 +10,23 @@ type ProjectsGridProps = {
 };
 
 export function ProjectsGrid({ projects }: ProjectsGridProps) {
+  const featured = projects.filter((project) => project.featured);
+  const standard = projects.filter((project) => !project.featured);
+
   return (
-    <section className="py-6">
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {projects.map((p) => (
-          <ProjectCard key={p.id} project={p} />
+    <section className="py-10">
+      <div className="grid gap-7">
+        {featured.map((project) => (
+          <ProjectCard key={project.id} project={project} />
         ))}
+
+        {standard.length ? (
+          <div className="grid gap-5 lg:grid-cols-2">
+            {standard.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );

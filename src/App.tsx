@@ -1,92 +1,123 @@
-// ✅ New Code
 // # Filename: src/App.tsx
 
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ProjectsGrid } from "./components/ProjectsGrid";
-import { projects } from "./data/projects";
+import { Mail } from "lucide-react";
+import { profileLinks, projects } from "./data/projects";
+
+const focusAreas = [
+  "Secure multi-tenant systems",
+  "Real-time collaboration and state",
+  "Ledger-first financial workflows",
+  "Clinical workflow tooling",
+  "Reusable backend packages",
+];
 
 export default function App() {
   return (
-    <div className="bg-noise min-h-screen w-full bg-slate-950 text-slate-50">
-      {/* Glow */}
-      <div
-        className="pointer-events-none fixed inset-0
-        bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,0.18),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(34,211,238,0.12),transparent_50%),radial-gradient(circle_at_50%_90%,rgba(16,185,129,0.10),transparent_45%)]
-      "
+    <div className="min-h-screen bg-[#020617] text-slate-100">
+      <Header
+        name="Anthony Narine"
+        headline="Full-stack software engineer"
+        subhead="I don't have a traditional engineering background. After 17 years in healthcare, I moved into software by building the systems I wanted to understand, then taking them from planning and design to production."
       />
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 py-10 sm:px-6">
-        <Header
-          name="Anthony Narine"
-          headline="Full-Stack Engineer • React + TypeScript • Django/FastAPI"
-          subhead="Live demos, repos, and a short Lumen walkthrough. Each project includes two quick steps to show what it does."
-        />
+      <main>
+        <section className="border-t border-white/10">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+                About
+              </p>
+              <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
+                I build the kind of systems I wish I could have studied when I was learning.
+              </h2>
+            </div>
 
-        {/* About (employers + clients) */}
-        <section className="mt-6 rounded-3xl border border-white/10 bg-slate-950/45 p-6 shadow-sm backdrop-blur sm:p-7">
-          <h2 className="text-base font-semibold">About</h2>
-
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-200/90">
-            I build full-stack systems that are secure, maintainable, and designed to handle real-world
-            complexity — from APIs and data models to polished user interfaces. Lately, I’ve been
-            exploring in-app documentation assistants powered by RAG agents, so teams can self-serve
-            answers instead of hunting through scattered docs.
-          </p>
-
-          {/* Capability chips */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
-              Security: JWT + RBAC
-            </span>
-
-            <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
-              Real-time: WebSockets + Redis
-            </span>
-
-            <span
-              title="LangChain + LangGraph"
-              className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45"
-            >
-              AI Docs: RAG
-            </span>
-
-            <span className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/30 px-3 py-1 text-[11px] font-medium text-slate-200/90 transition hover:bg-slate-900/45">
-              Deploy: Heroku + Netlify
-            </span>
+            <div className="space-y-5 text-base leading-relaxed text-slate-300">
+              <p>
+                I spent 17 years working as a vascular technologist before moving into software
+                engineering. That background still shapes how I think: systems and workflows need to
+                be clear, state needs to be explicit, and users should not have to guess what the
+                system is doing.
+              </p>
+              <p>
+                Most of my projects started with something I wanted to understand deeply:
+                authentication, real-time communication, clinical boundaries like HIPAA, financial
+                workflows where every transaction has to reconcile, and AI features that answer from
+                verified data instead of hallucinating.
+              </p>
+              <p>
+                This portfolio shows how I build systems: the design patterns I use, the architecture
+                decisions I make, and the working projects behind them.
+              </p>
+            </div>
           </div>
-
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-200/90">
-            I spent 17 years working as a vascular technologist before transitioning into software
-            engineering. That path began with Harvard’s CS50, continued through a web development
-            bootcamp, and evolved into several years of self-directed learning while building and
-            shipping real systems.
-          </p>
-
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-200/90">
-            The applications I build are systems I wanted a deeper understanding of — authentication,
-            real-time coordination, clinical workflows, and developer tooling. AI has significantly
-            accelerated how I learn and build, allowing me to move faster while staying intentional
-            about architecture, correctness, and long-term maintainability.
-          </p>
-
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-200/90">
-            I’m open to full-stack, backend, or frontend roles (remote-first preferred). I also take on
-            selective project work where I can own a feature or system end-to-end, from scoping to
-            launch.
-          </p>
         </section>
 
-        <div className="mt-8">
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-300/80">
-            Shipped projects
-          </h3>
+        <section className="border-y border-white/10 bg-white/[0.03] text-white">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:py-20">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+                What I can help with
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+                I am strongest where product UX and backend rules meet.
+              </h2>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {focusAreas.map((area) => (
+                <div key={area} className="border border-white/10 bg-white/[0.04] p-4">
+                  <p className="text-sm font-semibold text-slate-100">{area}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
+          <div className="flex flex-col gap-3 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+                Selected projects
+              </p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                Proof through shipped systems.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-slate-300">
+              Each project is positioned around what it demonstrates: architecture, product thinking,
+              workflow design, and production readiness.
+            </p>
+          </div>
 
           <ProjectsGrid projects={projects} />
-        </div>
+        </section>
 
-        <Footer />
-      </div>
+        <section className="border-y border-white/10 bg-cyan-300 text-slate-950">
+          <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-10 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.22em] text-slate-700">
+                Build With Me
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+                Need a product built from unclear idea to working system?
+              </h2>
+            </div>
+            <a
+              href={`mailto:${profileLinks.email}`}
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
+            >
+              <Mail size={16} />
+              Start a conversation
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }
