@@ -9,8 +9,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #020617; /* slate-950 */
-  color: #f8fafc; /* slate-50 */
+  background-color: #020617;
+  color: #f8fafc;
 }
 
 body {
@@ -36,32 +36,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Force browser UI (form controls, scrollbars) to dark */
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* Links: keep simple; Tailwind handles most styling */
 a {
   text-decoration: inherit;
-}
-
-/* # Step 3: Premium background texture (dark-only) */
-.bg-noise {
-  position: relative;
-}
-
-/* Subtle dot-grid + vignette mask */
-.bg-noise::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(255, 255, 255, 0.09) 1px,
-    transparent 0
-  );
-  background-size: 22px 22px;
-  opacity: 0.45;
-  mask-image: radial-gradient(circle at 50% 10%, black 0%, transparent 70%);
-  pointer-events: none;
 }

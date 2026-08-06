@@ -8,7 +8,7 @@ export type ProjectRelatedLink = {
 
 export type ProjectLinks = {
   liveDemo?: string;
-  repo: string;
+  repo?: string;
   video?: string;
   related?: ProjectRelatedLink[];
 };
@@ -21,4 +21,13 @@ export type Project = {
   tryThis: string[];
   links: ProjectLinks;
   badges?: string[];
+  featured?: boolean;
+  screenshot?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
+  architecture?: {
+    architecture: string;
+  };
 };

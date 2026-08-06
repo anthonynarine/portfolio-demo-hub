@@ -6,7 +6,7 @@ import type { Project } from "../types/project";
 export const profileLinks = {
   github: "https://github.com/anthonynarine",
   linkedin: "https://www.linkedin.com/in/anthony-narine-9ab567245",
-  resume: "https://your-resume-link.example.com",
+  resume: "/Anthony-Narine-Resume.html",
   email: "fanarine@pm.me",
 };
 
@@ -16,12 +16,13 @@ const LINKS = {
   authFlowRepo: "https://github.com/anthonynarine/AuthFlow",
   djangoAuthRepo: "https://github.com/anthonynarine/django_auth",
   lumenLoggerRepo: "https://github.com/anthonynarine/Lumen_Logger",
+  estateiqWebRepo: "https://github.com/anthonynarine/EstateIQ-Web",
 
-  // placeholders you’ll swap later
   tttDemo: "https://onevone.net",
   gaitDemo: "https://gait.netlify.app",
-  lumenRepo: "https://your-lumen-repo.example.com",
-  lumenVideo: "https://your-lumen-video.example.com",
+
+  // production
+  estateiqDemo: "https://estateiq.me",
 
   // docs
   gaitPostmanDocs: "https://documenter.getpostman.com/view/23868442/2sA3XY6xgj",
@@ -29,41 +30,84 @@ const LINKS = {
 
 export const projects: Project[] = [
   {
-    id: "tictactoe-ws",
-    title: "Real-time Multiplayer Gaming Platform + Chat",
+    id: "estateiq",
+    title: "EstateIQ",
     description:
-      "A server authoritative real time multiplayer platform using WebSockets and Redis, focused on correctness, invite lifecycles, and resilient client rehydration. The game UI serves as a constrained domain for system design ",
+      "A production SaaS financial operating system for small landlords. I designed the ledger model, billing flows, tenant isolation, and AI Copilot architecture so portfolio answers are grounded in computed records instead of invented text.",
     highlights: [
-      "Server-authoritative state and turn enforcement",
-      "Real-time gameplay, chat, and notifications over WebSockets",
-      "Invite lifecycle management with expiry and rehydration",
-      "Friends, presence, and lobby-based social features",
+      "Ledger-first accounting: charges, payments, and allocations — balances are always derived, never stored",
+      "Deterministic AI Copilot: structured data computed first, LLM used only to present it, never to invent figures",
+      "Stripe-backed SaaS billing with plan tiers, feature gating, and webhook-driven subscription state",
+      "Strict organization-scoped multi-tenancy enforced on every read and write",
     ],
     tryThis: [
-      "Log in as Player1 + Player2 in two tabs → watch presence update.",
-      "Start a match → chat mid-game → trigger a notification/unread badge.",
+      "Visit estateiq.me and read the homepage system narrative — ledger-first accounting, AI Copilot, and security model.",
+      "Read a DANA architecture post on the blog (e.g. \"Why AI Wrappers Aren't Enough\") to see the design reasoning behind the AI layer.",
+    ],
+    links: {
+      liveDemo: LINKS.estateiqDemo,
+      repo: LINKS.estateiqWebRepo,
+    },
+    badges: ["Production", "SaaS", "Stripe", "AI Copilot"],
+    featured: true,
+    screenshot: {
+      src: "/screenshots/estateiq-home.png",
+      alt: "EstateIQ homepage showing the AI-powered operating system for small landlords",
+      caption: "EstateIQ homepage: production SaaS positioning around records, reports, and grounded AI.",
+    },
+    architecture: {
+      architecture:
+        "Ledger-style records sit at the center. The app computes balances from charges, payments, allocations, and expenses before AI explains the result.",
+    },
+  },
+
+  {
+    id: "tictactoe-ws",
+    title: "OneVOne",
+    description:
+      "A real-time social gaming platform with poker tournaments, 2-9 player multiplayer poker tables, board games, AI opponents, friends, lobbies, direct messages, group chat, notifications, and server-authoritative gameplay.",
+    highlights: [
+      "Poker tournaments with registration, rosters, scheduled starts, table creation, and tournament-to-game handoff",
+      "Multiplayer Texas Hold'em tables with configurable blinds, starting chips, turn timers, and up to 9 seats",
+      "Friends, presence, lobbies, invites, notifications, DMs, and group chat",
+      "Shared platform for Tic-Tac-Toe, Connect Four, Checkers, Poker, Sudoku, AI modes, and realtime multiplayer",
+    ],
+    tryThis: [
+      "Use the recruiter demo to sign in as Player 1 and Player 2 in separate tabs.",
+      "Create a poker lobby or tournament, invite players, then test table sync, chat, and notifications.",
     ],
     links: {
       liveDemo: LINKS.tttDemo,
       repo: LINKS.tttRepo,
     },
-    badges: ["WebSockets", "Presence", "Notifications", "RAG"],
+    badges: ["Poker", "Tournaments", "WebSockets", "Django Channels", "Redis"],
+    featured: true,
+    screenshot: {
+      src: "/screenshots/onevone-home.png",
+      alt: "OneVOne game hub showing multiplayer games, AI opponents, and live chat",
+      caption: "OneVOne game hub: poker, tournaments, board games, chat, invites, and realtime multiplayer infrastructure.",
+    },
+    architecture: {
+      architecture:
+        "Django/DRF owns game, tournament, registration, and table state; Channels and Redis handle realtime poker/table updates, lobby coordination, chat, presence, and notifications.",
+    },
   },
 
   {
     id: "gait-auth",
-    title: "Gait — Authentication Platform (Reusable Auth Service)",
+    title: "Gait Auth Platform",
     description:
-      "A centralized authentication service issuing JWT access and refresh tokens, designed for real-world product flows such as login, logout, and password reset, with a clean integration path for downstream services.",
+      "A reusable authentication service for real product flows: JWT access and refresh tokens, 2FA, protected endpoints, logout, password reset, and a clean integration path for downstream services.",
     highlights: [
       "JWT access + refresh lifecycle with clear failure states",
-      "RBAC-ready foundation for multi-role applications",
-      "Password reset and logout flows handled server-side",
-      "Designed as a standalone auth service for reuse across apps"
+      "Two-factor authentication for stronger account security",
+      "Guest sign-in flow lets recruiters test protected auth behavior quickly",
+      "Password reset, logout, and protected endpoints handled server-side",
+      "RBAC-ready standalone service designed for reuse across apps"
     ],
     tryThis: [
-      "Register → login → hit a protected endpoint → refresh → logout.",
-      "Open the Postman docs and compare endpoints with the repo implementation.",
+      "Click guest sign-in to enter the app without creating an account.",
+      "Visit a protected page, refresh the session, then log out to see the full auth lifecycle.",
     ],
     links: {
       liveDemo: LINKS.gaitDemo,
@@ -73,41 +117,47 @@ export const projects: Project[] = [
         { label: "Postman API docs", href: LINKS.gaitPostmanDocs },
       ],
     },
-    badges: ["JWT", "RBAC-ready", "Password Reset"],
+    badges: ["JWT", "2FA", "RBAC-ready", "Password Reset"],
+    featured: true,
+    screenshot: {
+      src: "/screenshots/gait-home.png",
+      alt: "Gait authentication platform homepage with guest sign-in and two-factor auth overview",
+      caption: "Gait homepage: recruiter-friendly auth demo with guest sign-in, 2FA, and session refresh.",
+    },
+    architecture: {
+      architecture:
+        "Django/DRF owns identity, token lifecycle, 2FA, and protected endpoints while the React client demonstrates login, refresh, guest access, and logout behavior.",
+    },
   },
 
   {
     id: "lumen",
-    title: "Lumen — Vascular Reporting System (Video Demo)",
+    title: "Lumen Vascular Reporting",
     description:
-      "A template-driven, multi-service clinical workflow system for vascular ultrasound reporting from patient context to reprt ready output ",
-      highlights: [
-        "Microservice-based architecture",
-        "Template-driven exam workflows based on real clinical protoco",
-        "RAG assistant for protocol + procedures + criteria Q&A",
-        "PDF and HL7-ready reporting pipeline",
-        "Centralized auth via Gait and shared observability across services"
-      ],
+      "A template-driven clinical workflow system for vascular ultrasound reporting, shaped by real clinical protocols and built as a multi-service product.",
+    highlights: [
+      "Microservice-based architecture",
+      "Template-driven exam workflows based on real clinical protocols",
+      "RAG assistant for protocol, procedure, and criteria Q&A",
+      "Centralized auth via Gait and shared observability across services",
+    ],
     tryThis: [
-      "Watch the demo end-to-end: Patient → Exam → Segments → Save/Reload → Output.",
-      "Review the repo structure to see how templates/types map to endpoints.",
+      "Check back soon for a live walkthrough — Patient → Exam → Segments → Save/Reload → Output.",
     ],
     links: {
-      repo: LINKS.lumenRepo,
-      video: LINKS.lumenVideo,
       related: [
         { label: "Auth platform used by Lumen (Gait)", href: LINKS.djangoAuthRepo },
         { label: "Reusable logger (lumen-logger)", href: LINKS.lumenLoggerRepo },
       ],
     },
-    badges: ["Healthcare", "Templates", "PDF/HL7-ready", "RAG",],
+    badges: ["Healthcare", "In Progress"],
   },
 
   {
     id: "infra-packages",
-    title: "Reusable Backend Building Blocks (Auth + Observability)",
+    title: "Backend Building Blocks",
     description:
-      "Two reusable backend components extracted while building Lumen: a centralized auth integration layer and a shared logging system for traceabilityacross services.",
+      "Reusable backend components extracted while building Lumen: centralized auth integration and shared structured logging for traceability across services.",
     highlights: [
       "auth_integration: verifies JWT via a central Auth API to avoid duplicating auth logic",
       "lumen-logger: structured logging + correlation IDs for debugging across modules/services",
