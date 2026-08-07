@@ -3,6 +3,7 @@
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ProjectsGrid } from "./components/ProjectsGrid";
+import { Reveal } from "./components/Reveal";
 import { Mail } from "lucide-react";
 import { profileLinks, projects } from "./data/projects";
 
@@ -16,7 +17,7 @@ const focusAreas = [
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-100">
+    <div className="min-h-screen bg-[#FAFAF8] text-neutral-950">
       <Header
         name="Anthony Narine"
         headline="Full-stack software engineer"
@@ -24,18 +25,18 @@ export default function App() {
       />
 
       <main>
-        <section className="border-t border-white/10">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24">
+        <section className="border-t border-neutral-200">
+          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-5xl lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
                 About
               </p>
-              <h2 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
+              <h2 className="font-display mt-4 max-w-3xl text-4xl font-medium leading-tight tracking-tight text-neutral-950 sm:text-5xl">
                 I build the kind of systems I wish I could have studied when I was learning.
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-relaxed text-slate-300">
+            <div className="space-y-5 text-base leading-relaxed text-neutral-600">
               <p>
                 I spent 17 years working as a vascular technologist before moving into software
                 engineering. That background still shapes how I think: systems and workflows need to
@@ -53,67 +54,67 @@ export default function App() {
                 decisions I make, and the working projects behind them.
               </p>
             </div>
-          </div>
+          </Reveal>
         </section>
 
-        <section className="border-y border-white/10 bg-white/[0.03] text-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:py-20">
+        <section className="border-y border-neutral-200 bg-[#F3F1EC]">
+          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-5xl lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:py-20">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
                 What I can help with
               </p>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+              <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight text-neutral-950 sm:text-4xl">
                 I am strongest where product UX and backend rules meet.
               </h2>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <ul className="divide-y divide-neutral-200 border-t border-neutral-200">
               {focusAreas.map((area) => (
-                <div key={area} className="border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-sm font-semibold text-slate-100">{area}</p>
-                </div>
+                <li key={area} className="py-4 text-base font-medium text-neutral-800">
+                  {area}
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </Reveal>
         </section>
 
-        <section id="projects" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
-          <div className="flex flex-col gap-3 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
+        <section id="projects" className="mx-auto max-w-5xl px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
+          <Reveal className="flex flex-col gap-3 border-b border-neutral-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.24em] text-cyan-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
                 Selected projects
               </p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h2 className="font-display mt-3 text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
                 Proof through shipped systems.
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-slate-300">
+            <p className="max-w-md text-sm leading-relaxed text-neutral-600">
               Each project is positioned around what it demonstrates: architecture, product thinking,
               workflow design, and production readiness.
             </p>
-          </div>
+          </Reveal>
 
           <ProjectsGrid projects={projects} />
         </section>
 
-        <section className="border-y border-white/10 bg-cyan-300 text-slate-950">
-          <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-10 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+        <section className="bg-neutral-950 text-white">
+          <Reveal className="mx-auto flex max-w-5xl flex-col gap-5 px-5 py-14 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.22em] text-slate-700">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-400">
                 Build With Me
               </p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+              <h2 className="font-display mt-3 text-3xl font-medium tracking-tight">
                 Need a product built from unclear idea to working system?
               </h2>
             </div>
             <a
               href={`mailto:${profileLinks.email}`}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
+              className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200"
             >
               <Mail size={16} />
               Start a conversation
             </a>
-          </div>
+          </Reveal>
         </section>
       </main>
 

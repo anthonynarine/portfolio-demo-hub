@@ -6,7 +6,8 @@ import type { Project } from "../types/project";
 export const profileLinks = {
   github: "https://github.com/anthonynarine",
   linkedin: "https://www.linkedin.com/in/anthony-narine-9ab567245",
-  resume: "/Anthony-Narine-Resume.html",
+  resume: "/resume",
+  portfolio: "https://anthonynarine.com",
   email: "fanarine@pm.me",
 };
 
@@ -83,9 +84,10 @@ export const projects: Project[] = [
     badges: ["Poker", "Tournaments", "WebSockets", "Django Channels", "Redis"],
     featured: true,
     screenshot: {
-      src: "/screenshots/onevone-home.png",
-      alt: "OneVOne game hub showing multiplayer games, AI opponents, and live chat",
-      caption: "OneVOne game hub: poker, tournaments, board games, chat, invites, and realtime multiplayer infrastructure.",
+      src: "/screenshots/onevone-poker-table.jpg",
+      clip: "/videos/onevone-preview.mp4",
+      alt: "A multiplayer Texas Hold'em hand playing out at a OneVOne poker table, from the flop through an all-in showdown",
+      caption: "A live OneVOne poker hand: flop, turn, river, and an all-in showdown, playing out in real time.",
     },
     architecture: {
       architecture:

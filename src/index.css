@@ -3,14 +3,39 @@
 
 @import "tailwindcss";
 
+/* # Step 0: theme tokens (Tailwind v4 is CSS-config, no tailwind.config.js) */
+@theme {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* # Step 1: Hard reset (remove Vite centering/offset defaults) */
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #020617;
-  color: #f8fafc;
+  background-color: #fafaf8;
+  color: #0a0a0a;
 }
 
 body {
@@ -42,4 +67,17 @@ body {
 /* Links: keep simple; Tailwind handles most styling */
 a {
   text-decoration: inherit;
+}
+
+/* # Step 3: print sizing that Tailwind utilities can't express (no config file to extend here) */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.55in;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }

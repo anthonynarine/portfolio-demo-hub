@@ -1,105 +1,80 @@
 // # Filename: src/components/ProjectCard.tsx
 
 import type { Project } from "../types/project";
-import {
-  Bot,
-  Boxes,
-  ExternalLink,
-  Gamepad2,
-  Github,
-  Landmark,
-  Link as LinkIcon,
-  Play,
-  Shield,
-  Video,
-} from "lucide-react";
+import { ExternalLink, Github, Link as LinkIcon, Play, Video } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 type ProjectCardProps = {
   project: Project;
+  index: number;
 };
 
-const CARD_THEME = {
-  text: "text-cyan-300",
-  soft: "border border-cyan-300/20 bg-cyan-300/10 text-cyan-100",
-  border: "border-white/10",
-  button: "bg-cyan-300 text-slate-950 hover:bg-cyan-200",
-  panel: "bg-white/[0.04]",
-};
+const ROMAN_NUMERALS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
 
-function getIcon(id: string, className: string) {
-  switch (id) {
-    case "estateiq":
-      return <Landmark size={20} className={className} />;
-    case "tictactoe-ws":
-      return <Gamepad2 size={20} className={className} />;
-    case "gait-auth":
-      return <Shield size={20} className={className} />;
-    case "lumen":
-      return <Bot size={20} className={className} />;
-    case "infra-packages":
-      return <Boxes size={20} className={className} />;
-    default:
-      return <LinkIcon size={20} className={className} />;
-  }
+function toRoman(index: number) {
+  return ROMAN_NUMERALS[index] ?? String(index + 1);
 }
 
-function LinkButton({
-  href,
-  label,
-  variant = "default",
-  icon,
-  accentButtonClass,
-}: {
-  href: string;
-  label: string;
-  variant?: "default" | "primary";
-  icon?: React.ReactNode;
-  accentButtonClass?: string;
-}) {
-  const styles =
-    variant === "primary"
-      ? accentButtonClass
-      : "border border-white/10 bg-white/[0.03] text-slate-100 hover:border-cyan-300/35 hover:bg-white/[0.07]";
-
+function PrimaryLink({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 ${styles}`}
+      className="inline-flex items-center justify-center gap-2 bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800"
     >
       {icon}
       {label}
-      <ExternalLink size={14} className="opacity-70" />
     </a>
   );
 }
 
-function Badge({ text, accentClass }: { text: string; accentClass: string }) {
+function SecondaryLink({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) {
   return (
-    <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${accentClass}`}>
-      {text}
-    </span>
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-1.5 border-b border-neutral-300 pb-0.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
+    >
+      <span className="text-neutral-950">{icon}</span>
+      {label}
+      <ExternalLink size={12} className="opacity-60" />
+    </a>
   );
 }
 
 function ScreenshotPreview({
   screenshot,
-  featured = false,
 }: {
   screenshot: NonNullable<Project["screenshot"]>;
-  featured?: boolean;
 }) {
   return (
-    <figure className={`overflow-hidden border border-white/10 bg-slate-950/60 ${featured ? "p-2" : "p-1.5"}`}>
-      <img
-        src={screenshot.src}
-        alt={screenshot.alt}
-        className={`w-full object-cover object-top ${featured ? "aspect-[16/10]" : "aspect-[16/9]"}`}
-        loading="lazy"
-      />
+    <figure>
+      <div className="overflow-hidden bg-neutral-950 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
+        {screenshot.clip ? (
+          <video
+            className="aspect-[16/10] w-full object-cover object-top"
+            src={screenshot.clip}
+            poster={screenshot.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={screenshot.alt}
+          />
+        ) : (
+          <img
+            src={screenshot.src}
+            alt={screenshot.alt}
+            className="aspect-[16/10] w-full object-cover object-top"
+            loading="lazy"
+          />
+        )}
+      </div>
       {screenshot.caption ? (
-        <figcaption className="border-t border-white/10 px-3 py-2 text-xs leading-relaxed text-slate-400">
+        <figcaption className="mt-3 text-xs italic leading-relaxed text-neutral-500">
           {screenshot.caption}
         </figcaption>
       ) : null}
@@ -109,228 +84,162 @@ function ScreenshotPreview({
 
 function ArchitectureNote({ architecture }: { architecture: NonNullable<Project["architecture"]> }) {
   return (
-    <div className="mt-5 border border-cyan-300/20 bg-cyan-300/10 p-4">
-      <div className="flex gap-3">
-        <span className="mt-1 h-2 w-2 shrink-0 bg-cyan-300" />
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
-            Architecture
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-slate-200">
-            {architecture.architecture}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ProjectSignal({ id, accent }: { id: string; accent: typeof CARD_THEME }) {
-  const signalsByProject: Record<string, string[]> = {
-    "tictactoe-ws": ["Multi-game platform", "Group chat", "Realtime state"],
-    "gait-auth": ["JWT lifecycle", "Protected APIs", "Reusable auth service"],
-    lumen: ["Clinical templates", "Protocol workflows", "Report-ready output"],
-    "infra-packages": ["Shared auth", "Correlation IDs", "Structured logging"],
-  };
-  const signals = signalsByProject[id] ?? ["Architecture", "Product flow", "Implementation"];
-
-  return (
-    <div className={`mt-5 border ${accent.border} ${accent.panel} p-4`}>
-      <p className={`text-xs font-bold uppercase tracking-[0.2em] ${accent.text}`}>
-        Skill signal
+    <div className="mt-5 border-l-2 border-neutral-300 pl-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+        Architecture
       </p>
-      <div className="mt-3 grid gap-2">
-        {signals.map((signal) => (
-          <div key={signal} className="flex items-center gap-2 border border-white/10 bg-slate-950/45 px-3 py-2 text-sm font-medium text-slate-200">
-            <span className="h-2 w-2 bg-cyan-300" />
-            {signal}
-          </div>
-        ))}
-      </div>
+      <p className="mt-2 text-sm leading-relaxed text-neutral-700">{architecture.architecture}</p>
     </div>
   );
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const { id, title, description, highlights, tryThis, links, badges, featured, screenshot, architecture } = project;
-  const accent = CARD_THEME;
+export function ProjectCard({ project, index }: ProjectCardProps) {
+  const { title, description, highlights, tryThis, links, badges, featured, screenshot, architecture } = project;
+  const numeral = toRoman(index);
 
   if (featured) {
     return (
-      <article className="grid gap-7 border border-white/10 bg-white/[0.05] p-5 shadow-2xl shadow-black/30 sm:p-7 lg:grid-cols-[0.95fr_1.05fr]">
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <div className={`grid h-12 w-12 place-items-center ${accent.soft}`}>
-              {getIcon(id, accent.text)}
-            </div>
-            <div>
-              <p className={`text-sm font-bold uppercase tracking-[0.2em] ${accent.text}`}>
-                Featured production system
+      <Reveal>
+        <article
+          className={`grid gap-8 lg:grid-cols-[3rem_0.95fr_1.05fr] ${
+            index === 0 ? "border-t-0 pt-0" : "border-t border-neutral-200 pt-8"
+          }`}
+        >
+          <div className="hidden lg:block" aria-hidden="true">
+            <span className="font-display text-2xl text-neutral-300">{numeral}</span>
+          </div>
+
+          <div>
+            <h3 className="font-display text-3xl font-medium tracking-tight text-neutral-950">
+              <span className="mr-2 text-neutral-300 lg:hidden">{numeral}</span>
+              {title}
+            </h3>
+
+            {badges?.length ? (
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+                {badges.join(" · ")}
               </p>
-              <h3 className="mt-1 text-4xl font-semibold tracking-tight text-white">
-                {title}
-              </h3>
-            </div>
-          </div>
-
-          {badges?.length ? (
-            <div className="mt-5 flex flex-wrap gap-2">
-              {badges.map((badge) => (
-                <Badge key={badge} text={badge} accentClass={accent.soft} />
-              ))}
-            </div>
-          ) : null}
-
-          <p className="mt-6 text-base leading-relaxed text-slate-300">{description}</p>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {highlights.slice(0, 4).map((highlight) => (
-              <div key={highlight} className="border border-white/10 bg-slate-950/45 p-4">
-                <p className="text-sm leading-relaxed text-slate-200">{highlight}</p>
-              </div>
-            ))}
-          </div>
-
-          {architecture ? <ArchitectureNote architecture={architecture} /> : null}
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {links.liveDemo ? (
-              <LinkButton
-                href={links.liveDemo}
-                label="Live Demo"
-                variant="primary"
-                icon={<Play size={16} />}
-                accentButtonClass={accent.button}
-              />
             ) : null}
-            {links.repo ? (
-              <LinkButton href={links.repo} label="Repo" icon={<Github size={16} />} />
-            ) : null}
-          </div>
-        </div>
 
-        <div>
-          {screenshot ? <ScreenshotPreview screenshot={screenshot} featured /> : null}
-          <div className="mt-4 border border-white/10 bg-slate-950/70 p-5 text-white">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-cyan-300">
-              Evaluate this
-            </p>
-            <ol className="mt-4 space-y-3 text-sm leading-relaxed text-slate-200">
-              {tryThis.slice(0, 2).map((step, index) => (
-                <li key={step} className="flex gap-3">
-                  <span className="grid h-7 w-7 shrink-0 place-items-center bg-cyan-300 text-xs font-bold text-slate-950">
-                    {index + 1}
-                  </span>
-                  {step}
+            <p className="mt-5 text-base leading-relaxed text-neutral-600">{description}</p>
+
+            <ul className="mt-6 divide-y divide-neutral-200 border-t border-neutral-200">
+              {highlights.slice(0, 4).map((highlight) => (
+                <li key={highlight} className="py-3 text-sm leading-relaxed text-neutral-700">
+                  {highlight}
                 </li>
               ))}
-            </ol>
+            </ul>
+
+            {architecture ? <ArchitectureNote architecture={architecture} /> : null}
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+              {links.liveDemo ? (
+                <PrimaryLink href={links.liveDemo} label="Live Demo" icon={<Play size={15} />} />
+              ) : null}
+              {links.repo ? (
+                <SecondaryLink href={links.repo} label="Repo" icon={<Github size={14} />} />
+              ) : null}
+            </div>
           </div>
-        </div>
-      </article>
+
+          <div>
+            {screenshot ? <ScreenshotPreview screenshot={screenshot} /> : null}
+            <div className="mt-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+                Evaluate this
+              </p>
+              <ol className="mt-3 space-y-3 text-sm leading-relaxed text-neutral-700">
+                {tryThis.slice(0, 2).map((step, index) => (
+                  <li key={step} className="flex gap-3">
+                    <span className="mt-0.5 shrink-0 font-display text-neutral-400">
+                      {index + 1}.
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </article>
+      </Reveal>
     );
   }
 
   return (
-    <article className="flex flex-col border border-white/10 bg-white/[0.05] p-5 shadow-sm shadow-black/20 transition hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.07]">
-      {screenshot ? (
-        <div className="mb-5">
-          <ScreenshotPreview screenshot={screenshot} />
-        </div>
-      ) : null}
-
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <div className={`grid h-11 w-11 shrink-0 place-items-center ${accent.soft}`}>
-            {getIcon(id, accent.text)}
+    <Reveal>
+      <article className="flex flex-col border-t border-neutral-200 pt-7">
+        {screenshot ? (
+          <div className="mb-5">
+            <ScreenshotPreview screenshot={screenshot} />
           </div>
-          <h3 className="text-xl font-semibold tracking-tight text-white">{title}</h3>
-        </div>
-      </div>
+        ) : null}
 
-      {badges?.length ? (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {badges.map((badge) => (
-            <Badge key={badge} text={badge} accentClass={accent.soft} />
-          ))}
-        </div>
-      ) : null}
+        <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
+          <span className="mr-2 text-neutral-300">{numeral}</span>
+          {title}
+        </h3>
 
-      <p className="mt-5 text-sm leading-relaxed text-slate-300">{description}</p>
+        {badges?.length ? (
+          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+            {badges.join(" · ")}
+          </p>
+        ) : null}
 
-      <ProjectSignal id={id} accent={accent} />
+        <p className="mt-4 text-sm leading-relaxed text-neutral-600">{description}</p>
 
-      <div className="mt-5">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
-          What it proves
-        </p>
-        <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-300">
+        <ul className="mt-4 divide-y divide-neutral-200 border-t border-neutral-200">
           {highlights.slice(0, 4).map((highlight) => (
-            <li key={highlight} className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-cyan-300" />
-              <span>{highlight}</span>
+            <li key={highlight} className="py-2.5 text-sm leading-relaxed text-neutral-700">
+              {highlight}
             </li>
           ))}
         </ul>
-      </div>
 
-      <div className="mt-5 border border-white/10 bg-slate-950/45 p-4">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
-          Evaluate this
-        </p>
-        <ol className="mt-3 space-y-2 text-sm leading-relaxed text-slate-300">
-          {tryThis.slice(0, 2).map((step, index) => (
-            <li key={step} className="flex gap-3">
-              <span className="grid h-6 w-6 shrink-0 place-items-center bg-cyan-300 text-xs font-bold text-slate-950">
-                {index + 1}
-              </span>
-              {step}
-            </li>
-          ))}
-        </ol>
-      </div>
-
-      <div className="mt-6 flex flex-wrap gap-2">
-        {links.liveDemo ? (
-          <LinkButton
-            href={links.liveDemo}
-            label="Live Demo"
-            variant="primary"
-            icon={<Play size={16} />}
-            accentButtonClass={accent.button}
-          />
-        ) : null}
-
-        {links.repo ? (
-          <LinkButton href={links.repo} label="Repo" icon={<Github size={16} />} />
-        ) : null}
-
-        {links.video ? (
-          <LinkButton href={links.video} label="Video" icon={<Video size={16} />} />
-        ) : null}
-      </div>
-
-      {links.related?.length ? (
-        <div className="mt-4 border-t border-white/10 pt-4">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
-            Related
+        <div className="mt-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+            Evaluate this
           </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {links.related.map((related) => (
-              <a
-                key={related.href}
-                href={related.href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-white/[0.07]"
-              >
-                <LinkIcon size={14} />
-                {related.label}
-              </a>
+          <ol className="mt-3 space-y-2 text-sm leading-relaxed text-neutral-700">
+            {tryThis.slice(0, 2).map((step, index) => (
+              <li key={step} className="flex gap-3">
+                <span className="shrink-0 font-display text-neutral-400">{index + 1}.</span>
+                {step}
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
-      ) : null}
-    </article>
+
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          {links.liveDemo ? (
+            <PrimaryLink href={links.liveDemo} label="Live Demo" icon={<Play size={15} />} />
+          ) : null}
+          {links.repo ? <SecondaryLink href={links.repo} label="Repo" icon={<Github size={14} />} /> : null}
+          {links.video ? <SecondaryLink href={links.video} label="Video" icon={<Video size={14} />} /> : null}
+        </div>
+
+        {links.related?.length ? (
+          <div className="mt-5 border-t border-neutral-200 pt-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              Related
+            </p>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+              {links.related.map((related) => (
+                <a
+                  key={related.href}
+                  href={related.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-950"
+                >
+                  <LinkIcon size={12} />
+                  {related.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </article>
+    </Reveal>
   );
 }

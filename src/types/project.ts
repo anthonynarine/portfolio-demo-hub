@@ -26,6 +26,8 @@ export type Project = {
     src: string;
     alt: string;
     caption?: string;
+    /** Optional short muted looping clip (mp4/webm) shown instead of the still image; `src` is used as the poster frame and as the fallback when the video can't load. */
+    clip?: string;
   };
   architecture?: {
     architecture: string;
