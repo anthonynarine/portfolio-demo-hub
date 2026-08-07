@@ -86,8 +86,8 @@ export const projects: Project[] = [
     screenshot: {
       src: "/screenshots/onevone-poker-table.jpg",
       clip: "/videos/onevone-preview.mp4",
-      alt: "A multiplayer Texas Hold'em hand playing out at a OneVOne poker table, from the flop through an all-in showdown",
-      caption: "A live OneVOne poker hand: flop, turn, river, and an all-in showdown, playing out in real time.",
+      alt: "A complete multiplayer Texas Hold'em hand playing out at a OneVOne poker table, from the pre-flop decision through the full showdown",
+      caption: "A full OneVOne poker hand playing out in real time: pre-flop, flop, turn, river, and showdown.",
     },
     architecture: {
       architecture:
