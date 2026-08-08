@@ -52,9 +52,10 @@ export const projects: Project[] = [
     badges: ["Production", "SaaS", "Stripe", "AI Copilot"],
     featured: true,
     screenshot: {
-      src: "/screenshots/estateiq-home.png",
-      alt: "EstateIQ homepage showing the AI-powered operating system for small landlords",
-      caption: "EstateIQ homepage: production SaaS positioning around records, reports, and grounded AI.",
+      src: "/screenshots/estateiq-dashboard.jpg",
+      clip: "/videos/estateiq-preview.mp4",
+      alt: "A walkthrough of the EstateIQ portfolio dashboard, buildings, and a lease ledger showing derived charges, payments, and balances",
+      caption: "A live walkthrough of EstateIQ: the portfolio dashboard, buildings, and a lease ledger — balances derived from charges and payments, never stored directly.",
     },
     architecture: {
       architecture:
@@ -74,8 +75,8 @@ export const projects: Project[] = [
       "Shared platform for Tic-Tac-Toe, Connect Four, Checkers, Poker, Sudoku, AI modes, and realtime multiplayer",
     ],
     tryThis: [
-      "Use the recruiter demo to sign in as Player 1 and Player 2 in separate tabs.",
-      "Create a poker lobby or tournament, invite players, then test table sync, chat, and notifications.",
+      "Create an account and play a live match against real people, or start a game against AI to try it solo.",
+      "Explore the lobby: friends, presence, invites, chat, and notifications while a game is in progress.",
     ],
     links: {
       liveDemo: LINKS.tttDemo,

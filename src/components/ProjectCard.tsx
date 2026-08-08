@@ -1,7 +1,9 @@
 // # Filename: src/components/ProjectCard.tsx
 
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Project } from "../types/project";
-import { ExternalLink, Github, Link as LinkIcon, Play, Video } from "lucide-react";
+import { ExternalLink, Github, Link as LinkIcon, Maximize2, Play, Video, X } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 type ProjectCardProps = {
@@ -44,14 +46,81 @@ function SecondaryLink({ href, label, icon }: { href: string; label: string; ico
   );
 }
 
+function Lightbox({
+  screenshot,
+  onClose,
+}: {
+  screenshot: NonNullable<Project["screenshot"]>;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+    }
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/90 p-6"
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close preview"
+        className="absolute right-5 top-5 text-white/70 transition hover:text-white"
+      >
+        <X size={26} />
+      </button>
+      <div
+        className="w-full max-w-3xl overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950"
+        onClick={(event) => event.stopPropagation()}
+      >
+        {screenshot.clip ? (
+          <video
+            className="aspect-[16/10] w-full object-contain"
+            src={screenshot.clip}
+            poster={screenshot.src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label={screenshot.alt}
+          />
+        ) : (
+          <img
+            src={screenshot.src}
+            alt={screenshot.alt}
+            className="aspect-[16/10] w-full object-contain"
+          />
+        )}
+      </div>
+    </div>,
+    document.body
+  );
+}
+
 function ScreenshotPreview({
   screenshot,
 }: {
   screenshot: NonNullable<Project["screenshot"]>;
 }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <figure>
-      <div className="overflow-hidden bg-neutral-950 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]">
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label={`View a larger preview of ${screenshot.alt}`}
+        className="group relative block w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950"
+      >
         {screenshot.clip ? (
           <video
             className="aspect-[16/10] w-full object-cover object-top"
@@ -62,7 +131,7 @@ function ScreenshotPreview({
             loop
             playsInline
             preload="metadata"
-            aria-label={screenshot.alt}
+            aria-hidden="true"
           />
         ) : (
           <img
@@ -72,13 +141,35 @@ function ScreenshotPreview({
             loading="lazy"
           />
         )}
-      </div>
+        <span className="absolute inset-0 flex items-center justify-center bg-neutral-950/0 opacity-0 transition group-hover:bg-neutral-950/40 group-hover:opacity-100">
+          <span className="inline-flex items-center gap-1.5 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-950">
+            <Maximize2 size={13} />
+            View larger
+          </span>
+        </span>
+      </button>
       {screenshot.caption ? (
         <figcaption className="mt-3 text-xs italic leading-relaxed text-neutral-500">
           {screenshot.caption}
         </figcaption>
       ) : null}
+      {open ? <Lightbox screenshot={screenshot} onClose={() => setOpen(false)} /> : null}
     </figure>
+  );
+}
+
+function BadgeList({ badges }: { badges: string[] }) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-1.5">
+      {badges.map((badge) => (
+        <span
+          key={badge}
+          className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-neutral-950"
+        >
+          {badge}
+        </span>
+      ))}
+    </div>
   );
 }
 
@@ -98,10 +189,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   const numeral = toRoman(index);
 
   if (featured) {
+    const isReversed = index % 2 === 1;
+
     return (
       <Reveal>
         <article
-          className={`grid gap-8 lg:grid-cols-[3rem_0.95fr_1.05fr] ${
+          className={`grid gap-y-8 gap-x-8 lg:grid-cols-[3rem_1fr_1fr] lg:gap-x-10 xl:gap-x-16 ${
             index === 0 ? "border-t-0 pt-0" : "border-t border-neutral-200 pt-8"
           }`}
         >
@@ -109,17 +202,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <span className="font-display text-2xl text-neutral-300">{numeral}</span>
           </div>
 
-          <div>
+          <div className={isReversed ? "lg:order-2" : "lg:order-1"}>
             <h3 className="font-display text-3xl font-medium tracking-tight text-neutral-950">
               <span className="mr-2 text-neutral-300 lg:hidden">{numeral}</span>
               {title}
             </h3>
 
-            {badges?.length ? (
-              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
-                {badges.join(" · ")}
-              </p>
-            ) : null}
+            {badges?.length ? <BadgeList badges={badges} /> : null}
 
             <p className="mt-5 text-base leading-relaxed text-neutral-600">{description}</p>
 
@@ -135,7 +224,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
               {links.liveDemo ? (
-                <PrimaryLink href={links.liveDemo} label="Live Demo" icon={<Play size={15} />} />
+                <PrimaryLink href={links.liveDemo} label="Visit Site" icon={<Play size={15} />} />
               ) : null}
               {links.repo ? (
                 <SecondaryLink href={links.repo} label="Repo" icon={<Github size={14} />} />
@@ -143,8 +232,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
           </div>
 
-          <div>
-            {screenshot ? <ScreenshotPreview screenshot={screenshot} /> : null}
+          <div className={isReversed ? "lg:order-1" : "lg:order-2"}>
+            {screenshot ? (
+              <div className={isReversed ? "xl:-ml-12 2xl:-ml-20" : "xl:-mr-12 2xl:-mr-20"}>
+                <ScreenshotPreview screenshot={screenshot} />
+              </div>
+            ) : null}
             <div className="mt-5">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
                 Evaluate this
@@ -180,11 +273,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {title}
         </h3>
 
-        {badges?.length ? (
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
-            {badges.join(" · ")}
-          </p>
-        ) : null}
+        {badges?.length ? <BadgeList badges={badges} /> : null}
 
         <p className="mt-4 text-sm leading-relaxed text-neutral-600">{description}</p>
 
@@ -212,7 +301,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
           {links.liveDemo ? (
-            <PrimaryLink href={links.liveDemo} label="Live Demo" icon={<Play size={15} />} />
+            <PrimaryLink href={links.liveDemo} label="Visit Site" icon={<Play size={15} />} />
           ) : null}
           {links.repo ? <SecondaryLink href={links.repo} label="Repo" icon={<Github size={14} />} /> : null}
           {links.video ? <SecondaryLink href={links.video} label="Video" icon={<Video size={14} />} /> : null}

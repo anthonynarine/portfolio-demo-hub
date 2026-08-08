@@ -8,7 +8,7 @@ export function Footer() {
   const hasResume = Boolean(profileLinks.resume);
 
   return (
-    <footer className="bg-neutral-950 px-5 py-10 text-sm text-neutral-400 sm:px-8 lg:px-10">
+    <footer className="bg-neutral-950 px-5 py-12 text-sm text-neutral-400 sm:px-8 lg:px-10">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 border-t border-neutral-800 pt-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-semibold text-white">Anthony Narine</p>

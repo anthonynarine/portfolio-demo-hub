@@ -18,6 +18,15 @@ const focusAreas = [
 export default function App() {
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-neutral-950">
+      <div
+        aria-hidden="true"
+        className="bg-grain pointer-events-none fixed inset-0 z-30 opacity-[0.035] mix-blend-multiply"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-2 z-40 border border-neutral-950/10 sm:inset-3"
+      />
+
       <Header
         name="Anthony Narine"
         headline="Full-stack software engineer"
@@ -26,8 +35,8 @@ export default function App() {
 
       <main>
         <section className="border-t border-neutral-200">
-          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-5xl lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24">
-            <div>
+          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-4xl lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24">
+            <div className="lg:pl-6">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
                 About
               </p>
@@ -36,7 +45,7 @@ export default function App() {
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-relaxed text-neutral-600">
+            <div className="space-y-5 text-base leading-relaxed text-neutral-600 lg:max-w-md">
               <p>
                 I spent 17 years working as a vascular technologist before moving into software
                 engineering. That background still shapes how I think: systems and workflows need to
@@ -58,7 +67,7 @@ export default function App() {
         </section>
 
         <section className="border-y border-neutral-200 bg-[#F3F1EC]">
-          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-5xl lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:py-20">
+          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-3xl lg:grid-cols-[0.8fr_1.2fr] lg:px-16 lg:py-20">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
                 What I can help with
@@ -78,7 +87,7 @@ export default function App() {
           </Reveal>
         </section>
 
-        <section id="projects" className="mx-auto max-w-5xl px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
+        <section id="projects" className="mx-auto max-w-5xl overflow-x-clip px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
           <Reveal className="flex flex-col gap-3 border-b border-neutral-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
@@ -98,18 +107,18 @@ export default function App() {
         </section>
 
         <section className="bg-neutral-950 text-white">
-          <Reveal className="mx-auto flex max-w-5xl flex-col gap-5 px-5 py-14 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+          <Reveal className="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-20 sm:px-8 sm:py-24 md:flex-row md:items-end md:justify-between lg:px-10 lg:py-28">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-400">
                 Build With Me
               </p>
-              <h2 className="font-display mt-3 text-3xl font-medium tracking-tight">
+              <h2 className="font-display mt-4 max-w-xl text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
                 Need a product built from unclear idea to working system?
               </h2>
             </div>
             <a
               href={`mailto:${profileLinks.email}`}
-              className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200"
+              className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200"
             >
               <Mail size={16} />
               Start a conversation

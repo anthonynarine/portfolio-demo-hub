@@ -21,7 +21,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
         ))}
 
         {standard.length ? (
-          <div className="grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-y-8 gap-x-8 lg:grid-cols-2 lg:gap-x-10 lg:pl-[5.5rem] xl:gap-x-16 xl:pl-[7rem]">
             {standard.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={featured.length + index} />
             ))}
