@@ -3,8 +3,123 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Project } from "../types/project";
-import { ExternalLink, Github, Link as LinkIcon, Maximize2, Play, Video, X } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Github,
+  Link as LinkIcon,
+  Maximize2,
+  Play,
+  Video,
+  X,
+} from "lucide-react";
 import { Reveal } from "./Reveal";
+
+type Slide = { src: string; alt: string; caption: string };
+
+/** Cycles 0..length-1 on an interval; pass `paused` to hold (e.g. on hover). */
+function useSlideshowIndex(length: number, { intervalMs = 4000, paused = false } = {}) {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    if (paused || length <= 1) return;
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % length);
+    }, intervalMs);
+    return () => window.clearInterval(id);
+  }, [length, intervalMs, paused]);
+  return [index, setIndex] as const;
+}
+
+function CardSlides({ slides, index }: { slides: Slide[]; index: number }) {
+  return (
+    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
+      {slides.map((slide, i) => (
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt={slide.alt}
+          loading="lazy"
+          className={`absolute inset-0 h-full w-full rounded-xl object-cover object-top transition-opacity duration-700 ${
+            i === index ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+      <span className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+        {slides.map((slide, i) => (
+          <span
+            key={slide.src}
+            className={`h-1.5 w-1.5 rounded-full transition ${i === index ? "bg-white" : "bg-white/40"}`}
+          />
+        ))}
+      </span>
+    </div>
+  );
+}
+
+function LightboxSlides({ slides, initialIndex }: { slides: Slide[]; initialIndex: number }) {
+  const [index, setIndex] = useState(initialIndex);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || slides.length <= 1) return;
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % slides.length);
+    }, 4200);
+    return () => window.clearInterval(id);
+  }, [paused, slides.length]);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "ArrowRight") setIndex((current) => (current + 1) % slides.length);
+      if (event.key === "ArrowLeft") setIndex((current) => (current - 1 + slides.length) % slides.length);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [slides.length]);
+
+  const slide = slides[index];
+
+  return (
+    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <div className="relative overflow-hidden rounded-t-xl">
+        <img src={slide.src} alt={slide.alt} className="aspect-[16/10] w-full object-contain" />
+        <button
+          type="button"
+          onClick={() => setIndex((current) => (current - 1 + slides.length) % slides.length)}
+          aria-label="Previous slide"
+          className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-neutral-950/60 p-1.5 text-white/80 transition hover:bg-neutral-950/80 hover:text-white"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setIndex((current) => (current + 1) % slides.length)}
+          aria-label="Next slide"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-neutral-950/60 p-1.5 text-white/80 transition hover:bg-neutral-950/80 hover:text-white"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+      <div className="flex items-center justify-between gap-4 border-t border-neutral-800 px-5 py-4">
+        <p className="text-sm italic leading-relaxed text-neutral-300">{slide.caption}</p>
+        <div className="flex shrink-0 gap-1.5">
+          {slides.map((s, i) => (
+            <button
+              key={s.src}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-1.5 w-5 rounded-full transition ${
+                i === index ? "bg-white" : "bg-white/25 hover:bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 type ProjectCardProps = {
   project: Project;
@@ -48,9 +163,11 @@ function SecondaryLink({ href, label, icon }: { href: string; label: string; ico
 
 function Lightbox({
   screenshot,
+  initialIndex = 0,
   onClose,
 }: {
   screenshot: NonNullable<Project["screenshot"]>;
+  initialIndex?: number;
   onClose: () => void;
 }) {
   useEffect(() => {
@@ -79,10 +196,12 @@ function Lightbox({
         <X size={26} />
       </button>
       <div
-        className="w-full max-w-3xl overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950"
+        className="w-full max-w-5xl overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950"
         onClick={(event) => event.stopPropagation()}
       >
-        {screenshot.clip ? (
+        {screenshot.slides ? (
+          <LightboxSlides slides={screenshot.slides} initialIndex={initialIndex} />
+        ) : screenshot.clip ? (
           <video
             className="aspect-[16/10] w-full object-contain"
             src={screenshot.clip}
@@ -112,16 +231,24 @@ function ScreenshotPreview({
   screenshot: NonNullable<Project["screenshot"]>;
 }) {
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const slides = screenshot.slides;
+  const [slideIndex] = useSlideshowIndex(slides?.length ?? 0, { paused: hovered || !slides });
+  const activeCaption = slides ? slides[slideIndex]?.caption : screenshot.caption;
 
   return (
     <figure>
       <button
         type="button"
         onClick={() => setOpen(true)}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         aria-label={`View a larger preview of ${screenshot.alt}`}
         className="group relative block w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950"
       >
-        {screenshot.clip ? (
+        {slides ? (
+          <CardSlides slides={slides} index={slideIndex} />
+        ) : screenshot.clip ? (
           <video
             className="aspect-[16/10] w-full object-cover object-top"
             src={screenshot.clip}
@@ -148,12 +275,14 @@ function ScreenshotPreview({
           </span>
         </span>
       </button>
-      {screenshot.caption ? (
+      {activeCaption ? (
         <figcaption className="mt-3 text-xs italic leading-relaxed text-neutral-500">
-          {screenshot.caption}
+          {activeCaption}
         </figcaption>
       ) : null}
-      {open ? <Lightbox screenshot={screenshot} onClose={() => setOpen(false)} /> : null}
+      {open ? (
+        <Lightbox screenshot={screenshot} initialIndex={slideIndex} onClose={() => setOpen(false)} />
+      ) : null}
     </figure>
   );
 }

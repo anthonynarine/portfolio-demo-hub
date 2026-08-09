@@ -52,10 +52,41 @@ export const projects: Project[] = [
     badges: ["Production", "SaaS", "Stripe", "AI Copilot"],
     featured: true,
     screenshot: {
-      src: "/screenshots/estateiq-dashboard.jpg",
-      clip: "/videos/estateiq-preview.mp4",
-      alt: "A walkthrough of the EstateIQ portfolio dashboard, buildings, and a lease ledger showing derived charges, payments, and balances",
-      caption: "A live walkthrough of EstateIQ: the portfolio dashboard, buildings, and a lease ledger — balances derived from charges and payments, never stored directly.",
+      src: "/screenshots/estateiq-slide-dashboard.jpg",
+      alt: "The EstateIQ portfolio dashboard, buildings list, a lease ledger, and the Dana AI Copilot answering a portfolio question",
+      caption: "Every dollar accounted for — collected, outstanding, and net cash flow for the month, derived live from the ledger.",
+      slides: [
+        {
+          src: "/screenshots/estateiq-slide-dashboard.jpg",
+          alt: "EstateIQ portfolio dashboard showing collected, outstanding, and net cash flow for the month",
+          caption: "Every dollar accounted for — collected, outstanding, and net cash flow for the month, derived live from the ledger.",
+        },
+        {
+          src: "/screenshots/estateiq-slide-buildings.jpg",
+          alt: "Portfolio buildings list showing occupancy and rent collected for each property",
+          caption: "Occupancy, rent collected, and risk for every property in the portfolio, at a glance.",
+        },
+        {
+          src: "/screenshots/estateiq-slide-ledger.jpg",
+          alt: "A lease ledger showing charges, payments, and an overdue balance with a Pay action",
+          caption: "A lease ledger that tracks charges, payments, and balances — nothing is ever hand-entered as a total.",
+        },
+        {
+          src: "/screenshots/estateiq-slide-architecture.jpg",
+          alt: "System diagram showing the flow from a landlord's business through properties, leases, and money, feeding both reports and the AI assistant",
+          caption: "Every layer connects: properties, leases, and money feed both the reports and the AI assistant — nothing lives in a silo.",
+        },
+        {
+          src: "/screenshots/estateiq-slide-copilot.jpg",
+          alt: "The Dana AI Copilot answering questions about mortgages and vacancies with numbers pulled from the ledger",
+          caption: "Ask Dana anything about the portfolio — answers are computed from records, not guessed by an LLM.",
+        },
+        {
+          src: "/screenshots/estateiq-slide-ai-different.jpg",
+          alt: "Comparison diagram: EstateIQ AI drawing on a connected ledger, documents, and reports for a grounded answer, versus a bolt-on AI assembling a plausible but unsourced answer from scattered files",
+          caption: "Bolt-on AI assembles context from scattered files and guesses. EstateIQ's AI starts from a connected ledger, so every answer traces back to a record.",
+        },
+      ],
     },
     architecture: {
       architecture:

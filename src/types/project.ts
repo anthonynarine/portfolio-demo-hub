@@ -28,6 +28,8 @@ export type Project = {
     caption?: string;
     /** Optional short muted looping clip (mp4/webm) shown instead of the still image; `src` is used as the poster frame and as the fallback when the video can't load. */
     clip?: string;
+    /** Optional slideshow of stills with per-slide captions, shown instead of `clip`/`src` when present. */
+    slides?: { src: string; alt: string; caption: string }[];
   };
   architecture?: {
     architecture: string;
