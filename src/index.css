@@ -3,6 +3,10 @@
 
 @import "tailwindcss";
 
+@custom-variant cloudy (&:where(.cloudy, .cloudy *));
+@custom-variant dark (&:where(.dark, .dark *, .rainy, .rainy *));
+@custom-variant rainy (&:where(.rainy, .rainy *));
+
 /* # Step 0: theme tokens (Tailwind v4 is CSS-config, no tailwind.config.js) */
 @theme {
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
@@ -36,6 +40,27 @@ body {
   padding: 0;
   background-color: #fafaf8;
   color: #0a0a0a;
+}
+
+html.dark,
+html.dark body {
+  background-color: #0a0a0a;
+  color: #fafafa;
+  color-scheme: dark;
+}
+
+html.rainy,
+html.rainy body {
+  background-color: #0f1113;
+  color: #fafafa;
+  color-scheme: dark;
+}
+
+html.cloudy,
+html.cloudy body {
+  background-color: #ecefeb;
+  color: #0a0a0a;
+  color-scheme: light;
 }
 
 body {
@@ -76,6 +101,58 @@ a {
   background-size: 180px 180px;
 }
 
+.rain-layer {
+  background-image:
+    linear-gradient(115deg, transparent 0 42%, rgb(250 250 250 / 0.22) 43% 45%, transparent 46% 100%),
+    linear-gradient(115deg, transparent 0 50%, rgb(250 250 250 / 0.14) 51% 52%, transparent 53% 100%);
+  background-position: 0 0, 60px 80px;
+  background-size: 90px 140px, 130px 190px;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+html.rainy .rain-layer {
+  animation: rain-fall 1.4s linear infinite;
+  opacity: 0.1;
+}
+
+html.cloudy .bg-grain {
+  opacity: 0.075;
+}
+
+html.cloudy .border-neutral-200 {
+  border-color: #d5d9d2;
+}
+
+html.cloudy .border-neutral-300 {
+  border-color: #bdc3bb;
+}
+
+html.cloudy .text-neutral-500 {
+  color: #6f766e;
+}
+
+html.cloudy .text-neutral-600 {
+  color: #59615a;
+}
+
+html.cloudy .text-neutral-700 {
+  color: #3f4741;
+}
+
+@keyframes rain-fall {
+  to {
+    background-position: -90px 140px, -70px 190px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.rainy .rain-layer {
+    animation: none;
+    opacity: 0.045;
+  }
+}
+
 /* # Step 3: print sizing that Tailwind utilities can't express (no config file to extend here) */
 @media print {
   @page {
@@ -86,5 +163,27 @@ a {
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+
+  html,
+  body,
+  html.dark,
+  html.rainy,
+  html.dark body,
+  html.rainy body {
+    background-color: #ffffff !important;
+    color: #0a0a0a !important;
+    color-scheme: light !important;
+  }
+
+  .resume-page,
+  .resume-page * {
+    background-color: transparent !important;
+    border-color: #e5e5e5 !important;
+    color: #0a0a0a !important;
+  }
+
+  .resume-page {
+    background-color: #ffffff !important;
   }
 }

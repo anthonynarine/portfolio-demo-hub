@@ -17,14 +17,18 @@ const focusAreas = [
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#FAFAF8] text-neutral-950">
+    <div className="min-h-screen bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#ECEFEB] dark:bg-neutral-950 rainy:bg-[#0F1113] dark:text-neutral-50">
       <div
         aria-hidden="true"
-        className="bg-grain pointer-events-none fixed inset-0 z-30 opacity-[0.035] mix-blend-multiply"
+        className="bg-grain pointer-events-none fixed inset-0 z-30 opacity-[0.035] mix-blend-multiply cloudy:opacity-[0.06] dark:mix-blend-screen"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-2 z-40 border border-neutral-950/10 sm:inset-3"
+        className="rain-layer pointer-events-none fixed inset-0 z-30"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-2 z-40 border border-neutral-950/10 cloudy:border-neutral-950/15 dark:border-neutral-50/10 sm:inset-3"
       />
 
       <Header
@@ -34,18 +38,18 @@ export default function App() {
       />
 
       <main>
-        <section className="border-t border-neutral-200">
+        <section className="border-t border-neutral-200 dark:border-neutral-800">
           <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-4xl lg:grid-cols-[0.9fr_1.1fr] lg:px-10 lg:py-24">
             <div className="lg:pl-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
                 About
               </p>
-              <h2 className="font-display mt-4 max-w-3xl text-4xl font-medium leading-tight tracking-tight text-neutral-950 sm:text-5xl">
+              <h2 className="font-display mt-4 max-w-3xl text-4xl font-medium leading-tight tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-5xl">
                 I build the kind of systems I wish I could have studied when I was learning.
               </h2>
             </div>
 
-            <div className="space-y-5 text-base leading-relaxed text-neutral-600 lg:max-w-md">
+            <div className="space-y-5 text-base leading-relaxed text-neutral-600 dark:text-neutral-400 lg:max-w-md">
               <p>
                 I spent 17 years working as a vascular technologist before moving into software
                 engineering. That background still shapes how I think: systems and workflows need to
@@ -66,20 +70,20 @@ export default function App() {
           </Reveal>
         </section>
 
-        <section className="border-y border-neutral-200 bg-[#F3F1EC]">
+        <section className="border-y border-neutral-200 bg-[#F3F1EC] cloudy:border-neutral-300 cloudy:bg-[#E0E4DD] dark:border-neutral-800 dark:bg-neutral-900 rainy:bg-[#181B1F]">
           <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-3xl lg:grid-cols-[0.8fr_1.2fr] lg:px-16 lg:py-20">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
                 What I can help with
               </p>
-              <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight text-neutral-950 sm:text-4xl">
+              <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-4xl">
                 I am strongest where product UX and backend rules meet.
               </h2>
             </div>
 
-            <ul className="divide-y divide-neutral-200 border-t border-neutral-200">
+            <ul className="divide-y divide-neutral-200 border-t border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
               {focusAreas.map((area) => (
-                <li key={area} className="py-4 text-base font-medium text-neutral-800">
+                <li key={area} className="py-4 text-base font-medium text-neutral-800 dark:text-neutral-200">
                   {area}
                 </li>
               ))}
@@ -88,16 +92,16 @@ export default function App() {
         </section>
 
         <section id="projects" className="mx-auto max-w-5xl overflow-x-clip px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
-          <Reveal className="flex flex-col gap-3 border-b border-neutral-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <Reveal className="flex flex-col gap-3 border-b border-neutral-200 pb-6 dark:border-neutral-800 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
                 Selected projects
               </p>
-              <h2 className="font-display mt-3 text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
+              <h2 className="font-display mt-3 text-4xl font-medium tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-5xl">
                 Proof through shipped systems.
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-neutral-600">
+            <p className="max-w-md text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
               Each project is positioned around what it demonstrates: architecture, product thinking,
               workflow design, and production readiness.
             </p>
@@ -106,10 +110,10 @@ export default function App() {
           <ProjectsGrid projects={projects} />
         </section>
 
-        <section className="bg-neutral-950 text-white">
+        <section className="bg-neutral-950 text-white dark:bg-neutral-50 dark:text-neutral-950">
           <Reveal className="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-20 sm:px-8 sm:py-24 md:flex-row md:items-end md:justify-between lg:px-10 lg:py-28">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-400">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-400 dark:text-neutral-600">
                 Build With Me
               </p>
               <h2 className="font-display mt-4 max-w-xl text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
@@ -118,7 +122,7 @@ export default function App() {
             </div>
             <a
               href={`mailto:${profileLinks.email}`}
-              className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200"
+              className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200 dark:bg-neutral-950 dark:text-neutral-50 dark:hover:bg-neutral-800"
             >
               <Mail size={16} />
               Start a conversation

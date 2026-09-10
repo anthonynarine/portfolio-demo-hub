@@ -31,6 +31,44 @@ const LINKS = {
 
 export const projects: Project[] = [
   {
+    id: "gait-auth",
+    title: "Gait Security Platform",
+    description:
+      "Gait is a self-repairing security platform governed by trusted evidence and human approval. It combines hardened security enforcement, continuous observability, constrained AI security agents, independent validation, and exact-artifact deployment into one security operating system. A large language model powers the reasoning behind Gait's Security Copilot and specialist agents — investigating findings, interpreting evidence, reproducing weaknesses, and preparing candidate repairs — but deterministic backend code decides what each agent may access, which tools it may use, and which actions are permitted.",
+    highlights: [
+      "Security Observatory continuously evaluates controls, evidence, findings, and audit events",
+      "Incident Commander coordinates Blue Team, Red Team, Green Team, and Security Validator workflows",
+      "Blue Team uses LLM-assisted reasoning to investigate failures; Red Team safely reproduces approved weaknesses in controlled environments",
+      "Security Validator and a Human Approver gate every production change before Release Engineer deploys the exact approved artifact",
+      "Security Copilot offers a natural-language interface for posture, active cases, and bounded workflow requests",
+      "Still guards Lumen's identity layer: JWT access/refresh, 2FA, guest sign-in, and protected endpoints",
+    ],
+    tryThis: [
+      "Click \"See How Gait Works\" to walk the self-repairing loop end-to-end: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, exact-artifact deploy.",
+      "Open \"Architecture\" to see why the AI agents reason inside deterministic boundaries and never hold production authority directly.",
+    ],
+    links: {
+      liveDemo: LINKS.gaitDemo,
+      repo: LINKS.djangoAuthRepo,
+      related: [
+        { label: "React client (AuthFlow)", href: LINKS.authFlowRepo },
+        { label: "Postman API docs", href: LINKS.gaitPostmanDocs },
+      ],
+    },
+    badges: ["Security Automation", "LLM Agents", "Evidence-Driven", "Human-Governed"],
+    featured: true,
+    screenshot: {
+      src: "/screenshots/gait-home.png",
+      alt: "Gait authentication platform homepage with guest sign-in and two-factor auth overview",
+      caption: "Gait homepage: recruiter-friendly auth demo with guest sign-in, 2FA, and session refresh.",
+    },
+    architecture: {
+      architecture:
+        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production.",
+    },
+  },
+
+  {
     id: "estateiq",
     title: "EstateIQ",
     description:
@@ -124,43 +162,6 @@ export const projects: Project[] = [
     architecture: {
       architecture:
         "Django/DRF owns game, tournament, registration, and table state; Channels and Redis handle realtime poker/table updates, lobby coordination, chat, presence, and notifications.",
-    },
-  },
-
-  {
-    id: "gait-auth",
-    title: "Gait Auth Platform",
-    description:
-      "A reusable authentication service for real product flows: JWT access and refresh tokens, 2FA, protected endpoints, logout, password reset, and a clean integration path for downstream services.",
-    highlights: [
-      "JWT access + refresh lifecycle with clear failure states",
-      "Two-factor authentication for stronger account security",
-      "Guest sign-in flow lets recruiters test protected auth behavior quickly",
-      "Password reset, logout, and protected endpoints handled server-side",
-      "RBAC-ready standalone service designed for reuse across apps"
-    ],
-    tryThis: [
-      "Click guest sign-in to enter the app without creating an account.",
-      "Visit a protected page, refresh the session, then log out to see the full auth lifecycle.",
-    ],
-    links: {
-      liveDemo: LINKS.gaitDemo,
-      repo: LINKS.djangoAuthRepo,
-      related: [
-        { label: "React client (AuthFlow)", href: LINKS.authFlowRepo },
-        { label: "Postman API docs", href: LINKS.gaitPostmanDocs },
-      ],
-    },
-    badges: ["JWT", "2FA", "RBAC-ready", "Password Reset"],
-    featured: true,
-    screenshot: {
-      src: "/screenshots/gait-home.png",
-      alt: "Gait authentication platform homepage with guest sign-in and two-factor auth overview",
-      caption: "Gait homepage: recruiter-friendly auth demo with guest sign-in, 2FA, and session refresh.",
-    },
-    architecture: {
-      architecture:
-        "Django/DRF owns identity, token lifecycle, 2FA, and protected endpoints while the React client demonstrates login, refresh, guest access, and logout behavior.",
     },
   },
 

@@ -2,6 +2,7 @@
 
 import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
 import { profileLinks } from "../data/projects";
+import { ThemeToggle } from "./ThemeToggle";
 
 type HeaderProps = {
   name: string;
@@ -24,9 +25,9 @@ function TextLink({
       href={href}
       target={isMail ? undefined : "_blank"}
       rel={isMail ? undefined : "noreferrer"}
-      className="inline-flex items-center gap-2 border-b border-neutral-300 pb-0.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
+      className="inline-flex items-center gap-2 border-b border-neutral-300 pb-0.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-50 dark:hover:text-neutral-50"
     >
-      {icon ? <span className="text-neutral-950">{icon}</span> : null}
+      {icon ? <span className="text-neutral-950 dark:text-neutral-50">{icon}</span> : null}
       {label}
     </a>
   );
@@ -36,28 +37,32 @@ export function Header({ name, headline, subhead }: HeaderProps) {
   const hasResume = Boolean(profileLinks.resume);
 
   return (
-    <header className="bg-[#FAFAF8] text-neutral-950">
+    <header className="bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#ECEFEB] dark:bg-neutral-950 rainy:bg-[#0F1113] dark:text-neutral-50">
       <div className="mx-auto flex min-h-[640px] max-w-3xl flex-col justify-center px-5 py-24 sm:px-8">
-        <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500">
+        <div className="animate-fade-up mb-12 flex justify-end">
+          <ThemeToggle />
+        </div>
+
+        <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
           {headline}
         </p>
 
-        <h1 className="font-display animate-fade-up mt-6 text-6xl font-medium leading-[1.02] tracking-tight text-neutral-950 [animation-delay:90ms] sm:text-7xl">
+        <h1 className="font-display animate-fade-up mt-6 text-6xl font-medium leading-[1.02] tracking-tight text-neutral-950 [animation-delay:90ms] dark:text-neutral-50 sm:text-7xl">
           {name}
         </h1>
 
-        <p className="animate-fade-up mt-7 max-w-xl text-lg leading-relaxed text-neutral-600 [animation-delay:180ms]">
+        <p className="animate-fade-up mt-7 max-w-xl text-lg leading-relaxed text-neutral-600 [animation-delay:180ms] dark:text-neutral-400">
           {subhead}
         </p>
 
-        <p className="animate-fade-up mt-5 text-sm text-neutral-500 [animation-delay:180ms]">
+        <p className="animate-fade-up mt-5 text-sm text-neutral-500 [animation-delay:180ms] dark:text-neutral-400">
           React · TypeScript · Django · PostgreSQL · AWS · Stripe
         </p>
 
         <div className="animate-fade-up mt-9 flex flex-wrap items-center gap-x-7 gap-y-3 [animation-delay:270ms]">
           <a
             href={`mailto:${profileLinks.email}`}
-            className="inline-flex items-center gap-2 bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800"
+            className="inline-flex items-center gap-2 bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
           >
             <Mail size={15} />
             Contact me
@@ -71,7 +76,7 @@ export function Header({ name, headline, subhead }: HeaderProps) {
 
         <a
           href="#projects"
-          className="animate-fade-up mt-16 inline-flex w-fit items-center gap-2 text-sm font-semibold text-neutral-800 transition hover:gap-3 hover:text-neutral-950 [animation-delay:360ms]"
+          className="animate-fade-up mt-16 inline-flex w-fit items-center gap-2 text-sm font-semibold text-neutral-800 transition hover:gap-3 hover:text-neutral-950 [animation-delay:360ms] dark:text-neutral-200 dark:hover:text-neutral-50"
         >
           View selected projects
           <ArrowDownRight size={16} />

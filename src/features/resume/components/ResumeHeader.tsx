@@ -12,7 +12,7 @@ function ContactLink({ href, label }: { href: string; label: string }) {
       href={href}
       target={isMail ? undefined : "_blank"}
       rel={isMail ? undefined : "noreferrer"}
-      className="text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-950"
+      className="text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-950 dark:text-neutral-400 dark:decoration-neutral-700 dark:hover:text-neutral-50"
     >
       {label}
     </a>
@@ -33,12 +33,12 @@ function ActionButton({
   download?: boolean;
 }) {
   const className =
-    "inline-flex items-center gap-2 border border-neutral-300 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-700 transition hover:border-neutral-950 hover:text-neutral-950";
+    "inline-flex items-center gap-2 border border-neutral-300 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-700 transition hover:border-neutral-950 hover:text-neutral-950 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-50 dark:hover:text-neutral-50";
 
   if (onClick) {
     return (
       <button type="button" onClick={onClick} className={className}>
-        <span className="text-neutral-950">{icon}</span>
+        <span className="text-neutral-950 dark:text-neutral-50">{icon}</span>
         {label}
       </button>
     );
@@ -47,7 +47,7 @@ function ActionButton({
   if (download) {
     return (
       <a href={href} download className={className}>
-        <span className="text-neutral-950">{icon}</span>
+        <span className="text-neutral-950 dark:text-neutral-50">{icon}</span>
         {label}
       </a>
     );
@@ -62,7 +62,7 @@ function ActionButton({
       rel={isMail ? undefined : "noreferrer"}
       className={className}
     >
-      <span className="text-neutral-950">{icon}</span>
+      <span className="text-neutral-950 dark:text-neutral-50">{icon}</span>
       {label}
     </a>
   );
@@ -74,29 +74,29 @@ export function ResumeHeader() {
       <div className="print:hidden">
         <a
           href="/"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 transition hover:text-neutral-950"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 transition hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"
         >
           <ArrowLeft size={14} />
           Back to portfolio
         </a>
       </div>
 
-      <div className="mt-6 flex flex-col gap-6 border-b border-neutral-200 pb-8 print:mt-0 print:pb-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mt-6 flex flex-col gap-6 border-b border-neutral-200 pb-8 dark:border-neutral-800 print:mt-0 print:pb-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="font-display text-4xl font-medium tracking-tight text-neutral-950 sm:text-5xl">
+          <h1 className="font-display text-4xl font-medium tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-5xl">
             {resumeProfile.name}
           </h1>
-          <p className="mt-2 text-lg font-medium text-neutral-700">{resumeProfile.title}</p>
-          <p className="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-neutral-500">
+          <p className="mt-2 text-lg font-medium text-neutral-700 dark:text-neutral-300">{resumeProfile.title}</p>
+          <p className="mt-1 text-sm font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400">
             {resumeProfile.positioning}
           </p>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-neutral-500">
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
             {resumeProfile.capabilities}
           </p>
         </div>
 
         <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm sm:flex-col sm:items-end sm:text-right">
-          <span className="text-neutral-500">{resumeProfile.location}</span>
+          <span className="text-neutral-500 dark:text-neutral-400">{resumeProfile.location}</span>
           <ContactLink href={`mailto:${resumeProfile.email}`} label={resumeProfile.email} />
           <ContactLink href={resumeProfile.github} label={resumeProfile.githubLabel} />
           <ContactLink href={resumeProfile.linkedin} label={resumeProfile.linkedinLabel} />

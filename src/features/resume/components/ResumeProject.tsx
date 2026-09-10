@@ -14,26 +14,26 @@ export function ResumeProject({ project }: { project: ResumeProjectData }) {
   const isInDevelopment = status === "In Development";
 
   return (
-    <article className="border-t border-neutral-200 py-7 first:border-t-0 first:pt-0 print:break-inside-avoid print:py-5">
+    <article className="border-t border-neutral-200 py-7 first:border-t-0 first:pt-0 dark:border-neutral-800 print:break-inside-avoid print:py-5">
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h3
-          className={`font-display font-medium tracking-tight text-neutral-950 ${HEADING_SIZE[weight]}`}
+          className={`font-display font-medium tracking-tight text-neutral-950 dark:text-neutral-50 ${HEADING_SIZE[weight]}`}
         >
           {name}
-          <span className="ml-2 font-sans text-base font-normal text-neutral-500">
+          <span className="ml-2 font-sans text-base font-normal text-neutral-500 dark:text-neutral-400">
             — {tagline}
           </span>
         </h3>
         <span
-          className={`text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 ${isInDevelopment ? "italic" : ""}`}
+          className={`text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500 dark:text-neutral-400 ${isInDevelopment ? "italic" : ""}`}
         >
           {status}
         </span>
       </div>
 
-      <p className="mt-2 text-xs leading-relaxed text-neutral-500">{stack.join(" · ")}</p>
+      <p className="mt-2 text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">{stack.join(" · ")}</p>
 
-      <ul className="mt-4 space-y-2 pl-5 text-sm leading-relaxed text-neutral-700 marker:text-neutral-400 [&>li]:list-disc">
+      <ul className="mt-4 space-y-2 pl-5 text-sm leading-relaxed text-neutral-700 marker:text-neutral-400 dark:text-neutral-300 dark:marker:text-neutral-500 [&>li]:list-disc">
         {bullets.map((bullet) => (
           <li key={bullet}>{bullet}</li>
         ))}
@@ -46,7 +46,7 @@ export function ResumeProject({ project }: { project: ResumeProjectData }) {
               href={liveUrl}
               target="_blank"
               rel="noreferrer"
-              className="font-semibold text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-600"
+              className="font-semibold text-neutral-900 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-600 dark:text-neutral-200 dark:decoration-neutral-700 dark:hover:text-neutral-400"
             >
               {liveLabel}
             </a>
@@ -56,7 +56,7 @@ export function ResumeProject({ project }: { project: ResumeProjectData }) {
               href={repoUrl}
               target="_blank"
               rel="noreferrer"
-              className="text-neutral-500 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-800"
+              className="text-neutral-500 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-800 dark:text-neutral-400 dark:decoration-neutral-700 dark:hover:text-neutral-200"
             >
               {repoLabel}
             </a>

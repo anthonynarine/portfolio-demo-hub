@@ -138,7 +138,7 @@ function PrimaryLink({ href, label, icon }: { href: string; label: string; icon:
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center justify-center gap-2 bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800"
+      className="inline-flex items-center justify-center gap-2 bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
     >
       {icon}
       {label}
@@ -152,9 +152,9 @@ function SecondaryLink({ href, label, icon }: { href: string; label: string; ico
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-1.5 border-b border-neutral-300 pb-0.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
+      className="inline-flex items-center gap-1.5 border-b border-neutral-300 pb-0.5 text-sm font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-50 dark:hover:text-neutral-50"
     >
-      <span className="text-neutral-950">{icon}</span>
+      <span className="text-neutral-950 dark:text-neutral-50">{icon}</span>
       {label}
       <ExternalLink size={12} className="opacity-60" />
     </a>
@@ -244,7 +244,7 @@ function ScreenshotPreview({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         aria-label={`View a larger preview of ${screenshot.alt}`}
-        className="group relative block w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950"
+        className="group relative block w-full overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950 dark:border-neutral-800"
       >
         {slides ? (
           <CardSlides slides={slides} index={slideIndex} />
@@ -276,7 +276,7 @@ function ScreenshotPreview({
         </span>
       </button>
       {activeCaption ? (
-        <figcaption className="mt-3 text-xs italic leading-relaxed text-neutral-500">
+        <figcaption className="mt-3 text-xs italic leading-relaxed text-neutral-500 dark:text-neutral-400">
           {activeCaption}
         </figcaption>
       ) : null}
@@ -293,7 +293,7 @@ function BadgeList({ badges }: { badges: string[] }) {
       {badges.map((badge) => (
         <span
           key={badge}
-          className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-neutral-950"
+          className="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-neutral-950 dark:bg-neutral-800 dark:text-neutral-100"
         >
           {badge}
         </span>
@@ -304,11 +304,11 @@ function BadgeList({ badges }: { badges: string[] }) {
 
 function ArchitectureNote({ architecture }: { architecture: NonNullable<Project["architecture"]> }) {
   return (
-    <div className="mt-5 border-l-2 border-neutral-300 pl-4">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+    <div className="mt-5 border-l-2 border-neutral-300 pl-4 dark:border-neutral-700">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
         Architecture
       </p>
-      <p className="mt-2 text-sm leading-relaxed text-neutral-700">{architecture.architecture}</p>
+      <p className="mt-2 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">{architecture.architecture}</p>
     </div>
   );
 }
@@ -324,26 +324,26 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       <Reveal>
         <article
           className={`grid gap-y-8 gap-x-8 lg:grid-cols-[3rem_1fr_1fr] lg:gap-x-10 xl:gap-x-16 ${
-            index === 0 ? "border-t-0 pt-0" : "border-t border-neutral-200 pt-8"
+            index === 0 ? "border-t-0 pt-0" : "border-t border-neutral-200 pt-8 dark:border-neutral-800"
           }`}
         >
           <div className="hidden lg:block" aria-hidden="true">
-            <span className="font-display text-2xl text-neutral-300">{numeral}</span>
+            <span className="font-display text-2xl text-neutral-300 dark:text-neutral-700">{numeral}</span>
           </div>
 
           <div className={isReversed ? "lg:order-2" : "lg:order-1"}>
-            <h3 className="font-display text-3xl font-medium tracking-tight text-neutral-950">
-              <span className="mr-2 text-neutral-300 lg:hidden">{numeral}</span>
+            <h3 className="font-display text-3xl font-medium tracking-tight text-neutral-950 dark:text-neutral-50">
+              <span className="mr-2 text-neutral-300 dark:text-neutral-700 lg:hidden">{numeral}</span>
               {title}
             </h3>
 
             {badges?.length ? <BadgeList badges={badges} /> : null}
 
-            <p className="mt-5 text-base leading-relaxed text-neutral-600">{description}</p>
+            <p className="mt-5 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">{description}</p>
 
-            <ul className="mt-6 divide-y divide-neutral-200 border-t border-neutral-200">
+            <ul className="mt-6 divide-y divide-neutral-200 border-t border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
               {highlights.slice(0, 4).map((highlight) => (
-                <li key={highlight} className="py-3 text-sm leading-relaxed text-neutral-700">
+                <li key={highlight} className="py-3 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
                   {highlight}
                 </li>
               ))}
@@ -368,13 +368,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               </div>
             ) : null}
             <div className="mt-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
                 Evaluate this
               </p>
-              <ol className="mt-3 space-y-3 text-sm leading-relaxed text-neutral-700">
+              <ol className="mt-3 space-y-3 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
                 {tryThis.slice(0, 2).map((step, index) => (
                   <li key={step} className="flex gap-3">
-                    <span className="mt-0.5 shrink-0 font-display text-neutral-400">
+                    <span className="mt-0.5 shrink-0 font-display text-neutral-400 dark:text-neutral-500">
                       {index + 1}.
                     </span>
                     {step}
@@ -390,38 +390,38 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <Reveal>
-      <article className="flex flex-col border-t border-neutral-200 pt-7">
+      <article className="flex flex-col border-t border-neutral-200 pt-7 dark:border-neutral-800">
         {screenshot ? (
           <div className="mb-5">
             <ScreenshotPreview screenshot={screenshot} />
           </div>
         ) : null}
 
-        <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950">
-          <span className="mr-2 text-neutral-300">{numeral}</span>
+        <h3 className="font-display text-xl font-medium tracking-tight text-neutral-950 dark:text-neutral-50">
+          <span className="mr-2 text-neutral-300 dark:text-neutral-700">{numeral}</span>
           {title}
         </h3>
 
         {badges?.length ? <BadgeList badges={badges} /> : null}
 
-        <p className="mt-4 text-sm leading-relaxed text-neutral-600">{description}</p>
+        <p className="mt-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">{description}</p>
 
-        <ul className="mt-4 divide-y divide-neutral-200 border-t border-neutral-200">
+        <ul className="mt-4 divide-y divide-neutral-200 border-t border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
           {highlights.slice(0, 4).map((highlight) => (
-            <li key={highlight} className="py-2.5 text-sm leading-relaxed text-neutral-700">
+            <li key={highlight} className="py-2.5 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
               {highlight}
             </li>
           ))}
         </ul>
 
         <div className="mt-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
             Evaluate this
           </p>
-          <ol className="mt-3 space-y-2 text-sm leading-relaxed text-neutral-700">
+          <ol className="mt-3 space-y-2 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
             {tryThis.slice(0, 2).map((step, index) => (
               <li key={step} className="flex gap-3">
-                <span className="shrink-0 font-display text-neutral-400">{index + 1}.</span>
+                <span className="shrink-0 font-display text-neutral-400 dark:text-neutral-500">{index + 1}.</span>
                 {step}
               </li>
             ))}
@@ -437,8 +437,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {links.related?.length ? (
-          <div className="mt-5 border-t border-neutral-200 pt-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+          <div className="mt-5 border-t border-neutral-200 pt-4 dark:border-neutral-800">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
               Related
             </p>
             <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
@@ -448,7 +448,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   href={related.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-950"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition hover:text-neutral-950 dark:text-neutral-400 dark:decoration-neutral-700 dark:hover:text-neutral-50"
                 >
                   <LinkIcon size={12} />
                   {related.label}

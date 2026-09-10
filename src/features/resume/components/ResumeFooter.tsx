@@ -4,12 +4,12 @@ import { resumeProfile } from "../data/resumeData";
 
 export function ResumeFooter() {
   return (
-    <footer className="flex items-center justify-between border-t border-neutral-200 pt-6 print:pt-4">
-      <p className="text-xs text-neutral-500">
+    <footer className="flex items-center justify-between border-t border-neutral-200 pt-6 dark:border-neutral-800 print:pt-4">
+      <p className="text-xs text-neutral-500 dark:text-neutral-400">
         {resumeProfile.name} · {resumeProfile.siteLabel}
       </p>
 
-      <div className="border border-neutral-200 bg-white p-1">
+      <div className="border border-neutral-200 bg-white p-1 dark:border-neutral-700">
         <img
           src="/qr-anthonynarine.svg"
           alt={`QR code linking to ${resumeProfile.site}`}
