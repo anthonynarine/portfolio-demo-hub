@@ -36,7 +36,7 @@ export const resumeProfile = {
 };
 
 export const resumeSummary =
-  "Full-stack software engineer designing and building production-oriented SaaS, real-time, security, healthcare, and AI-assisted systems with React, TypeScript, Python, Django, FastAPI, PostgreSQL, and Redis. Experienced in application architecture, multi-tenant authorization, REST APIs, authentication systems, transaction-safe financial workflows, WebSockets, and AI features grounded in verified application data. Brings 17 years of vascular ultrasound experience to healthcare software and clinical workflow design.";
+  "Full-stack software engineer designing and building production-oriented SaaS, real-time, security automation, healthcare, and AI-assisted systems with React, TypeScript, Python, Django, FastAPI, PostgreSQL, and Redis. Experienced in application architecture, multi-tenant authorization, REST APIs, authentication systems, transaction-safe financial workflows, WebSockets, and AI features grounded in verified application data. Brings 17 years of vascular ultrasound experience to healthcare software and clinical workflow design.";
 
 export const resumeProjects: ResumeProject[] = [
   {
@@ -69,7 +69,7 @@ export const resumeProjects: ResumeProject[] = [
     id: "onevone",
     name: "OneVOne",
     tagline: "Real-Time Social Gaming & Poker Platform",
-    status: "Live",
+    status: "Production",
     stack: ["React", "Django", "DRF", "Django Channels", "Redis", "WebSockets", "JWT"],
     bullets: [
       "Built a server-driven real-time platform supporting multiplayer games, poker tables and tournaments, chat, friends, presence, invitations, direct messaging, and notifications.",
@@ -85,19 +85,20 @@ export const resumeProjects: ResumeProject[] = [
   },
   {
     id: "gait",
-    name: "Gait",
-    tagline: "Authentication & Identity Platform",
-    status: "Live",
-    stack: ["Django", "DRF", "JWT", "2FA", "RBAC"],
+    name: "Gait Security Platform",
+    tagline: "Self-Repairing Security Operating System",
+    status: "Production",
+    stack: ["Django", "DRF", "JWT", "2FA", "RBAC", "OpenAI", "Security Automation"],
     bullets: [
-      "Designed and built a reusable authentication service supporting JWT access/refresh lifecycles, protected APIs, logout, password recovery, optional two-factor authentication, and role-based authorization.",
-      "Created reusable integration patterns so downstream applications can consume centralized identity without duplicating authentication logic.",
+      "Built a self-repairing security platform that combines hardened authentication, continuous control evaluation, evidence-backed findings, constrained AI security agents, validation, and human approval.",
+      "Designed deterministic backend boundaries so LLM-assisted agents can investigate failures, reproduce approved weaknesses, and prepare candidate repairs without direct production authority.",
+      "Implemented JWT access/refresh lifecycles, optional 2FA, guest sign-in, protected endpoints, role-based authorization, audit events, and reusable integration patterns for downstream systems.",
     ],
     liveUrl: "https://gait.netlify.app",
     liveLabel: "gait.netlify.app",
     repoUrl: "https://github.com/anthonynarine/django_auth",
     repoLabel: "github.com/anthonynarine/django_auth",
-    weight: "compact",
+    weight: "primary",
   },
   {
     id: "lumen",
@@ -148,7 +149,15 @@ export const resumeSkillGroups = [
   },
   {
     label: "Security",
-    items: ["JWT", "Access/Refresh Token Flows", "RBAC", "2FA", "Multi-Tenant Authorization"],
+    items: [
+      "JWT",
+      "Access/Refresh Token Flows",
+      "RBAC",
+      "2FA",
+      "Multi-Tenant Authorization",
+      "Security Automation",
+      "Audit Events",
+    ],
   },
   {
     label: "AI",

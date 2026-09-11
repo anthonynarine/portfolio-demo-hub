@@ -89,7 +89,7 @@ const html = `<!doctype html>
         anthonynarine.com
       </p>
       <p class="summary">
-        Full-stack software engineer designing and building production-oriented SaaS, real-time, security,
+        Full-stack software engineer designing and building production-oriented SaaS, real-time, security automation,
         healthcare, and AI-assisted systems with React, TypeScript, Python, Django, FastAPI, PostgreSQL, and
         Redis. Experienced in application architecture, multi-tenant authorization, REST APIs, authentication
         systems, transaction-safe financial workflows, WebSockets, and AI features grounded in verified
@@ -104,7 +104,7 @@ const html = `<!doctype html>
       <p><span class="label">Frontend:</span> React, Next.js, Vite, TanStack Query, Axios, Tailwind CSS</p>
       <p><span class="label">Backend:</span> Django, Django REST Framework, FastAPI, REST APIs, Django Channels, WebSockets, Celery</p>
       <p><span class="label">Data / Infrastructure:</span> PostgreSQL, Redis, AWS S3, AWS SES, Docker, Heroku, Netlify, Stripe</p>
-      <p><span class="label">Security:</span> JWT, access/refresh token flows, RBAC, 2FA, multi-tenant authorization</p>
+      <p><span class="label">Security:</span> JWT, access/refresh token flows, RBAC, 2FA, multi-tenant authorization, security automation, audit events</p>
       <p><span class="label">AI:</span> OpenAI APIs, RAG, LangChain, LangGraph, deterministic / grounded assistant workflows</p>
     </section>
 
@@ -123,7 +123,7 @@ const html = `<!doctype html>
       </div>
 
       <div class="item">
-        <h3>OneVOne &mdash; Real-Time Social Gaming &amp; Poker Platform (Live)</h3>
+        <h3>OneVOne &mdash; Real-Time Social Gaming &amp; Poker Platform (Production)</h3>
         <p class="meta">React, Django, DRF, Django Channels, Redis, WebSockets, JWT &nbsp;|&nbsp; onevone.net &nbsp;|&nbsp; github.com/anthonynarine/tic_tac_toe</p>
         <ul>
           <li>Built a server-driven real-time platform supporting multiplayer games, poker tables and tournaments, chat, friends, presence, invitations, direct messaging, and notifications.</li>
@@ -134,11 +134,12 @@ const html = `<!doctype html>
       </div>
 
       <div class="item">
-        <h3>Gait &mdash; Authentication &amp; Identity Platform (Live)</h3>
-        <p class="meta">Django, DRF, JWT, 2FA, RBAC &nbsp;|&nbsp; gait.netlify.app &nbsp;|&nbsp; github.com/anthonynarine/django_auth</p>
+        <h3>Gait Security Platform &mdash; Self-Repairing Security Operating System (Production)</h3>
+        <p class="meta">Django, DRF, JWT, 2FA, RBAC, OpenAI, Security Automation &nbsp;|&nbsp; gait.netlify.app &nbsp;|&nbsp; github.com/anthonynarine/django_auth</p>
         <ul>
-          <li>Designed and built a reusable authentication service supporting JWT access/refresh lifecycles, protected APIs, logout, password recovery, optional two-factor authentication, and role-based authorization.</li>
-          <li>Created reusable integration patterns so downstream applications can consume centralized identity without duplicating authentication logic.</li>
+          <li>Built a self-repairing security platform that combines hardened authentication, continuous control evaluation, evidence-backed findings, constrained AI security agents, validation, and human approval.</li>
+          <li>Designed deterministic backend boundaries so LLM-assisted agents can investigate failures, reproduce approved weaknesses, and prepare candidate repairs without direct production authority.</li>
+          <li>Implemented JWT access/refresh lifecycles, optional 2FA, guest sign-in, protected endpoints, role-based authorization, audit events, and reusable integration patterns for downstream systems.</li>
         </ul>
       </div>
 

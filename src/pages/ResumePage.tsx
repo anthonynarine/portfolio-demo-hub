@@ -29,7 +29,7 @@ export default function ResumePage() {
   }, []);
 
   return (
-    <div className="resume-page min-h-screen bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#ECEFEB] dark:bg-neutral-950 rainy:bg-[#0F1113] dark:text-neutral-50 print:min-h-0 print:bg-white">
+    <div className="resume-page min-h-screen bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#D7DDE1] dark:bg-neutral-950 rainy:bg-[#0F1113] thunderstorm:bg-[#2D333B] dark:text-neutral-50 print:min-h-0 print:bg-white">
       <main className="mx-auto max-w-3xl px-5 py-12 sm:px-8 print:max-w-none print:px-0 print:py-0">
         <ResumeHeader />
         <ResumeSummary />

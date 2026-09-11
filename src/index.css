@@ -4,8 +4,9 @@
 @import "tailwindcss";
 
 @custom-variant cloudy (&:where(.cloudy, .cloudy *));
-@custom-variant dark (&:where(.dark, .dark *, .rainy, .rainy *));
+@custom-variant dark (&:where(.dark, .dark *, .rainy, .rainy *, .thunderstorm, .thunderstorm *));
 @custom-variant rainy (&:where(.rainy, .rainy *));
+@custom-variant thunderstorm (&:where(.thunderstorm, .thunderstorm *));
 
 /* # Step 0: theme tokens (Tailwind v4 is CSS-config, no tailwind.config.js) */
 @theme {
@@ -56,9 +57,16 @@ html.rainy body {
   color-scheme: dark;
 }
 
+html.thunderstorm,
+html.thunderstorm body {
+  background-color: #2d333b;
+  color: #fafafa;
+  color-scheme: dark;
+}
+
 html.cloudy,
 html.cloudy body {
-  background-color: #ecefeb;
+  background-color: #d7dde1;
   color: #0a0a0a;
   color-scheme: light;
 }
@@ -116,28 +124,58 @@ html.rainy .rain-layer {
   opacity: 0.1;
 }
 
+.lightning-layer {
+  background:
+    linear-gradient(112deg, transparent 0 45%, rgb(255 255 255 / 0.42) 45.6% 47.2%, transparent 47.8% 100%),
+    linear-gradient(70deg, transparent 0 48%, rgb(255 255 255 / 0.32) 48.6% 50.3%, transparent 50.9% 100%),
+    linear-gradient(126deg, transparent 0 45%, rgb(255 255 255 / 0.28) 45.7% 47.1%, transparent 47.7% 100%),
+    radial-gradient(circle at 68% 14%, rgb(255 255 255 / 0.18), transparent 18%),
+    linear-gradient(180deg, rgb(70 78 88 / 0.2), transparent 55%);
+  background-position: 66% 5%, 68% 22%, 65% 31%, 0 0, 0 0;
+  background-size: 82px 170px, 74px 92px, 68px 110px, 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+html.thunderstorm .lightning-layer {
+  opacity: 0.08;
+  animation: lightning-flash 7.5s linear infinite;
+}
+
+html.thunderstorm .bg-grain {
+  opacity: 0.09;
+}
+
+html.thunderstorm .border-neutral-800 {
+  border-color: #48515b;
+}
+
+html.thunderstorm .text-neutral-400 {
+  color: #c4cbd2;
+}
+
 html.cloudy .bg-grain {
-  opacity: 0.075;
+  opacity: 0.07;
 }
 
 html.cloudy .border-neutral-200 {
-  border-color: #d5d9d2;
+  border-color: #c2cbd1;
 }
 
 html.cloudy .border-neutral-300 {
-  border-color: #bdc3bb;
+  border-color: #aab6bf;
 }
 
 html.cloudy .text-neutral-500 {
-  color: #6f766e;
+  color: #5f6972;
 }
 
 html.cloudy .text-neutral-600 {
-  color: #59615a;
+  color: #4d5861;
 }
 
 html.cloudy .text-neutral-700 {
-  color: #3f4741;
+  color: #35404a;
 }
 
 @keyframes rain-fall {
@@ -146,10 +184,36 @@ html.cloudy .text-neutral-700 {
   }
 }
 
+@keyframes lightning-flash {
+  0%,
+  58%,
+  63%,
+  100% {
+    opacity: 0.08;
+  }
+  59% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.12;
+  }
+  61% {
+    opacity: 0.3;
+  }
+  62% {
+    opacity: 0.08;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html.rainy .rain-layer {
     animation: none;
     opacity: 0.045;
+  }
+
+  html.thunderstorm .lightning-layer {
+    animation: none;
+    opacity: 0.08;
   }
 }
 
@@ -169,8 +233,10 @@ html.cloudy .text-neutral-700 {
   body,
   html.dark,
   html.rainy,
+  html.thunderstorm,
   html.dark body,
-  html.rainy body {
+  html.rainy body,
+  html.thunderstorm body {
     background-color: #ffffff !important;
     color: #0a0a0a !important;
     color-scheme: light !important;

@@ -17,7 +17,7 @@ const focusAreas = [
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#ECEFEB] dark:bg-neutral-950 rainy:bg-[#0F1113] dark:text-neutral-50">
+    <div className="min-h-screen bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#D7DDE1] dark:bg-neutral-950 rainy:bg-[#0F1113] thunderstorm:bg-[#2D333B] dark:text-neutral-50">
       <div
         aria-hidden="true"
         className="bg-grain pointer-events-none fixed inset-0 z-30 opacity-[0.035] mix-blend-multiply cloudy:opacity-[0.06] dark:mix-blend-screen"
@@ -28,9 +28,8 @@ export default function App() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-2 z-40 border border-neutral-950/10 cloudy:border-neutral-950/15 dark:border-neutral-50/10 sm:inset-3"
+        className="lightning-layer pointer-events-none fixed inset-0 z-30"
       />
-
       <Header
         name="Anthony Narine"
         headline="Full-stack software engineer"
@@ -70,7 +69,7 @@ export default function App() {
           </Reveal>
         </section>
 
-        <section className="border-y border-neutral-200 bg-[#F3F1EC] cloudy:border-neutral-300 cloudy:bg-[#E0E4DD] dark:border-neutral-800 dark:bg-neutral-900 rainy:bg-[#181B1F]">
+        <section className="border-y border-neutral-200 bg-[#F3F1EC] cloudy:border-neutral-300 cloudy:bg-[#C9D2D8] dark:border-neutral-800 dark:bg-neutral-900 rainy:bg-[#181B1F] thunderstorm:bg-[#3A424B]">
           <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-3xl lg:grid-cols-[0.8fr_1.2fr] lg:px-16 lg:py-20">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
