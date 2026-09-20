@@ -121,6 +121,8 @@ export const resumeProjects: ResumeProject[] = [
       "Architecting centralized authentication, shared observability, media storage, AI-assisted reference workflows, and HL7-oriented integration across services.",
       "Applying 17 years of vascular ultrasound experience to model clinical workflows, terminology, reporting requirements, and user needs.",
     ],
+    liveUrl: "https://lumenfoundry.net",
+    liveLabel: "lumenfoundry.net",
     weight: "standard",
   },
 ];

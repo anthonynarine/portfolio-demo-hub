@@ -21,6 +21,7 @@ const LINKS = {
 
   tttDemo: "https://onevone.net",
   gaitDemo: "https://gait.netlify.app",
+  lumenDemo: "https://lumenfoundry.net",
 
   // production
   estateiqDemo: "https://estateiq.me",
@@ -169,23 +170,59 @@ export const projects: Project[] = [
     id: "lumen",
     title: "Lumen Vascular Reporting",
     description:
-      "A template-driven clinical workflow system for vascular ultrasound reporting, shaped by real clinical protocols and built as a multi-service product.",
+      "A configurable clinical diagnostic platform for vascular ultrasound, shaped by real clinical protocols and 17 years at the probe. Structured reporting, DICOM imaging, AI-retrieved clinical knowledge, and billing preparation run as one workflow — from the order that arrives out of the EHR to the signed final report.",
     highlights: [
-      "Microservice-based architecture",
-      "Template-driven exam workflows based on real clinical protocols",
-      "RAG assistant for protocol, procedure, and criteria Q&A",
-      "Centralized auth via Gait and shared observability across services",
+      "Seven-stage diagnostic pipeline: order → exam → measurements → interpretation → signed report, with data reused across exam types",
+      "DICOM imaging: stills, cine clips, and study metadata attached directly to the exam",
+      "AI clinical knowledge retrieves facility-approved protocols, procedures, and criteria — it surfaces policy, it never invents it",
+      "Billing prep: CPT/ICD capture from signed reports, with completeness checks and documentation-gap flags",
+      "Sits on the wires a hospital already runs: FHIR/ORM orders and DICOM studies in; ORU/FHIR reports, DICOM C-STORE, and charge tickets out",
+      "Organization is the hard tenant boundary, facility a scope inside it — authentication never equals access, and every request is re-checked",
     ],
     tryThis: [
-      "Check back soon for a live walkthrough — Patient → Exam → Segments → Save/Reload → Output.",
+      "Visit lumenfoundry.net and walk the diagnostic pipeline — the seven stages an exam moves through from EHR order to signed report.",
+      "Read the AI Clinical Knowledge section to see why retrieval is bounded to facility-approved documents instead of open-ended generation.",
     ],
     links: {
+      liveDemo: LINKS.lumenDemo,
       related: [
         { label: "Auth platform used by Lumen (Gait)", href: LINKS.djangoAuthRepo },
         { label: "Reusable logger (lumen-logger)", href: LINKS.lumenLoggerRepo },
       ],
     },
-    badges: ["Healthcare", "In Progress"],
+    badges: ["Healthcare", "DICOM / HL7", "Multi-Tenant", "In Progress"],
+    featured: true,
+    screenshot: {
+      src: "/screenshots/lumen-slide-factory.jpg",
+      alt: "The Lumen exam reporting factory and the seven vascular domains that plug into it",
+      caption: "The platform and the pipeline are built once. The vascular engine plugs in at the end — and a second specialty would replace it without touching anything to its left.",
+      slides: [
+        {
+          src: "/screenshots/lumen-slide-factory.jpg",
+          alt: "The Lumen exam reporting factory: a shared platform of users, exam lifecycle, imaging, and integrations feeding a three-stage protocol → measure → interpret pipeline, with the vascular engine plugged in at the end contributing anatomy, rules, language, and schema, and a finished carotid duplex report coming out.",
+          caption: "The platform and the pipeline are built once. The vascular engine plugs in at the end — and a second specialty would replace it without touching anything to its left.",
+        },
+        {
+          src: "/screenshots/lumen-slide-engine.jpg",
+          alt: "Seven vascular domains ringing a single vascular engine defined by anatomy, rules, language, and schema: peripheral arterial, cerebrovascular (carotid marked live), and visceral vascular on the left; dialysis access, physiologic arterial, and peripheral venous on the right; postoperative surveillance below.",
+          caption: "Seven vascular domains ring one engine. Carotid is live today; the rest are configuration on the same pipeline, not separate applications.",
+        },
+        {
+          src: "/screenshots/lumen-slide-interop.jpg",
+          alt: "Lumen's connection points, drawn in two directions: inbound orders from EMRs over FHIR ServiceRequest/ORM and modality stills and cine over DICOM; outbound structured reports over ORU/FHIR, studies stored to PACS by DICOM C-STORE, routing through interface engines over HL7/ORU, and charge tickets to billing systems.",
+          caption: "Two directions, not six equal boxes: orders and images in; signed report, stored study, and charges out. Lumen never invents a second patient context.",
+        },
+        {
+          src: "/screenshots/lumen-slide-security.jpg",
+          alt: "The five sentences that describe Lumen's authorization model: identity and authorization are separate systems; organization is the hard tenant boundary with facility a scope inside it; authentication never equals access; the client is never trusted to declare its own authority; automation observes and recommends while humans approve anything consequential.",
+          caption: "The whole authorization model in five sentences. A valid login proves nothing on its own, and a human approves anything consequential.",
+        },
+      ],
+    },
+    architecture: {
+      architecture:
+        "Microservices split the work: exams, templates, and structured measurements in Django/DRF; DICOM objects and study metadata in an imaging service; protocol and criteria answers from a retrieval service reading facility-approved documents. Gait provides centralized identity and lumen-logger carries correlation IDs across every hop.",
+    },
   },
 
   {

@@ -145,7 +145,7 @@ const html = `<!doctype html>
 
       <div class="item">
         <h3>Lumen &mdash; Vascular Ultrasound Reporting Platform (In Development)</h3>
-        <p class="meta">React, TypeScript, Django, DRF, FastAPI, PostgreSQL, Redis, RAG</p>
+        <p class="meta">React, TypeScript, Django, DRF, FastAPI, PostgreSQL, Redis, RAG &nbsp;|&nbsp; lumenfoundry.net</p>
         <ul>
           <li>Designing and building a modular vascular ultrasound reporting platform based on real clinical workflows and structured examination protocols.</li>
           <li>Building template-driven exam workflows, structured measurements, clinical calculations, and report-generation infrastructure.</li>
