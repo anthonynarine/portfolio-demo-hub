@@ -4,7 +4,8 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { ProjectsGrid } from "./components/ProjectsGrid";
 import { Reveal } from "./components/Reveal";
-import { Mail } from "lucide-react";
+import { EmailCopy } from "./components/EmailCopy";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { profileLinks, projects } from "./data/projects";
 
 const focusAreas = [
@@ -109,6 +110,38 @@ export default function App() {
           <ProjectsGrid projects={projects} />
         </section>
 
+        <section className="border-y border-neutral-200 bg-[#F3F1EC] cloudy:border-neutral-300 cloudy:bg-[#C9D2D8] dark:border-neutral-800 dark:bg-neutral-900 rainy:bg-[#181B1F] thunderstorm:bg-[#3A424B]">
+          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-3xl lg:grid-cols-[1.05fr_1fr] lg:px-10 lg:py-20">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
+                Writing
+              </p>
+              <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-4xl">
+                HIPAA for Medical Application Developers
+              </h2>
+            </div>
+
+            <div className="space-y-5 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
+              <p>
+                A 52-page engineering handbook and workbook on building regulated medical software —
+                trust boundaries, minimum-necessary APIs, audit controls, HL7 and DICOM interfaces,
+                and the evidence that proves a control actually works. Lumen is the running case
+                study.
+              </p>
+              <p className="text-sm">
+                Free, no sign-up. Written while building the system it uses as an example.
+              </p>
+              <a
+                href={profileLinks.handbook}
+                className="inline-flex items-center gap-2 border-b border-neutral-400 pb-0.5 text-sm font-semibold text-neutral-900 transition hover:border-neutral-900 dark:border-neutral-600 dark:text-neutral-100 dark:hover:border-neutral-50"
+              >
+                Read the contents and download
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </Reveal>
+        </section>
+
         <section className="bg-neutral-950 text-white dark:bg-neutral-50 dark:text-neutral-950">
           <Reveal className="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-20 sm:px-8 sm:py-24 md:flex-row md:items-end md:justify-between lg:px-10 lg:py-28">
             <div>
@@ -119,13 +152,16 @@ export default function App() {
                 Need a product built from unclear idea to working system?
               </h2>
             </div>
-            <a
-              href={`mailto:${profileLinks.email}`}
-              className="inline-flex shrink-0 items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200 dark:bg-neutral-950 dark:text-neutral-50 dark:hover:bg-neutral-800"
-            >
-              <Mail size={16} />
-              Start a conversation
-            </a>
+            <div className="flex shrink-0 flex-col gap-4">
+              <a
+                href={`mailto:${profileLinks.email}`}
+                className="inline-flex items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200 dark:bg-neutral-950 dark:text-neutral-50 dark:hover:bg-neutral-800"
+              >
+                <Mail size={16} />
+                Start a conversation
+              </a>
+              <EmailCopy tone="onInverted" className="justify-center" />
+            </div>
           </Reveal>
         </section>
       </main>

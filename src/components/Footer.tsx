@@ -1,11 +1,12 @@
 // # Filename: src/components/Footer.tsx
 
-import { Mail } from "lucide-react";
 import { profileLinks } from "../data/projects";
+import { EmailCopy } from "./EmailCopy";
 
 export function Footer() {
   const year = new Date().getFullYear();
   const hasResume = Boolean(profileLinks.resume);
+  const hasHandbook = Boolean(profileLinks.handbook);
 
   return (
     <footer className="bg-neutral-950 px-5 py-12 text-sm text-neutral-400 dark:bg-neutral-50 dark:text-neutral-600 sm:px-8 lg:px-10">
@@ -27,10 +28,12 @@ export function Footer() {
               Resume
             </a>
           ) : null}
-          <a className="inline-flex items-center gap-1.5 hover:text-white dark:hover:text-neutral-950" href={`mailto:${profileLinks.email}`}>
-            <Mail size={14} />
-            Email
-          </a>
+          {hasHandbook ? (
+            <a className="hover:text-white dark:hover:text-neutral-950" href={profileLinks.handbook}>
+              HIPAA handbook
+            </a>
+          ) : null}
+          <EmailCopy tone="onInverted" />
         </div>
       </div>
     </footer>

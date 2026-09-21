@@ -2,6 +2,7 @@
 
 import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
 import { profileLinks } from "../data/projects";
+import { EmailCopy } from "./EmailCopy";
 import { ThemeToggle } from "./ThemeToggle";
 
 type HeaderProps = {
@@ -35,6 +36,7 @@ function TextLink({
 
 export function Header({ name, headline, subhead }: HeaderProps) {
   const hasResume = Boolean(profileLinks.resume);
+  const hasHandbook = Boolean(profileLinks.handbook);
 
   return (
     <header className="bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#D7DDE1] dark:bg-neutral-950 rainy:bg-[#0F1113] thunderstorm:bg-[#2D333B] dark:text-neutral-50">
@@ -72,7 +74,12 @@ export function Header({ name, headline, subhead }: HeaderProps) {
           {hasResume ? (
             <TextLink href={profileLinks.resume} label="Resume" icon={null} />
           ) : null}
+          {hasHandbook ? (
+            <TextLink href={profileLinks.handbook} label="HIPAA handbook" icon={null} />
+          ) : null}
         </div>
+
+        <EmailCopy className="animate-fade-up mt-5 [animation-delay:270ms]" />
 
         <a
           href="#projects"

@@ -7,6 +7,7 @@ export const profileLinks = {
   github: "https://github.com/anthonynarine",
   linkedin: "https://www.linkedin.com/in/anthony-narine-9ab567245",
   resume: "/resume",
+  handbook: "/hipaa",
   portfolio: "https://anthonynarine.com",
   email: "fanarine@pm.me",
 };
