@@ -5,7 +5,7 @@ export const handbook = {
   strapline: "Architecture · Code · Evidence · Clinical Integrations · Secure Delivery",
   edition: "Developer learning edition",
   date: "September 2026",
-  pages: 52,
+  pages: 92,
   pdf: "/HIPAA-for-Medical-Application-Developers.pdf",
 };
 
