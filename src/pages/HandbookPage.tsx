@@ -156,12 +156,13 @@ export default function HandbookPage() {
               Contents
             </p>
             <h2 className="font-display mt-3 text-4xl font-medium tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-5xl">
-              Six parts, thirty chapters.
+              Six parts, thirty-one chapters.
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
               Lumen — a vascular ultrasound reporting platform — is the running case study, because
               it is rich enough to make the hard parts real: patient identity, signed reports, DICOM
-              images, HL7 interfaces, multi-tenant organizations, and AI-assisted workflows.
+              images, HL7 interfaces, multi-tenant organizations, and AI-assisted workflows. Every Lumen
+              example is labeled implemented, partial, planned, or illustrative.
             </p>
           </Reveal>
 

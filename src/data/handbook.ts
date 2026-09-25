@@ -5,7 +5,7 @@ export const handbook = {
   strapline: "Architecture · Code · Evidence · Clinical Integrations · Secure Delivery",
   edition: "Developer learning edition",
   date: "September 2026",
-  pages: 92,
+  pages: 112,
   pdf: "/HIPAA-for-Medical-Application-Developers.pdf",
 };
 
@@ -56,6 +56,7 @@ export const contents: HandbookPart[] = [
       "Safe Harbor in practice",
       "Expert Determination and the Limited Data Set",
       "Free text, analytics, research, and AI model boundaries",
+      "Patient rights and the designated record set",
     ],
   },
   {
@@ -105,12 +106,14 @@ export const contents: HandbookPart[] = [
 /** Drawn from the book's closing self-assessment. */
 export const outcomes = [
   "Draw the BAA perimeter and say who is regulated in a software relationship",
-  "Design minimum-necessary APIs and query projections",
+  "Design minimum-necessary APIs and query projections, and know where the standard does not apply",
+  "Support patient access, amendment, and disclosure accounting for records your system holds",
   "Review AI and model data flows for PHI, contracts, minimization, retention, and logging",
   "Review tenant and facility authorization, emergency access, and break-glass",
   "Design audit events without copying excessive PHI into logs",
   "Explain HL7 over MLLP over TCP, and where transport protection belongs",
   "Define RPO/RTO and prove restoration and reconciliation",
+  "Walk an incident to a breach determination and name every notice deadline",
   "Assemble evidence instead of merely claiming compliance",
 ];
 

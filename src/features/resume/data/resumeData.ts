@@ -147,12 +147,13 @@ export const resumeSkillGroups = [
   },
   {
     label: "Data / Infrastructure",
-    items: ["PostgreSQL", "Redis", "AWS S3", "AWS SES", "Docker", "Heroku", "Netlify", "Stripe"],
+    items: ["PostgreSQL", "Convex", "Redis", "AWS S3", "AWS SES", "Docker", "Heroku", "Netlify", "Stripe"],
   },
   {
     label: "Security",
     items: [
       "JWT",
+      "Clerk",
       "Access/Refresh Token Flows",
       "RBAC",
       "2FA",

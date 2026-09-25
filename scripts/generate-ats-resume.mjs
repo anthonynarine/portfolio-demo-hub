@@ -103,8 +103,8 @@ const html = `<!doctype html>
       <p><span class="label">Languages:</span> Python, TypeScript, JavaScript, SQL, HTML, CSS</p>
       <p><span class="label">Frontend:</span> React, Next.js, Vite, TanStack Query, Axios, Tailwind CSS</p>
       <p><span class="label">Backend:</span> Django, Django REST Framework, FastAPI, REST APIs, Django Channels, WebSockets, Celery</p>
-      <p><span class="label">Data / Infrastructure:</span> PostgreSQL, Redis, AWS S3, AWS SES, Docker, Heroku, Netlify, Stripe</p>
-      <p><span class="label">Security:</span> JWT, access/refresh token flows, RBAC, 2FA, multi-tenant authorization, security automation, audit events</p>
+      <p><span class="label">Data / Infrastructure:</span> PostgreSQL, Convex, Redis, AWS S3, AWS SES, Docker, Heroku, Netlify, Stripe</p>
+      <p><span class="label">Security:</span> JWT, Clerk, access/refresh token flows, RBAC, 2FA, multi-tenant authorization, security automation, audit events</p>
       <p><span class="label">AI:</span> OpenAI APIs, RAG, LangChain, LangGraph, deterministic / grounded assistant workflows</p>
     </section>
 
