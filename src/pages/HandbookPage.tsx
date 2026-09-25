@@ -45,7 +45,7 @@ export default function HandbookPage() {
       <div aria-hidden="true" className="lightning-layer pointer-events-none fixed inset-0 z-30" />
 
       <header className="mx-auto max-w-3xl px-5 pt-10 sm:px-8">
-        <div className="animate-fade-up flex flex-wrap items-center justify-between gap-4">
+        <div className="animate-fade-up relative z-40 flex flex-wrap items-center justify-between gap-4">
           <a
             href="/"
             className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-medium text-neutral-600 transition hover:gap-3 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-50"

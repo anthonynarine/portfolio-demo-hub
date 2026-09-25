@@ -14,7 +14,7 @@ export const profileLinks = {
 
 const LINKS = {
   tttRepo: "https://github.com/anthonynarine/tic_tac_toe",
-  authIntegrationRepo: "https://github.com/anthonynarine/auth_integration",
+  gaitSdkRepo: "https://github.com/anthonynarine/gait-sdk",
   authFlowRepo: "https://github.com/anthonynarine/AuthFlow",
   djangoAuthRepo: "https://github.com/anthonynarine/django_auth",
   lumenLoggerRepo: "https://github.com/anthonynarine/Lumen_Logger",
@@ -230,20 +230,20 @@ export const projects: Project[] = [
     id: "infra-packages",
     title: "Backend Building Blocks",
     description:
-      "Reusable backend components extracted while building Lumen: centralized auth integration and shared structured logging for traceability across services.",
+      "Open-source Python packages extracted while building Lumen: gait-sdk, a client for the Gait identity service, and shared structured logging for traceability across services.",
     highlights: [
-      "auth_integration: verifies JWT via a central Auth API to avoid duplicating auth logic",
+      "gait-sdk: MIT-licensed adapter that lets Django REST Framework and FastAPI services verify identity against Gait instead of re-implementing auth — validate only, never issue tokens or store passwords",
+      "Being packaged for PyPI: framework-agnostic imports, versioned releases, CI test suite",
       "lumen-logger: structured logging + correlation IDs for debugging across modules/services",
-      "Designed for reuse across Django and FastAPI projects",
     ],
     tryThis: [
-      "Open auth_integration and follow the token → identity verification → role enforcement path.",
+      "Open gait-sdk and follow the token → identity verification → claims path, from the DRF authentication class to Gait's /whoami/.",
       "Open lumen-logger and review the logging config + correlation approach.",
     ],
     links: {
-      repo: LINKS.authIntegrationRepo,
+      repo: LINKS.gaitSdkRepo,
       related: [{ label: "lumen-logger repo", href: LINKS.lumenLoggerRepo }],
     },
-    badges: ["Platform", "Reusable", "Tracing"],
+    badges: ["Open Source", "Python SDK", "PyPI (in progress)", "Tracing"],
   },
 ];

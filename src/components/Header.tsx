@@ -41,7 +41,7 @@ export function Header({ name, headline, subhead }: HeaderProps) {
   return (
     <header className="bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#D7DDE1] dark:bg-neutral-950 rainy:bg-[#0F1113] thunderstorm:bg-[#2D333B] dark:text-neutral-50">
       <div className="mx-auto flex min-h-[640px] max-w-3xl flex-col justify-center px-5 py-24 sm:px-8">
-        <div className="animate-fade-up mb-12 flex justify-end">
+        <div className="animate-fade-up relative z-40 mb-12 flex justify-end">
           <ThemeToggle />
         </div>
 
