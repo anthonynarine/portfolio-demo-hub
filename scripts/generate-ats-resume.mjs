@@ -140,6 +140,7 @@ const html = `<!doctype html>
           <li>Built a self-repairing security platform that combines hardened authentication, continuous control evaluation, evidence-backed findings, constrained AI security agents, validation, and human approval.</li>
           <li>Designed deterministic backend boundaries so LLM-assisted agents can investigate failures, reproduce approved weaknesses, and prepare candidate repairs without direct production authority.</li>
           <li>Implemented JWT access/refresh lifecycles, optional 2FA, guest sign-in, protected endpoints, role-based authorization, audit events, and reusable integration patterns for downstream systems.</li>
+          <li>Published gait-sdk, an open-source (MIT) Python package on PyPI that lets Django and FastAPI services verify Gait identities through local JWKS validation or token introspection, with live session checks.</li>
         </ul>
       </div>
 

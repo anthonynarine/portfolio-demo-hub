@@ -15,6 +15,7 @@ export const profileLinks = {
 const LINKS = {
   tttRepo: "https://github.com/anthonynarine/tic_tac_toe",
   gaitSdkRepo: "https://github.com/anthonynarine/gait-sdk",
+  gaitSdkPypi: "https://pypi.org/project/gait-sdk/",
   authFlowRepo: "https://github.com/anthonynarine/AuthFlow",
   djangoAuthRepo: "https://github.com/anthonynarine/django_auth",
   lumenLoggerRepo: "https://github.com/anthonynarine/Lumen_Logger",
@@ -44,7 +45,7 @@ export const projects: Project[] = [
       "Security Validator and a Human Approver gate every production change before Release Engineer deploys the exact approved artifact",
       "Security Copilot offers a natural-language interface for posture, active cases, and bounded workflow requests",
       "Still guards Lumen's identity layer: JWT access/refresh, 2FA, guest sign-in, and protected endpoints",
-      "Services plug in through gait-sdk, an open-source Python package for Django REST Framework and FastAPI — they validate identity against Gait instead of re-implementing auth",
+      "Services plug in through gait-sdk, my open-source Python package on PyPI for Django REST Framework and FastAPI — they verify identity against Gait instead of re-implementing auth",
     ],
     tryThis: [
       "Click \"See How Gait Works\" to walk the self-repairing loop end-to-end: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, exact-artifact deploy.",
@@ -55,6 +56,7 @@ export const projects: Project[] = [
       repo: LINKS.djangoAuthRepo,
       related: [
         { label: "Python SDK (gait-sdk)", href: LINKS.gaitSdkRepo },
+        { label: "gait-sdk on PyPI", href: LINKS.gaitSdkPypi },
         { label: "React client (AuthFlow)", href: LINKS.authFlowRepo },
         { label: "Postman API docs", href: LINKS.gaitPostmanDocs },
       ],
@@ -233,20 +235,24 @@ export const projects: Project[] = [
     id: "infra-packages",
     title: "Backend Building Blocks",
     description:
-      "Open-source Python packages extracted while building Lumen: gait-sdk, a client for the Gait identity service, and shared structured logging for traceability across services.",
+      "Python packages extracted while building Lumen: gait-sdk, the open-source SDK for the Gait identity service published on PyPI, and lumen-logger, shared structured logging for traceability across services.",
     highlights: [
-      "gait-sdk: MIT-licensed adapter that lets Django REST Framework and FastAPI services verify identity against Gait instead of re-implementing auth — validate only, never issue tokens or store passwords",
-      "Being packaged for PyPI: framework-agnostic imports, versioned releases, CI test suite",
+      "gait-sdk: MIT-licensed SDK that lets Django REST Framework and FastAPI services verify Gait identities — local JWKS validation or token introspection, live session checks, application identity, and security signals",
+      "Published on PyPI (pip install gait-sdk) with versioned releases, a changelog, a security policy, and a CI test suite",
+      "Verify only: services never issue tokens or store passwords",
       "lumen-logger: structured logging + correlation IDs for debugging across modules/services",
     ],
     tryThis: [
-      "Open gait-sdk and follow the token → identity verification → claims path, from the DRF authentication class to Gait's /whoami/.",
+      "Run pip install gait-sdk, then open the repo and follow a token from the DRF authentication class through verification to the claims your views receive.",
       "Open lumen-logger and review the logging config + correlation approach.",
     ],
     links: {
       repo: LINKS.gaitSdkRepo,
-      related: [{ label: "lumen-logger repo", href: LINKS.lumenLoggerRepo }],
+      related: [
+        { label: "gait-sdk on PyPI", href: LINKS.gaitSdkPypi },
+        { label: "lumen-logger repo", href: LINKS.lumenLoggerRepo },
+      ],
     },
-    badges: ["Open Source", "Python SDK", "PyPI (in progress)", "Tracing"],
+    badges: ["Open Source", "Python SDK", "PyPI", "Tracing"],
   },
 ];

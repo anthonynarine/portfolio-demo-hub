@@ -93,6 +93,7 @@ export const resumeProjects: ResumeProject[] = [
       "Built a self-repairing security platform that combines hardened authentication, continuous control evaluation, evidence-backed findings, constrained AI security agents, validation, and human approval.",
       "Designed deterministic backend boundaries so LLM-assisted agents can investigate failures, reproduce approved weaknesses, and prepare candidate repairs without direct production authority.",
       "Implemented JWT access/refresh lifecycles, optional 2FA, guest sign-in, protected endpoints, role-based authorization, audit events, and reusable integration patterns for downstream systems.",
+      "Published gait-sdk, an open-source (MIT) Python package on PyPI that lets Django and FastAPI services verify Gait identities through local JWKS validation or token introspection, with live session checks.",
     ],
     liveUrl: "https://gait.netlify.app",
     liveLabel: "gait.netlify.app",
