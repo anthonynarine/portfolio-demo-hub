@@ -44,6 +44,7 @@ export const projects: Project[] = [
       "Security Validator and a Human Approver gate every production change before Release Engineer deploys the exact approved artifact",
       "Security Copilot offers a natural-language interface for posture, active cases, and bounded workflow requests",
       "Still guards Lumen's identity layer: JWT access/refresh, 2FA, guest sign-in, and protected endpoints",
+      "Services plug in through gait-sdk, an open-source Python package for Django REST Framework and FastAPI — they validate identity against Gait instead of re-implementing auth",
     ],
     tryThis: [
       "Click \"See How Gait Works\" to walk the self-repairing loop end-to-end: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, exact-artifact deploy.",
@@ -53,6 +54,7 @@ export const projects: Project[] = [
       liveDemo: LINKS.gaitDemo,
       repo: LINKS.djangoAuthRepo,
       related: [
+        { label: "Python SDK (gait-sdk)", href: LINKS.gaitSdkRepo },
         { label: "React client (AuthFlow)", href: LINKS.authFlowRepo },
         { label: "Postman API docs", href: LINKS.gaitPostmanDocs },
       ],
@@ -66,7 +68,7 @@ export const projects: Project[] = [
     },
     architecture: {
       architecture:
-        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production.",
+        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. Downstream services consume identity through gait-sdk rather than calling Gait ad hoc. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production.",
     },
   },
 
@@ -188,6 +190,7 @@ export const projects: Project[] = [
       liveDemo: LINKS.lumenDemo,
       related: [
         { label: "Auth platform used by Lumen (Gait)", href: LINKS.djangoAuthRepo },
+        { label: "Gait Python SDK (gait-sdk)", href: LINKS.gaitSdkRepo },
         { label: "Reusable logger (lumen-logger)", href: LINKS.lumenLoggerRepo },
       ],
     },
