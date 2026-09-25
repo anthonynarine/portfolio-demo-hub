@@ -64,9 +64,26 @@ export const projects: Project[] = [
     badges: ["Security Automation", "LLM Agents", "Evidence-Driven", "Human-Governed"],
     featured: true,
     screenshot: {
-      src: "/screenshots/gait-home.png",
-      alt: "Gait authentication platform homepage with guest sign-in and two-factor auth overview",
-      caption: "Gait homepage: recruiter-friendly auth demo with guest sign-in, 2FA, and session refresh.",
+      src: "/screenshots/gait-slide-hero.jpg",
+      alt: "Gait homepage hero: an AI security team now in early access; AI investigates, evidence decides what is true, and a human approves anything that touches production; stats show 7 constrained agents, 1 required human approval, and 473 of 473 tests passing on the last validated fix",
+      caption: "Your AI security team: agents investigate and prepare fixes, evidence decides what's true, and a human approves anything that touches production.",
+      slides: [
+        {
+          src: "/screenshots/gait-slide-hero.jpg",
+          alt: "Gait homepage hero: an AI security team now in early access; AI investigates, evidence decides what is true, and a human approves anything that touches production; stats show 7 constrained agents, 1 required human approval, and 473 of 473 tests passing on the last validated fix",
+          caption: "Your AI security team: agents investigate and prepare fixes, evidence decides what's true, and a human approves anything that touches production.",
+        },
+        {
+          src: "/screenshots/gait-slide-sdk.jpg",
+          alt: "gait-sdk design rule and request path: Gait authenticates, gait-sdk verifies inside your service, your application authorizes; a four-step path from browser sign-in to a signed RS256 token, local verification against cached public keys, and your own authorization check",
+          caption: "Three jobs, three owners. Gait proves who someone is, gait-sdk checks that proof locally inside your API, and your code decides what they may do.",
+        },
+        {
+          src: "/screenshots/gait-slide-protects.jpg",
+          alt: "What Gait protects around an application: authentication, multi-factor authentication, sessions, authorization, security controls, deployments, agent workflows, and future HL7/DICOM healthcare security components; with a note that Gait was first used to protect Lumen, a vascular ultrasound reporting platform",
+          caption: "Everything Gait guards around your app — identity, sessions, controls, deployments, and agent workflows — first proven on Lumen before anyone else.",
+        },
+      ],
     },
     architecture: {
       architecture:
