@@ -37,16 +37,15 @@ export const projects: Project[] = [
     id: "gait-auth",
     title: "Gait Security Platform",
     description:
-      "Gait is a self-repairing security platform governed by trusted evidence and human approval. It combines hardened security enforcement, continuous observability, constrained AI security agents, independent validation, and exact-artifact deployment into one security operating system. A large language model powers the reasoning behind Gait's specialist agents — investigating findings, interpreting evidence, reproducing weaknesses, and preparing candidate repairs — but deterministic backend code decides what each agent may access, which tools it may use, and which actions are permitted. The agents protect Gait's own platform; customer teams get an isolated, per-company console where their applications report security checks through gait-sdk.",
+      "Gait is a self-repairing security platform governed by trusted evidence and human approval. It combines hardened security enforcement, continuous observability, constrained AI security agents, independent validation, and exact-artifact deployment into one security operating system. Companies sign in, register their applications, and those apps report their own security checks through gait-sdk, my open-source Python package; Gait turns the results into findings each team can track, with every company strictly walled off from the others. On Gait's own platform, AI agents investigate failures, reproduce them safely, and prepare fixes, but deterministic code limits what each agent can touch, an independent validator checks every fix, and nothing reaches production without a single-use human approval.",
     highlights: [
-      "Security Observatory continuously evaluates controls, evidence, findings, and audit events",
-      "Incident Commander coordinates Blue Team, Red Team, Green Team, and Security Validator workflows",
-      "Blue Team uses LLM-assisted reasoning to investigate failures; Red Team safely reproduces approved weaknesses in controlled environments",
-      "Security Validator and a Human Approver gate every production change before Release Engineer deploys the exact approved artifact",
+      "Multi-tenant by design: each company's people, applications, hashed connection keys, and findings are isolated, and cross-tenant access returns 404, proven by adversarial tests",
+      "Six AI agents (Incident Commander, Blue, Red, and Green Team, Security Validator, Release Engineer) work inside deterministic boundaries; a human approves every production change",
+      "Evidence decides what's true: a fix only counts as resolved when fresh checks prove the control is healthy",
       "Security Copilot explains posture and active cases in plain language, generated deterministically with no model call and no authority to act",
-      "Multi-tenant by design: each company's people, applications, connection keys, and findings are isolated, and other companies' data returns 404",
-      "Still guards Lumen's identity layer: JWT access/refresh, 2FA, guest sign-in, and protected endpoints",
-      "Services plug in through gait-sdk, my open-source Python package on PyPI for Django REST Framework and FastAPI — they verify identity against Gait instead of re-implementing auth",
+      "Hardened identity: HttpOnly cookie sessions, refresh rotation with replay detection, 2FA, email verification, and rate limits that resist IP spoofing",
+      "gait-sdk on PyPI (MIT) lets Django and FastAPI services report security checks and verify Gait identities",
+      "First built to secure Lumen, my vascular ultrasound reporting app",
     ],
     tryThis: [
       "Read the docs' \"Automated security response\" page for the self-repairing loop: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, deploy, and fresh-evidence confirmation.",
