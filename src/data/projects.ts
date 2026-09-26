@@ -22,7 +22,7 @@ const LINKS = {
   estateiqWebRepo: "https://github.com/anthonynarine/EstateIQ-Web",
 
   tttDemo: "https://onevone.net",
-  gaitDemo: "https://gait.netlify.app",
+  gaitDemo: "https://gaitobservatory.com",
   lumenDemo: "https://lumenfoundry.net",
 
   // production
@@ -37,19 +37,20 @@ export const projects: Project[] = [
     id: "gait-auth",
     title: "Gait Security Platform",
     description:
-      "Gait is a self-repairing security platform governed by trusted evidence and human approval. It combines hardened security enforcement, continuous observability, constrained AI security agents, independent validation, and exact-artifact deployment into one security operating system. A large language model powers the reasoning behind Gait's Security Copilot and specialist agents — investigating findings, interpreting evidence, reproducing weaknesses, and preparing candidate repairs — but deterministic backend code decides what each agent may access, which tools it may use, and which actions are permitted.",
+      "Gait is a self-repairing security platform governed by trusted evidence and human approval. It combines hardened security enforcement, continuous observability, constrained AI security agents, independent validation, and exact-artifact deployment into one security operating system. A large language model powers the reasoning behind Gait's specialist agents — investigating findings, interpreting evidence, reproducing weaknesses, and preparing candidate repairs — but deterministic backend code decides what each agent may access, which tools it may use, and which actions are permitted. The agents protect Gait's own platform; customer teams get an isolated, per-company console where their applications report security checks through gait-sdk.",
     highlights: [
       "Security Observatory continuously evaluates controls, evidence, findings, and audit events",
       "Incident Commander coordinates Blue Team, Red Team, Green Team, and Security Validator workflows",
       "Blue Team uses LLM-assisted reasoning to investigate failures; Red Team safely reproduces approved weaknesses in controlled environments",
       "Security Validator and a Human Approver gate every production change before Release Engineer deploys the exact approved artifact",
-      "Security Copilot offers a natural-language interface for posture, active cases, and bounded workflow requests",
+      "Security Copilot explains posture and active cases in plain language, generated deterministically with no model call and no authority to act",
+      "Multi-tenant by design: each company's people, applications, connection keys, and findings are isolated, and other companies' data returns 404",
       "Still guards Lumen's identity layer: JWT access/refresh, 2FA, guest sign-in, and protected endpoints",
       "Services plug in through gait-sdk, my open-source Python package on PyPI for Django REST Framework and FastAPI — they verify identity against Gait instead of re-implementing auth",
     ],
     tryThis: [
-      "Click \"See How Gait Works\" to walk the self-repairing loop end-to-end: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, exact-artifact deploy.",
-      "Open \"Architecture\" to see why the AI agents reason inside deterministic boundaries and never hold production authority directly.",
+      "Read the docs' \"Automated security response\" page for the self-repairing loop: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, deploy, and fresh-evidence confirmation.",
+      "Read \"Isolation and setup\" in the docs to see how each customer company is walled off, and how a product's own users stay separate from its security team.",
     ],
     links: {
       liveDemo: LINKS.gaitDemo,
@@ -64,30 +65,20 @@ export const projects: Project[] = [
     badges: ["Security Automation", "LLM Agents", "Evidence-Driven", "Human-Governed"],
     featured: true,
     screenshot: {
-      src: "/screenshots/gait-slide-hero.jpg",
-      alt: "Gait homepage hero: an AI security team now in early access; AI investigates, evidence decides what is true, and a human approves anything that touches production; stats show 7 constrained agents, 1 required human approval, and 473 of 473 tests passing on the last validated fix",
-      caption: "Your AI security team: agents investigate and prepare fixes, evidence decides what's true, and a human approves anything that touches production.",
+      src: "/screenshots/gait-slide-sdk.jpg",
+      alt: "gait-sdk design rule and request path: Gait authenticates, gait-sdk verifies inside your service, your application authorizes; a four-step path from browser sign-in to a signed token, verification inside your service, and your own authorization check",
+      caption: "Three jobs, three owners. Gait proves who someone is, gait-sdk checks that proof inside your API, and your code decides what they may do.",
       slides: [
         {
-          src: "/screenshots/gait-slide-hero.jpg",
-          alt: "Gait homepage hero: an AI security team now in early access; AI investigates, evidence decides what is true, and a human approves anything that touches production; stats show 7 constrained agents, 1 required human approval, and 473 of 473 tests passing on the last validated fix",
-          caption: "Your AI security team: agents investigate and prepare fixes, evidence decides what's true, and a human approves anything that touches production.",
-        },
-        {
           src: "/screenshots/gait-slide-sdk.jpg",
-          alt: "gait-sdk design rule and request path: Gait authenticates, gait-sdk verifies inside your service, your application authorizes; a four-step path from browser sign-in to a signed RS256 token, local verification against cached public keys, and your own authorization check",
-          caption: "Three jobs, three owners. Gait proves who someone is, gait-sdk checks that proof locally inside your API, and your code decides what they may do.",
-        },
-        {
-          src: "/screenshots/gait-slide-protects.jpg",
-          alt: "What Gait protects around an application: authentication, multi-factor authentication, sessions, authorization, security controls, deployments, agent workflows, and future HL7/DICOM healthcare security components; with a note that Gait was first used to protect Lumen, a vascular ultrasound reporting platform",
-          caption: "Everything Gait guards around your app — identity, sessions, controls, deployments, and agent workflows — first proven on Lumen before anyone else.",
+          alt: "gait-sdk design rule and request path: Gait authenticates, gait-sdk verifies inside your service, your application authorizes; a four-step path from browser sign-in to a signed token, verification inside your service, and your own authorization check",
+          caption: "Three jobs, three owners. Gait proves who someone is, gait-sdk checks that proof inside your API, and your code decides what they may do.",
         },
       ],
     },
     architecture: {
       architecture:
-        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. Downstream services consume identity through gait-sdk rather than calling Gait ad hoc. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production.",
+        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. Downstream services consume identity through gait-sdk rather than calling Gait ad hoc. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production. Tenant isolation is enforced in every query: customer companies, their applications, and their findings are scoped to one organization, with cross-tenant access returning 404.",
     },
   },
 
