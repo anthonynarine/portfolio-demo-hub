@@ -1,8 +1,9 @@
 // # Filename: src/features/resume/components/ResumeHeader.tsx
 
-import { ArrowLeft, Download, Github, Linkedin, Mail, Printer } from "lucide-react";
+import { ArrowLeft, Download, Github, Linkedin, Mail } from "lucide-react";
 import { resumeProfile } from "../data/resumeData";
 
+const RESUME_HREF = "/Anthony-Narine-Resume-Designed.pdf";
 const ATS_RESUME_HREF = "/Anthony-Narine-Resume.pdf";
 
 function ContactLink({ href, label }: { href: string; label: string }) {
@@ -23,26 +24,15 @@ function ActionButton({
   href,
   label,
   icon,
-  onClick,
   download,
 }: {
   href?: string;
   label: string;
   icon: React.ReactNode;
-  onClick?: () => void;
   download?: boolean;
 }) {
   const className =
     "inline-flex items-center gap-2 border border-neutral-300 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-700 transition hover:border-neutral-950 hover:text-neutral-950 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-50 dark:hover:text-neutral-50";
-
-  if (onClick) {
-    return (
-      <button type="button" onClick={onClick} className={className}>
-        <span className="text-neutral-950 dark:text-neutral-50">{icon}</span>
-        {label}
-      </button>
-    );
-  }
 
   if (download) {
     return (
@@ -117,9 +107,10 @@ export function ResumeHeader() {
           icon={<Mail size={14} />}
         />
         <ActionButton
-          label="Print / Save PDF"
-          icon={<Printer size={14} />}
-          onClick={() => window.print()}
+          href={RESUME_HREF}
+          label="Download Resume"
+          icon={<Download size={14} />}
+          download
         />
         <ActionButton
           href={ATS_RESUME_HREF}
