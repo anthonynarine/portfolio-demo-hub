@@ -3,7 +3,8 @@
 Read this first after Moonrise. Moonset rewrites it.
 
 - **Updated:** 2026-10-09 by Moonlight · Portfolio Demo Hub
-- **Branch:** `feature/foundry-currently-building`, from `origin/main` `2b8e0d4` (the live site). Not pushed.
+- **Deployed:** `main` `5262672` pushed 2026-10-09 with the human's OK; live on anthonynarine.com about 30 s later
+  (Netlify). `feature/foundry-currently-building` is fully merged.
 - **Backup:** `backup/foundry-on-stale-base` holds the first attempt, built on a stale local `main`. Delete it once
   this branch is merged.
 
@@ -26,14 +27,13 @@ Read this first after Moonrise. Moonset rewrites it.
 - Two Foundry bugs reported to Moonlight · Foundry (session `foundry-b5`): ORC-019 recurrence in `foundry init`, and
   the unquoted `verified.at` date in the FND-2 §3.1 example.
 
-- Foundry card slideshow (4 hand-written SVGs in `public/screenshots/`): `foundry-flow` (git graph: how a change
+- Foundry card slideshow (4 animated, hand-written SVGs; motion stops under prefers-reduced-motion in `public/screenshots/`): `foundry-flow` (git graph: how a change
   ships), `foundry-today` (stats + projects it runs), `foundry-guarantees` (five guarantees), `foundry-endgame`
   (roadmap: now → product core → distribution → proof; target "any team, any stack, any agent, fifteen minutes").
   Stats and project statuses are a snapshot from Foundry's records on 2026-10-09 and go stale; "Nine days old" too.
 
 ## Open decisions (human)
 
-- Merge this branch into `main` and push (Netlify deploys `main`).
 - OneVOne's repo link (`github.com/anthonynarine/tic_tac_toe`) returns 404 publicly: fix, make public, or remove.
 - Remove the unused `src/assets/react.svg` / `public/vite.svg` and untrack `tsconfig.tsbuildinfo`?
 
