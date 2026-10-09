@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-labelledby="t d">
+  <title id="t">Foundry today: nine days old, already shipping to production</title>
+  <desc id="d">Since October 1, 2026: 300 commits, 1,332 automated tests, 38 recorded decisions, 9 agent roles and 501 audit events. Projects it runs: Gait (shipping, first gated release to production), Foundry itself (shipping), this portfolio (adopted) and Lumen (adoption in review).</desc>
+  <defs>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="#1d1d21"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="45%" r="75%">
+      <stop offset="60%" stop-color="#0b0b0c" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050506" stop-opacity="0.9"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#0b0b0c"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+  <rect width="1600" height="1000" fill="url(#vignette)"/>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="72" y="92" font-size="19" letter-spacing="6" fill="#8a8a8a">FOUNDRY  ·  TODAY</text>
+    <text x="72" y="166" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#fafafa">Nine days old. <tspan font-style="italic" fill="#f2c879">Already shipping to production.</tspan></text>
+
+    <!-- stats -->
+    <g>
+      <rect x="72" y="222" width="275" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+      <rect x="367" y="222" width="275" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+      <rect x="662" y="222" width="275" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+      <rect x="957" y="222" width="275" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+      <rect x="1252" y="222" width="276" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+    </g>
+    <g font-family="Georgia, 'Times New Roman', serif" font-size="64" fill="#fafafa">
+      <text x="98" y="310">300</text>
+      <text x="393" y="310" fill="#5eead4">1,332</text>
+      <text x="688" y="310">38</text>
+      <text x="983" y="310" fill="#c4b5fd">9</text>
+      <text x="1278" y="310">501</text>
+    </g>
+    <g font-size="19" fill="#a3a3a3">
+      <text x="98" y="346">commits since Oct 1</text>
+      <text x="393" y="346">automated tests</text>
+      <text x="688" y="346">recorded decisions</text>
+      <text x="983" y="346">agent roles</text>
+      <text x="1278" y="346">audit events</text>
+    </g>
+
+    <!-- projects -->
+    <text x="72" y="440" font-size="16" letter-spacing="4" font-weight="600" fill="#8a8a8a">PROJECTS IT RUNS</text>
+    <line x1="72" y1="462" x2="1528" y2="462" stroke="#2a2a2e" stroke-width="2"/>
+
+    <!-- row 1: Gait -->
+    <text x="72" y="514" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">Gait</text>
+    <text x="72" y="544" font-size="18" fill="#8a8a8a">Security platform · Django, Python SDK, React</text>
+    <rect x="610" y="497" width="138" height="38" rx="19" fill="#0e1a12" stroke="#86efac" stroke-width="2"/>
+    <circle cx="634" cy="516" r="6" fill="#86efac"/>
+    <text x="650" y="523" font-size="18" font-weight="600" fill="#86efac">Shipping</text>
+    <text x="790" y="514" font-size="21" fill="#e5e5e5">First gated release: tests, Security, QA,</text>
+    <text x="790" y="544" font-size="21" fill="#e5e5e5"><tspan fill="#f2c879">my signature</tspan>, then production</text>
+    <line x1="72" y1="572" x2="1528" y2="572" stroke="#1f1f23" stroke-width="2"/>
+
+    <!-- row 2: Foundry -->
+    <text x="72" y="624" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">Foundry</text>
+    <text x="72" y="654" font-size="18" fill="#8a8a8a">Itself · Python</text>
+    <rect x="610" y="607" width="138" height="38" rx="19" fill="#0e1a12" stroke="#86efac" stroke-width="2"/>
+    <circle cx="634" cy="626" r="6" fill="#86efac"/>
+    <text x="650" y="633" font-size="18" font-weight="600" fill="#86efac">Shipping</text>
+    <text x="790" y="624" font-size="21" fill="#e5e5e5">Builds, reviews and releases its own changes</text>
+    <text x="790" y="654" font-size="21" fill="#e5e5e5">through the same gates</text>
+    <line x1="72" y1="682" x2="1528" y2="682" stroke="#1f1f23" stroke-width="2"/>
+
+    <!-- row 3: this portfolio -->
+    <text x="72" y="734" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">This portfolio</text>
+    <text x="72" y="764" font-size="18" fill="#8a8a8a">React, TypeScript</text>
+    <rect x="610" y="717" width="138" height="38" rx="19" fill="#101622" stroke="#93c5fd" stroke-width="2"/>
+    <circle cx="634" cy="736" r="6" fill="#93c5fd"/>
+    <text x="650" y="743" font-size="18" font-weight="600" fill="#93c5fd">Adopted</text>
+    <text x="790" y="734" font-size="21" fill="#e5e5e5">The page you are reading, mapped</text>
+    <text x="790" y="764" font-size="21" fill="#e5e5e5">and governed by Foundry</text>
+    <line x1="72" y1="792" x2="1528" y2="792" stroke="#1f1f23" stroke-width="2"/>
+
+    <!-- row 4: Lumen -->
+    <text x="72" y="844" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">Lumen</text>
+    <text x="72" y="874" font-size="18" fill="#8a8a8a">Clinical reporting · Django, React</text>
+    <rect x="610" y="827" width="138" height="38" rx="19" fill="#1d170b" stroke="#fcd34d" stroke-width="2"/>
+    <circle cx="634" cy="846" r="6" fill="#fcd34d"/>
+    <text x="650" y="853" font-size="18" font-weight="600" fill="#fcd34d">In review</text>
+    <text x="790" y="844" font-size="21" fill="#e5e5e5">Adoption under review: the largest app,</text>
+    <text x="790" y="874" font-size="21" fill="#e5e5e5">and the hardest test of its secret policy</text>
+
+    <text x="72" y="952" font-size="18" fill="#737373">Every number here comes from Foundry's own records in Git, as of October 9, 2026.</text>
+  </g>
+</svg>

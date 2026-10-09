@@ -55,6 +55,28 @@ export const projects: Project[] = [
       src: "/screenshots/foundry-flow.svg",
       alt: "Foundry as a git graph: I state the outcome; the Orchestrator branches backend, frontend, and docs agents off main, each committing in its own worktree; Security and QA review every branch; the work merges into main only at my signature, with an audit log underneath",
       caption: "Each agent works on its own branch in an isolated worktree. Security and QA review everything, and nothing reaches main until I sign.",
+      slides: [
+        {
+          src: "/screenshots/foundry-flow.svg",
+          alt: "Foundry as a git graph: I state the outcome; the Orchestrator branches backend, frontend, and docs agents off main, each committing in its own worktree; Security and QA review every branch; the work merges into main only at my signature, with an audit log underneath",
+          caption: "How a change ships: each agent works on its own branch in an isolated worktree, Security and QA review everything, and nothing reaches main until I sign.",
+        },
+        {
+          src: "/screenshots/foundry-today.svg",
+          alt: "Foundry today: 300 commits since October 1, 1,332 automated tests, 38 recorded decisions, 9 agent roles, 501 audit events; it runs Gait and Foundry itself in production, this portfolio, and Lumen's adoption is in review",
+          caption: "Today: nine days old and already shipping to production. Gait's first gated release went through it.",
+        },
+        {
+          src: "/screenshots/foundry-guarantees.svg",
+          alt: "What every change gets: continuity, observation, secret safety, independent review, and a signed release",
+          caption: "The guarantees: work survives any crashed session, agents never see secrets, and no one grades their own work.",
+        },
+        {
+          src: "/screenshots/foundry-endgame.svg",
+          alt: "Foundry's end game: from running my own projects, to an installable product core, to a Claude Code plugin and GitHub Action, to three apps shipped through it; target: any team, any stack, any agent, set up in fifteen minutes",
+          caption: "The end game: the record, evidence and safety layer for software built with AI agents, for any team, on any stack.",
+        },
+      ],
     },
   },
 

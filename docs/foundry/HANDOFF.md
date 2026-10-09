@@ -26,6 +26,11 @@ Read this first after Moonrise. Moonset rewrites it.
 - Two Foundry bugs reported to Moonlight · Foundry (session `foundry-b5`): ORC-019 recurrence in `foundry init`, and
   the unquoted `verified.at` date in the FND-2 §3.1 example.
 
+- Foundry card slideshow (4 hand-written SVGs in `public/screenshots/`): `foundry-flow` (git graph: how a change
+  ships), `foundry-today` (stats + projects it runs), `foundry-guarantees` (five guarantees), `foundry-endgame`
+  (roadmap: now → product core → distribution → proof; target "any team, any stack, any agent, fifteen minutes").
+  Stats and project statuses are a snapshot from Foundry's records on 2026-10-09 and go stale; "Nine days old" too.
+
 ## Open decisions (human)
 
 - Merge this branch into `main` and push (Netlify deploys `main`).
@@ -34,6 +39,7 @@ Read this first after Moonrise. Moonset rewrites it.
 
 ## Next actions
 
+0. Refresh `foundry-today.svg` (numbers, statuses, "Nine days old") whenever this site is updated.
 1. Check the Foundry card at phone width.
 2. When Foundry's frontend exists, add its link (the top card has no click-through until then).
 3. Old branch `feature/estateiq-featured-project-and-color-accents` was merged as PR #1; it can be deleted.
