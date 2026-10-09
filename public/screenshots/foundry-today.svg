@@ -1,6 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-labelledby="t d">
   <title id="t">Foundry today: nine days old, already shipping to production</title>
   <desc id="d">Since October 1, 2026: 300 commits, 1,332 automated tests, 38 recorded decisions, 9 agent roles and 501 audit events. Projects it runs: Gait (shipping, first gated release to production), Foundry itself (shipping), this portfolio (adopted) and Lumen (adoption in review).</desc>
+  <style>
+    .ping { animation: ping 2.2s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+    .d1 { animation-delay: 0.5s; } .d2 { animation-delay: 1s; } .d3 { animation-delay: 1.5s; }
+    .sweep { animation: sweep 5.5s ease-in-out infinite; }
+    .glint { animation: glint 4s ease-in-out infinite; }
+    @keyframes ping { 0% { transform: scale(1); opacity: 0.8; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+    @keyframes sweep { 0% { transform: translateX(0); } 70%, 100% { transform: translateX(1900px); } }
+    @keyframes glint { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .ping, .sweep, .glint { animation: none; } .sweep { display: none; } }
+  </style>
   <defs>
     <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.3" fill="#1d1d21"/>
@@ -9,6 +19,18 @@
       <stop offset="60%" stop-color="#0b0b0c" stop-opacity="0"/>
       <stop offset="100%" stop-color="#050506" stop-opacity="0.9"/>
     </radialGradient>
+    <clipPath id="tiles">
+      <rect x="72" y="222" width="275" height="150" rx="14"/>
+      <rect x="367" y="222" width="275" height="150" rx="14"/>
+      <rect x="662" y="222" width="275" height="150" rx="14"/>
+      <rect x="957" y="222" width="275" height="150" rx="14"/>
+      <rect x="1252" y="222" width="276" height="150" rx="14"/>
+    </clipPath>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 
   <rect width="1600" height="1000" fill="#0b0b0c"/>
@@ -17,7 +39,7 @@
 
   <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
     <text x="72" y="92" font-size="19" letter-spacing="6" fill="#8a8a8a">FOUNDRY  ·  TODAY</text>
-    <text x="72" y="166" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#fafafa">Nine days old. <tspan font-style="italic" fill="#f2c879">Already shipping to production.</tspan></text>
+    <text x="72" y="166" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#fafafa">Nine days old. <tspan font-style="italic" fill="#f2c879" class="glint">Already shipping to production.</tspan></text>
 
     <!-- stats -->
     <g>
@@ -26,6 +48,9 @@
       <rect x="662" y="222" width="275" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
       <rect x="957" y="222" width="275" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
       <rect x="1252" y="222" width="276" height="150" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+    </g>
+    <g clip-path="url(#tiles)">
+      <rect x="-300" y="222" width="260" height="150" fill="url(#sheen)" class="sweep"/>
     </g>
     <g font-family="Georgia, 'Times New Roman', serif" font-size="64" fill="#fafafa">
       <text x="98" y="310">300</text>
@@ -50,6 +75,7 @@
     <text x="72" y="514" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">Gait</text>
     <text x="72" y="544" font-size="18" fill="#8a8a8a">Security platform · Django, Python SDK, React</text>
     <rect x="610" y="497" width="138" height="38" rx="19" fill="#0e1a12" stroke="#86efac" stroke-width="2"/>
+    <circle cx="634" cy="516" r="6" fill="#86efac" class="ping"/>
     <circle cx="634" cy="516" r="6" fill="#86efac"/>
     <text x="650" y="523" font-size="18" font-weight="600" fill="#86efac">Shipping</text>
     <text x="790" y="514" font-size="21" fill="#e5e5e5">First gated release: tests, Security, QA,</text>
@@ -60,6 +86,7 @@
     <text x="72" y="624" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">Foundry</text>
     <text x="72" y="654" font-size="18" fill="#8a8a8a">Itself · Python</text>
     <rect x="610" y="607" width="138" height="38" rx="19" fill="#0e1a12" stroke="#86efac" stroke-width="2"/>
+    <circle cx="634" cy="626" r="6" fill="#86efac" class="ping d1"/>
     <circle cx="634" cy="626" r="6" fill="#86efac"/>
     <text x="650" y="633" font-size="18" font-weight="600" fill="#86efac">Shipping</text>
     <text x="790" y="624" font-size="21" fill="#e5e5e5">Builds, reviews and releases its own changes</text>
@@ -70,6 +97,7 @@
     <text x="72" y="734" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">This portfolio</text>
     <text x="72" y="764" font-size="18" fill="#8a8a8a">React, TypeScript</text>
     <rect x="610" y="717" width="138" height="38" rx="19" fill="#101622" stroke="#93c5fd" stroke-width="2"/>
+    <circle cx="634" cy="736" r="6" fill="#93c5fd" class="ping d2"/>
     <circle cx="634" cy="736" r="6" fill="#93c5fd"/>
     <text x="650" y="743" font-size="18" font-weight="600" fill="#93c5fd">Adopted</text>
     <text x="790" y="734" font-size="21" fill="#e5e5e5">The page you are reading, mapped</text>
@@ -80,6 +108,7 @@
     <text x="72" y="844" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#fafafa">Lumen</text>
     <text x="72" y="874" font-size="18" fill="#8a8a8a">Clinical reporting · Django, React</text>
     <rect x="610" y="827" width="138" height="38" rx="19" fill="#1d170b" stroke="#fcd34d" stroke-width="2"/>
+    <circle cx="634" cy="846" r="6" fill="#fcd34d" class="ping d3"/>
     <circle cx="634" cy="846" r="6" fill="#fcd34d"/>
     <text x="650" y="853" font-size="18" font-weight="600" fill="#fcd34d">In review</text>
     <text x="790" y="844" font-size="21" fill="#e5e5e5">Adoption under review: the largest app,</text>
