@@ -82,21 +82,21 @@ export const projects: Project[] = [
 
   {
     id: "gait-auth",
-    title: "Gait Security Platform",
+    title: "Gait",
     description:
-      "Gait is a self-repairing security platform governed by trusted evidence and human approval. It combines hardened security enforcement, continuous observability, constrained AI security agents, independent validation, and exact-artifact deployment into one security operating system. Companies sign in, register their applications, and those apps report their own security checks through gait-sdk, my open-source Python package; Gait turns the results into findings each team can track, with every company strictly walled off from the others. On Gait's own platform, AI agents investigate failures, reproduce them safely, and prepare fixes, but deterministic code limits what each agent can touch, an independent validator checks every fix, and nothing reaches production without a single-use human approval.",
+      "Gait is the internal security system I built to protect my own applications. It guards Lumen, my clinical reporting app, and Gait itself: hardened sign-in, strictly isolated data, and apps that report their own security checks through gait-sdk, my open-source Python package. When a check fails, Gait opens a finding and tracks it until fresh evidence proves the control is healthy again. AI agents investigate failures, reproduce them safely, and prepare fixes, but deterministic code limits what each agent can touch, an independent validator checks every fix, and nothing reaches production without my single-use approval.",
     highlights: [
-      "Multi-tenant by design: each company's people, applications, hashed connection keys, and findings are isolated, and cross-tenant access returns 404, proven by adversarial tests",
-      "Six AI agents (Incident Commander, Blue, Red, and Green Team, Security Validator, Release Engineer) work inside deterministic boundaries; a human approves every production change",
+      "Protects Lumen and Gait itself; first built because a clinical app can't compromise on identity, isolation, or audit",
+      "Six AI agents (Incident Commander, Blue, Red, and Green Team, Security Validator, Release Engineer) work inside deterministic boundaries; I approve every production change",
+      "Hardened identity: HttpOnly cookie sessions, refresh rotation with replay detection, 2FA, email verification, and rate limits that resist IP spoofing",
+      "Strict isolation: each app's people, hashed connection keys, and findings are walled off, and cross-tenant access returns 404, proven by adversarial tests",
       "Evidence decides what's true: a fix only counts as resolved when fresh checks prove the control is healthy",
       "Security Copilot explains posture and active cases in plain language, generated deterministically with no model call and no authority to act",
-      "Hardened identity: HttpOnly cookie sessions, refresh rotation with replay detection, 2FA, email verification, and rate limits that resist IP spoofing",
       "gait-sdk on PyPI (MIT) lets Django and FastAPI services report security checks and verify Gait identities",
-      "First built to secure Lumen, my vascular ultrasound reporting app",
     ],
     tryThis: [
       "Read the docs' \"Automated security response\" page for the self-repairing loop: control failure, diagnosis, safe reproduction, scoped repair, independent validation, human approval, deploy, and fresh-evidence confirmation.",
-      "Read \"Isolation and setup\" in the docs to see how each customer company is walled off, and how a product's own users stay separate from its security team.",
+      "Read \"Isolation and setup\" in the docs to see how each app's data is walled off, and how an app's own users stay separate from the people who secure it.",
     ],
     links: {
       liveDemo: LINKS.gaitDemo,
@@ -108,7 +108,7 @@ export const projects: Project[] = [
         { label: "Postman API docs", href: LINKS.gaitPostmanDocs },
       ],
     },
-    badges: ["Security Automation", "LLM Agents", "Evidence-Driven", "Human-Governed"],
+    badges: ["Internal Security", "LLM Agents", "Evidence-Driven", "Human-Governed"],
     featured: true,
     screenshot: {
       src: "/screenshots/gait-slide-sdk.jpg",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     },
     architecture: {
       architecture:
-        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. Downstream services consume identity through gait-sdk rather than calling Gait ad hoc. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production. Tenant isolation is enforced in every query: customer companies, their applications, and their findings are scoped to one organization, with cross-tenant access returning 404.",
+        "Django/DRF provides Gait's deterministic control plane, Security Truth layer, workflow engine, Gateway, authorization boundaries, and deployment governance. Downstream services consume identity through gait-sdk rather than calling Gait ad hoc. An LLM supplies intelligence and reasoning inside those boundaries — trusted evidence determines whether controls are actually healthy, and humans retain final authority over production. Isolation is enforced in every query: each app's people, keys, and findings are scoped to one organization, with cross-tenant access returning 404.",
     },
   },
 

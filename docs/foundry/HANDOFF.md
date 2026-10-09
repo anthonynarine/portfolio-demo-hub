@@ -32,8 +32,14 @@ Read this first after Moonrise. Moonset rewrites it.
   (roadmap: now → product core → distribution → proof; target "any team, any stack, any agent, fifteen minutes").
   Stats and project statuses are a snapshot from Foundry's records on 2026-10-09 and go stale; "Nine days old" too.
 
+- Gait repositioned from "product for companies" to "my internal security system" (human-approved brief,
+  2026-10-09; scope: words only; claims limited to Lumen and Gait itself). Portfolio Gait card rewritten on branch
+  `content/gait-internal` (not pushed). AuthFlow is Gait's Orchestrator's job: task GAIT-13, two passes (public
+  surface, then docs), waits for the human's OK in its own session; open question there: keep or drop EarlyAccessPage.
+
 ## Open decisions (human)
 
+- Push `content/gait-internal` (Gait card) — alone, or together with AuthFlow's GAIT-13 release?
 - OneVOne's repo link (`github.com/anthonynarine/tic_tac_toe`) returns 404 publicly: fix, make public, or remove.
 - Remove the unused `src/assets/react.svg` / `public/vite.svg` and untrack `tsconfig.tsbuildinfo`?
 
