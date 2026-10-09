@@ -13,7 +13,7 @@ authentication, no environment variables, no secrets.
 
 | Route | Page | What it shows |
 |---|---|---|
-| `/` | `src/App.tsx` | Header, About, focus areas, Selected projects, Currently building (Foundry), Writing (HIPAA handbook), Build With Me, Footer |
+| `/` | `src/App.tsx` | Header, About, focus areas, Selected projects, Writing (HIPAA handbook), Build With Me, Footer |
 | `/resume` | `src/pages/ResumePage.tsx` | Résumé built from `src/features/resume/` |
 | `/hipaa` | `src/pages/HandbookPage.tsx` | HIPAA handbook contents (`src/data/handbook.ts`) and the PDF download |
 
@@ -55,7 +55,7 @@ src/components/
   EmailCopy.tsx            copy-email button
   ThemeToggle.tsx          five-mode theme menu
   Footer.tsx
-src/data/projects.ts       profileLinks, LINKS, projects[], currentlyBuilding (home page content)
+src/data/projects.ts       profileLinks, LINKS, projects[] (home page content)
 src/data/handbook.ts       HIPAA handbook contents
 src/types/project.ts       Project types (screenshot may carry clip or slides)
 src/features/resume/       résumé components + resumeData.ts
@@ -68,7 +68,7 @@ scripts/                   résumé PDF generators (not part of the build)
 
 `src/data/projects.ts` → `App` → `ProjectsGrid` (featured first) → `ProjectCard`. A project's position sets its roman
 numeral and, for featured cards, which side the media sits on (alternating). Project order today: Gait, EstateIQ,
-OneVOne, Lumen (all featured), then Backend Building Blocks. Everything is static and bundled at build time.
+OneVOne, Lumen (all featured), then Foundry and Backend Building Blocks. Everything is static and bundled at build time.
 
 ## Findings (leads, not changes)
 

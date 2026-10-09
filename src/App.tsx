@@ -6,7 +6,7 @@ import { ProjectsGrid } from "./components/ProjectsGrid";
 import { Reveal } from "./components/Reveal";
 import { EmailCopy } from "./components/EmailCopy";
 import { ArrowUpRight, Mail } from "lucide-react";
-import { currentlyBuilding, profileLinks, projects } from "./data/projects";
+import { profileLinks, projects } from "./data/projects";
 
 const focusAreas = [
   "Secure multi-tenant systems",
@@ -108,33 +108,6 @@ export default function App() {
           </Reveal>
 
           <ProjectsGrid projects={projects} />
-        </section>
-
-        <section id="currently-building" className="border-t border-neutral-200 cloudy:border-neutral-300 dark:border-neutral-800">
-          <Reveal className="mx-auto grid max-w-3xl gap-10 px-5 py-16 sm:px-8 lg:max-w-3xl lg:grid-cols-[1.05fr_1fr] lg:px-10 lg:py-20">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
-                Currently building
-              </p>
-              <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-4xl">
-                {currentlyBuilding.title}
-              </h2>
-              <p className="mt-3 text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                {currentlyBuilding.status}
-              </p>
-            </div>
-
-            <div className="space-y-5 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-              <p>{currentlyBuilding.description}</p>
-              <ul className="divide-y divide-neutral-200 border-t border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
-                {currentlyBuilding.highlights.map((highlight) => (
-                  <li key={highlight} className="py-3 text-sm font-medium text-neutral-800 dark:text-neutral-200">
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
         </section>
 
         <section className="border-y border-neutral-200 bg-[#F3F1EC] cloudy:border-neutral-300 cloudy:bg-[#C9D2D8] dark:border-neutral-800 dark:bg-neutral-900 rainy:bg-[#181B1F] thunderstorm:bg-[#3A424B]">

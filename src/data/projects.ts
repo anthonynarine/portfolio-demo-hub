@@ -239,6 +239,25 @@ export const projects: Project[] = [
   },
 
   {
+    id: "foundry",
+    title: "Foundry",
+    description:
+      "My own engineering tool, built so I can build anything. Foundry runs a governed team of AI agents, an Orchestrator plus backend, frontend, security, and QA specialists, on any codebase in any language. It assumes no framework and no model vendor; every role, decision, handoff, and piece of evidence lives in the repository, and nothing ships without independent review and my signed approval.",
+    highlights: [
+      "Language- and framework-agnostic: the same roles and release gates run Python/Django backends, React frontends, and this TypeScript site",
+      "Provider-neutral: Claude, Codex, other models, or a person can fill any role, following the same instructions",
+      "Evidence-gated releases: tests, security review, and QA are recorded against the exact code, then signed by a human",
+      "Agents are limited to the paths and actions their role allows; durable state in Git means a crashed session loses nothing",
+    ],
+    tryThis: [
+      "See it at work: Gait's production releases now ship through Foundry's evidence gate.",
+      "Ask me for a walkthrough of an agent-built change, from task to signed release.",
+    ],
+    links: {},
+    badges: ["Custom Tooling", "AI Agents", "Language-Agnostic", "In Progress"],
+  },
+
+  {
     id: "infra-packages",
     title: "Backend Building Blocks",
     description:
@@ -263,16 +282,3 @@ export const projects: Project[] = [
     badges: ["Open Source", "Python SDK", "PyPI", "Tracing"],
   },
 ];
-
-export const currentlyBuilding = {
-  title: "Foundry",
-  status: "In progress · frontend coming",
-  description:
-    "A governed workspace for building software with a team of AI agents. An Orchestrator and specialist agents plan, build, and review the work, while every role, decision, handoff, and piece of evidence lives in the repository, so any agent can pick the work up cold.",
-  highlights: [
-    "Orchestrator plus specialist agents (backend, frontend, security, QA), each limited to the paths and actions its role allows",
-    "Evidence-gated releases: tests, security review, and QA are recorded against the exact code, then signed by a human",
-    "Durable state in Git: sessions crash, the work doesn't",
-    "Already running my own projects, including Gait's releases",
-  ],
-};
