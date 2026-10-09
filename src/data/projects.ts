@@ -255,6 +255,11 @@ export const projects: Project[] = [
     ],
     links: {},
     badges: ["Custom Tooling", "AI Agents", "Language-Agnostic", "In Progress"],
+    screenshot: {
+      src: "/screenshots/foundry-flow.svg",
+      alt: "How Foundry ships a change: you state the outcome; the Orchestrator plans and assigns; specialist agents each work in their own worktree and branch; Security and QA review independently; you sign, then it merges to main",
+      caption: "Agents do the work in isolated branches, someone other than the author checks it, and nothing merges until I sign.",
+    },
   },
 
   {

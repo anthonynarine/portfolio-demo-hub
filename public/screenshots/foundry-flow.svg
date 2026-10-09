@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-labelledby="t d">
+  <title id="t">How Foundry ships a change</title>
+  <desc id="d">You state the outcome; the Orchestrator plans and assigns; specialist agents each work in their own worktree and branch; Security and QA review independently; you sign, then it merges to main.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#a3a3a3"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#0b0b0c"/>
+
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <!-- heading -->
+    <text x="49" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#fafafa">How Foundry ships a change</text>
+    <text x="49" y="182" font-size="28" fill="#a3a3a3">AI agents do the work. Deterministic rules limit it. A person signs.</text>
+
+    <!-- arrows -->
+    <g stroke="#a3a3a3" stroke-width="3" marker-end="url(#arrow)">
+      <line x1="317" y1="500" x2="351" y2="500"/>
+      <line x1="627" y1="500" x2="661" y2="500"/>
+      <line x1="937" y1="500" x2="971" y2="500"/>
+      <line x1="1247" y1="500" x2="1281" y2="500"/>
+    </g>
+
+    <!-- 1. You -->
+    <rect x="49" y="380" width="262" height="240" rx="18" fill="#f5f5f4"/>
+    <text x="180" y="480" text-anchor="middle" font-size="46" font-weight="700" fill="#0a0a0a">You</text>
+    <text x="180" y="530" text-anchor="middle" font-size="25" fill="#404040">state the outcome</text>
+
+    <!-- 2. Orchestrator -->
+    <rect x="359" y="380" width="262" height="240" rx="18" fill="#171717" stroke="#525252" stroke-width="2"/>
+    <text x="490" y="448" text-anchor="middle" font-size="34" font-weight="700" fill="#fafafa">Orchestrator</text>
+    <text x="490" y="500" text-anchor="middle" font-size="24" fill="#d4d4d4">plans the task</text>
+    <text x="490" y="538" text-anchor="middle" font-size="24" fill="#d4d4d4">assigns roles</text>
+    <text x="490" y="576" text-anchor="middle" font-size="24" fill="#d4d4d4">keeps the record</text>
+
+    <!-- 3. Specialists -->
+    <rect x="669" y="250" width="262" height="500" rx="18" fill="#171717" stroke="#525252" stroke-width="2"/>
+    <text x="800" y="302" text-anchor="middle" font-size="34" font-weight="700" fill="#fafafa">Specialists</text>
+    <g>
+      <rect x="689" y="330" width="222" height="104" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
+      <text x="800" y="376" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">Backend</text>
+      <text x="800" y="412" text-anchor="middle" font-size="20" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#a3a3a3">agent/backend/…</text>
+      <rect x="689" y="448" width="222" height="104" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
+      <text x="800" y="494" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">Frontend</text>
+      <text x="800" y="530" text-anchor="middle" font-size="20" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#a3a3a3">agent/frontend/…</text>
+      <rect x="689" y="566" width="222" height="104" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2" stroke-dasharray="8 6"/>
+      <text x="800" y="612" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">+ any role</text>
+      <text x="800" y="648" text-anchor="middle" font-size="20" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#a3a3a3">agent/&lt;role&gt;/…</text>
+    </g>
+    <text x="800" y="712" text-anchor="middle" font-size="23" fill="#d4d4d4">own worktree + branch</text>
+
+    <!-- 4. Independent review -->
+    <rect x="979" y="300" width="262" height="400" rx="18" fill="#171717" stroke="#525252" stroke-width="2"/>
+    <text x="1110" y="350" text-anchor="middle" font-size="32" font-weight="700" fill="#fafafa">Independent</text>
+    <text x="1110" y="390" text-anchor="middle" font-size="32" font-weight="700" fill="#fafafa">review</text>
+    <rect x="999" y="420" width="222" height="96" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
+    <text x="1110" y="478" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">Security</text>
+    <rect x="999" y="530" width="222" height="96" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
+    <text x="1110" y="588" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">QA</text>
+    <text x="1110" y="668" text-anchor="middle" font-size="23" fill="#d4d4d4">never the author</text>
+
+    <!-- 5. You sign -->
+    <rect x="1289" y="380" width="262" height="240" rx="18" fill="#f5f5f4"/>
+    <text x="1420" y="470" text-anchor="middle" font-size="42" font-weight="700" fill="#0a0a0a">You sign</text>
+    <text x="1420" y="520" text-anchor="middle" font-size="25" fill="#404040">then it merges</text>
+    <text x="1420" y="556" text-anchor="middle" font-size="25" fill="#404040">to main</text>
+
+    <!-- footer -->
+    <line x1="49" y1="820" x2="1551" y2="820" stroke="#3f3f46" stroke-width="2"/>
+    <text x="49" y="880" font-size="28" fill="#e5e5e5">Every task, decision, handoff and piece of evidence is written to the repository.</text>
+    <text x="49" y="928" font-size="24" fill="#a3a3a3">Language- and model-agnostic: Claude, Codex, or a person can fill any role.</text>
+  </g>
+</svg>
