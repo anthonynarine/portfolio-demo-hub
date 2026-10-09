@@ -1,0 +1,7 @@
+principals:
+- id: human:anthony
+  roles:
+  - owner
+  keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPWAjpFum/mcvsieXWrJowEaOhu5w1aO7Z5hGJHfaX2F
+    anthony foundry release signing
