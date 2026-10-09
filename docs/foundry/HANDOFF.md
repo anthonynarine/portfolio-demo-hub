@@ -16,9 +16,9 @@ Read this first after Moonrise. Moonset rewrites it.
   `4362adb` (state branch `cb8048e`), `AGENTS.md` / `CLAUDE.md` / this file `290bb27`.
 - Foundry is a project card (non-featured, V, before Backend Building Blocks), presented as a custom,
   language- and provider-agnostic tool Anthony built so he can build anything. No links: Foundry is private and its
-  frontend is planned; promote it to a featured card with a demo once that exists. Its image is a hand-written SVG
-  flow diagram (`public/screenshots/foundry-flow.svg`): You → Orchestrator → specialists in worktrees → Security/QA →
-  You sign → main. It replaced the short-lived
+  frontend is planned; promote it to a featured card with a demo once that exists. Its image is a hand-written SVG git graph
+  (`public/screenshots/foundry-flow.svg`): outcome → Orchestrator forks agent branches/worktrees → Security/QA gate →
+  signature seal → main, with an audit-event strip. It replaced the short-lived
   "Currently building" section (`82a4a99`). Build and lint pass; checked in the running site (dark), no horizontal
   scroll. Phone width not checked.
 - Project map redone against `2b8e0d4` (four components: web, content, resume, build-deploy).

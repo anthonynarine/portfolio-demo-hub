@@ -257,8 +257,8 @@ export const projects: Project[] = [
     badges: ["Custom Tooling", "AI Agents", "Language-Agnostic", "In Progress"],
     screenshot: {
       src: "/screenshots/foundry-flow.svg",
-      alt: "How Foundry ships a change: you state the outcome; the Orchestrator plans and assigns; specialist agents each work in their own worktree and branch; Security and QA review independently; you sign, then it merges to main",
-      caption: "Agents do the work in isolated branches, someone other than the author checks it, and nothing merges until I sign.",
+      alt: "Foundry as a git graph: I state the outcome; the Orchestrator branches backend, frontend, and docs agents off main, each committing in its own worktree; Security and QA review every branch; the work merges into main only at my signature, with an audit log underneath",
+      caption: "Each agent works on its own branch in an isolated worktree. Security and QA review everything, and nothing reaches main until I sign.",
     },
   },
 

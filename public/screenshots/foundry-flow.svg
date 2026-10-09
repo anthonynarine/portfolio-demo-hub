@@ -1,74 +1,116 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-labelledby="t d">
-  <title id="t">How Foundry ships a change</title>
-  <desc id="d">You state the outcome; the Orchestrator plans and assigns; specialist agents each work in their own worktree and branch; Security and QA review independently; you sign, then it merges to main.</desc>
+  <title id="t">Foundry: agents build, evidence decides, I sign</title>
+  <desc id="d">A git graph. I state an outcome; the Orchestrator branches three agent worktrees off main (backend, frontend, docs), each committing on its own branch; every branch passes an independent Security and QA review gate; the reviewed work merges back into main only at my signature, then releases. An audit log runs underneath.</desc>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0 0L10 5L0 10z" fill="#a3a3a3"/>
+    <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="#1d1d21"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="45%" r="75%">
+      <stop offset="60%" stop-color="#0b0b0c" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050506" stop-opacity="0.9"/>
+    </radialGradient>
+    <radialGradient id="sealGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f2c879" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f2c879" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mergeLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fafafa"/>
+      <stop offset="100%" stop-color="#f2c879"/>
+    </linearGradient>
+    <marker id="head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#e5e5e5"/>
     </marker>
   </defs>
 
   <rect width="1600" height="1000" fill="#0b0b0c"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+  <rect width="1600" height="1000" fill="url(#vignette)"/>
 
   <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+
     <!-- heading -->
-    <text x="49" y="128" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#fafafa">How Foundry ships a change</text>
-    <text x="49" y="182" font-size="28" fill="#a3a3a3">AI agents do the work. Deterministic rules limit it. A person signs.</text>
+    <text x="72" y="92" font-size="19" letter-spacing="6" fill="#8a8a8a">FOUNDRY  ·  HOW A CHANGE SHIPS</text>
+    <text x="72" y="166" font-family="Georgia, 'Times New Roman', serif" font-size="64" fill="#fafafa">Agents build. Evidence decides. <tspan font-style="italic" fill="#f2c879">I sign.</tspan></text>
 
-    <!-- arrows -->
-    <g stroke="#a3a3a3" stroke-width="3" marker-end="url(#arrow)">
-      <line x1="317" y1="500" x2="351" y2="500"/>
-      <line x1="627" y1="500" x2="661" y2="500"/>
-      <line x1="937" y1="500" x2="971" y2="500"/>
-      <line x1="1247" y1="500" x2="1281" y2="500"/>
+    <!-- the outcome -->
+    <rect x="72" y="208" width="420" height="104" rx="14" fill="#141416" stroke="#2a2a2e" stroke-width="2"/>
+    <text x="96" y="246" font-size="15" letter-spacing="3.5" font-weight="600" fill="#f2c879">ME  ·  THE OUTCOME</text>
+    <text x="96" y="288" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="27" fill="#fafafa">“Add CSV export for tenants”</text>
+    <path d="M190 312 C 190 520, 300 560, 300 718" fill="none" stroke="#f2c879" stroke-width="2.5" stroke-dasharray="6 8" opacity="0.8"/>
+
+    <!-- main -->
+    <line x1="72" y1="760" x2="1536" y2="760" stroke="#e5e5e5" stroke-width="6" stroke-linecap="round" marker-end="url(#head)"/>
+    <text x="72" y="800" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="20" fill="#8a8a8a">main</text>
+    <circle cx="140" cy="760" r="9" fill="#0b0b0c" stroke="#d4d4d4" stroke-width="4"/>
+    <circle cx="214" cy="760" r="9" fill="#0b0b0c" stroke="#d4d4d4" stroke-width="4"/>
+    <circle cx="1450" cy="760" r="11" fill="#fafafa"/>
+    <text x="1536" y="730" text-anchor="end" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="19" fill="#a3a3a3">release</text>
+
+    <!-- agent branches -->
+    <g fill="none" stroke-width="5" stroke-linecap="round">
+      <path d="M300 760 C 372 760, 360 360, 440 360 L 1030 360" stroke="#5eead4"/>
+      <path d="M300 760 C 372 760, 360 470, 440 470 L 1030 470" stroke="#c4b5fd"/>
+      <path d="M300 760 C 372 760, 360 580, 440 580 L 1030 580" stroke="#fda4af"/>
     </g>
 
-    <!-- 1. You -->
-    <rect x="49" y="380" width="262" height="240" rx="18" fill="#f5f5f4"/>
-    <text x="180" y="480" text-anchor="middle" font-size="46" font-weight="700" fill="#0a0a0a">You</text>
-    <text x="180" y="530" text-anchor="middle" font-size="25" fill="#404040">state the outcome</text>
-
-    <!-- 2. Orchestrator -->
-    <rect x="359" y="380" width="262" height="240" rx="18" fill="#171717" stroke="#525252" stroke-width="2"/>
-    <text x="490" y="448" text-anchor="middle" font-size="34" font-weight="700" fill="#fafafa">Orchestrator</text>
-    <text x="490" y="500" text-anchor="middle" font-size="24" fill="#d4d4d4">plans the task</text>
-    <text x="490" y="538" text-anchor="middle" font-size="24" fill="#d4d4d4">assigns roles</text>
-    <text x="490" y="576" text-anchor="middle" font-size="24" fill="#d4d4d4">keeps the record</text>
-
-    <!-- 3. Specialists -->
-    <rect x="669" y="250" width="262" height="500" rx="18" fill="#171717" stroke="#525252" stroke-width="2"/>
-    <text x="800" y="302" text-anchor="middle" font-size="34" font-weight="700" fill="#fafafa">Specialists</text>
-    <g>
-      <rect x="689" y="330" width="222" height="104" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
-      <text x="800" y="376" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">Backend</text>
-      <text x="800" y="412" text-anchor="middle" font-size="20" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#a3a3a3">agent/backend/…</text>
-      <rect x="689" y="448" width="222" height="104" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
-      <text x="800" y="494" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">Frontend</text>
-      <text x="800" y="530" text-anchor="middle" font-size="20" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#a3a3a3">agent/frontend/…</text>
-      <rect x="689" y="566" width="222" height="104" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2" stroke-dasharray="8 6"/>
-      <text x="800" y="612" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">+ any role</text>
-      <text x="800" y="648" text-anchor="middle" font-size="20" font-family="ui-monospace, Menlo, Consolas, monospace" fill="#a3a3a3">agent/&lt;role&gt;/…</text>
+    <!-- lane labels -->
+    <g font-family="ui-monospace, Menlo, Consolas, monospace" font-size="19">
+      <text x="452" y="340" fill="#5eead4">agent/backend/csv-export</text>
+      <text x="452" y="450" fill="#c4b5fd">agent/frontend/csv-export</text>
+      <text x="452" y="560" fill="#fda4af">agent/docs/csv-export</text>
     </g>
-    <text x="800" y="712" text-anchor="middle" font-size="23" fill="#d4d4d4">own worktree + branch</text>
+    <g font-size="17" font-weight="600" fill="#d4d4d4">
+      <text x="452" y="394">Backend agent <tspan font-weight="400" fill="#737373">· own worktree</tspan></text>
+      <text x="452" y="504">Frontend agent <tspan font-weight="400" fill="#737373">· own worktree</tspan></text>
+      <text x="452" y="614">Docs agent <tspan font-weight="400" fill="#737373">· own worktree</tspan></text>
+    </g>
 
-    <!-- 4. Independent review -->
-    <rect x="979" y="300" width="262" height="400" rx="18" fill="#171717" stroke="#525252" stroke-width="2"/>
-    <text x="1110" y="350" text-anchor="middle" font-size="32" font-weight="700" fill="#fafafa">Independent</text>
-    <text x="1110" y="390" text-anchor="middle" font-size="32" font-weight="700" fill="#fafafa">review</text>
-    <rect x="999" y="420" width="222" height="96" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
-    <text x="1110" y="478" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">Security</text>
-    <rect x="999" y="530" width="222" height="96" rx="10" fill="#0b0b0c" stroke="#3f3f46" stroke-width="2"/>
-    <text x="1110" y="588" text-anchor="middle" font-size="30" font-weight="600" fill="#fafafa">QA</text>
-    <text x="1110" y="668" text-anchor="middle" font-size="23" fill="#d4d4d4">never the author</text>
+    <!-- commits -->
+    <g stroke-width="4" fill="#0b0b0c">
+      <circle cx="760" cy="360" r="10" stroke="#5eead4"/>
+      <circle cx="840" cy="360" r="10" stroke="#5eead4"/>
+      <circle cx="920" cy="360" r="10" stroke="#5eead4"/>
+      <circle cx="990" cy="360" r="10" stroke="#5eead4"/>
+      <circle cx="790" cy="470" r="10" stroke="#c4b5fd"/>
+      <circle cx="880" cy="470" r="10" stroke="#c4b5fd"/>
+      <circle cx="975" cy="470" r="10" stroke="#c4b5fd"/>
+      <circle cx="820" cy="580" r="10" stroke="#fda4af"/>
+      <circle cx="950" cy="580" r="10" stroke="#fda4af"/>
+    </g>
 
-    <!-- 5. You sign -->
-    <rect x="1289" y="380" width="262" height="240" rx="18" fill="#f5f5f4"/>
-    <text x="1420" y="470" text-anchor="middle" font-size="42" font-weight="700" fill="#0a0a0a">You sign</text>
-    <text x="1420" y="520" text-anchor="middle" font-size="25" fill="#404040">then it merges</text>
-    <text x="1420" y="556" text-anchor="middle" font-size="25" fill="#404040">to main</text>
+    <!-- orchestrator, at the fork -->
+    <circle cx="300" cy="760" r="36" fill="#0b0b0c" stroke="#fafafa" stroke-width="5"/>
+    <circle cx="300" cy="760" r="13" fill="#fafafa"/>
+    <text x="300" y="830" text-anchor="middle" font-size="24" font-weight="700" fill="#fafafa">Orchestrator</text>
+    <text x="300" y="858" text-anchor="middle" font-size="17" fill="#8a8a8a">plans · assigns · keeps the record</text>
 
-    <!-- footer -->
-    <line x1="49" y1="820" x2="1551" y2="820" stroke="#3f3f46" stroke-width="2"/>
-    <text x="49" y="880" font-size="28" fill="#e5e5e5">Every task, decision, handoff and piece of evidence is written to the repository.</text>
-    <text x="49" y="928" font-size="24" fill="#a3a3a3">Language- and model-agnostic: Claude, Codex, or a person can fill any role.</text>
+    <!-- independent review gate -->
+    <text x="1090" y="296" text-anchor="middle" font-size="15" letter-spacing="3.5" font-weight="600" fill="#8a8a8a">REVIEW</text>
+    <rect x="1030" y="316" width="120" height="308" rx="16" fill="#111113" stroke="#3f3f46" stroke-width="2"/>
+    <g stroke="#86efac" stroke-width="3">
+      <circle cx="1090" cy="396" r="28" fill="#0e1a12"/>
+      <circle cx="1090" cy="536" r="28" fill="#0e1a12"/>
+    </g>
+    <g fill="none" stroke="#86efac" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1078 396 l8 9 l15 -18"/>
+      <path d="M1078 536 l8 9 l15 -18"/>
+    </g>
+    <text x="1090" y="446" text-anchor="middle" font-size="16" font-weight="600" fill="#d4d4d4">Security</text>
+    <text x="1090" y="586" text-anchor="middle" font-size="16" font-weight="600" fill="#d4d4d4">QA</text>
+    <text x="1090" y="652" text-anchor="middle" font-size="15" fill="#737373">never the author</text>
+
+    <!-- reviewed work merges at the signature -->
+    <path d="M1150 470 C 1262 470, 1250 760, 1330 760" fill="none" stroke="url(#mergeLine)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="1330" cy="760" r="92" fill="url(#sealGlow)"/>
+    <circle cx="1330" cy="760" r="50" fill="#1a160d" stroke="#f2c879" stroke-width="3"/>
+    <circle cx="1330" cy="760" r="41" fill="none" stroke="#f2c879" stroke-width="1.5" stroke-dasharray="3 5" opacity="0.7"/>
+    <path d="M1302 768 c6 -22 14 -22 12 -6 c-2 14 8 10 12 -4 c3 -10 9 -12 10 -2 c1 8 6 8 12 -6" fill="none" stroke="#f2c879" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1330" y="742" text-anchor="middle" font-size="11" letter-spacing="3" font-weight="700" fill="#f2c879">SIGNED</text>
+    <text x="1330" y="842" text-anchor="middle" font-size="24" font-weight="700" fill="#f2c879">I sign</text>
+    <text x="1330" y="868" text-anchor="middle" font-size="17" fill="#8a8a8a">only then does it reach main</text>
+
+    <!-- audit log -->
+    <rect x="72" y="900" width="1456" height="64" rx="12" fill="#111113" stroke="#232326" stroke-width="2"/>
+    <text x="98" y="939" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#d4d4d4"><tspan font-weight="700" fill="#737373" letter-spacing="2">AUDIT  </tspan>  task.created <tspan fill="#525252">→</tspan> worktree.created ×3 <tspan fill="#525252">→</tspan> work.committed ×9 <tspan fill="#525252">→</tspan> tests.passed <tspan fill="#525252">→</tspan> diff.reviewed <tspan fill="#525252">→</tspan> <tspan fill="#f2c879">approval.granted</tspan> <tspan fill="#525252">→</tspan> integration.merged</text>
   </g>
 </svg>
