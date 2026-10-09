@@ -1,0 +1,19 @@
+schema_version: 1
+name: portfolio-demo-hub
+task_prefix: PDH
+main_branch: main
+state_branch: foundry/state
+level: local
+providers:
+  orchestrator: claude
+  specialists: claude
+runtime:
+  engine: auto
+  image: localhost/foundry-worker:latest
+  allow_domains:
+  - api.anthropic.com
+  env_allow: []
+  memory: 4g
+  cpus: 2.0
+  pids_limit: 512
+sessions: 'off'

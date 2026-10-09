@@ -1,0 +1,3 @@
+# portfolio-demo-hub — architecture
+
+Not yet described. `foundry` discovery fills this in (FND-7).
