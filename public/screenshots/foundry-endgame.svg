@@ -6,7 +6,13 @@
     .target { animation: target 3.4s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.25); opacity: 1; } }
     @keyframes target { 0%, 100% { stroke-opacity: 0.55; } 50% { stroke-opacity: 1; } }
-    @media (prefers-reduced-motion: reduce) { .motion { display: none; } .pulse, .target { animation: none; } }
+    .m1 { animation: m1 7s linear infinite; }
+    @keyframes m1 { 0%, 26.2% { fill: #0b0b0c; } 30.2%, 47.2% { fill: #5eead4; } 100% { fill: #0b0b0c; } }
+    .m2 { animation: m2 7s linear infinite; }
+    @keyframes m2 { 0%, 53.3% { fill: #0b0b0c; } 57.3%, 74.3% { fill: #c4b5fd; } 100% { fill: #0b0b0c; } }
+    .m3 { animation: m3 7s linear infinite; }
+    @keyframes m3 { 0%, 80.5% { fill: #0b0b0c; } 84.5%, 96% { fill: #fda4af; } 100% { fill: #0b0b0c; } }
+    @media (prefers-reduced-motion: reduce) { .motion { display: none; } .pulse, .target, .m1, .m2, .m3 { animation: none; } }
   </style>
   <defs>
     <pattern id="dots" width="32" height="32" patternUnits="userSpaceOnUse">
@@ -45,15 +51,9 @@
     <circle cx="110" cy="360" r="22" fill="#1a160d" stroke="#f2c879" stroke-width="4"/>
     <circle cx="110" cy="360" r="8" fill="#f2c879"/>
     <g fill="#0b0b0c" stroke-width="4">
-      <circle cx="482" cy="360" r="18" stroke="#5eead4">
-        <animate attributeName="fill" values="#0b0b0c;#0b0b0c;#5eead4;#5eead4;#0b0b0c" keyTimes="0;0.262;0.302;0.472;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="854" cy="360" r="18" stroke="#c4b5fd">
-        <animate attributeName="fill" values="#0b0b0c;#0b0b0c;#c4b5fd;#c4b5fd;#0b0b0c" keyTimes="0;0.533;0.573;0.743;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="1226" cy="360" r="18" stroke="#fda4af">
-        <animate attributeName="fill" values="#0b0b0c;#0b0b0c;#fda4af;#fda4af;#0b0b0c" keyTimes="0;0.805;0.845;1.000;1" dur="7s" repeatCount="indefinite"/>
-      </circle>
+      <circle cx="482" cy="360" r="18" stroke="#5eead4" class="m1"/>
+      <circle cx="854" cy="360" r="18" stroke="#c4b5fd" class="m2"/>
+      <circle cx="1226" cy="360" r="18" stroke="#fda4af" class="m3"/>
     </g>
 
     <g class="motion">
