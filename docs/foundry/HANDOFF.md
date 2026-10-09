@@ -2,54 +2,58 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-- **Updated:** 2026-10-09 by Moonlight · Portfolio Demo Hub
-- **Deployed:** `main` `5262672` pushed 2026-10-09 with the human's OK; live on anthonynarine.com about 30 s later
-  (Netlify). `feature/foundry-currently-building` is fully merged.
-- **Backup:** `backup/foundry-on-stale-base` holds the first attempt, built on a stale local `main`. Delete it once
-  this branch is merged.
+- **Updated:** 2026-10-09 (Moonset) by Moonlight · Portfolio Demo Hub
+- **Checked out:** `content/gait-internal` (`0bb0a2c`), the newest work. It contains local `main` (`8fea709`).
+- **Live:** anthonynarine.com = `origin/main` `5262672` (deployed 2026-10-09 with the human's OK, Netlify ~30 s).
+- **Unpushed:** `main` is 1 ahead of `origin/main` (`8fea709`, records only); `content/gait-internal` (4 commits:
+  Gait card + records). Nothing uncommitted.
 
-## Status
+## Waiting on
 
-- **Stale-base incident (2026-10-08/09):** this Mac's `main` was 18 commits behind GitHub (the UI overhaul, themes,
-  Gait/Lumen/HIPAA updates were made elsewhere). The first Foundry adoption and section were built on that old code.
-  Fixed: local `main` fast-forwarded to `2b8e0d4`; the branch rebuilt on it; `AGENTS.md` now says fetch first.
-- Foundry adopted (same content, re-applied): `foundry init` `e55f6f1`, owner `human:anthony` policy seq 1
-  `4362adb` (state branch `cb8048e`), `AGENTS.md` / `CLAUDE.md` / this file `290bb27`.
-- Foundry is the FIRST featured project card (I, ahead of Gait; the human's call on 2026-10-09, after Moonlight
-  suggested II behind Gait because Foundry has nothing to click yet), presented as a custom,
-  language- and provider-agnostic tool Anthony built so he can build anything. No links: Foundry is private and its
-  frontend is planned; promote it to a featured card with a demo once that exists. Its image is a hand-written SVG git graph
-  (`public/screenshots/foundry-flow.svg`): outcome → Orchestrator forks agent branches/worktrees → Security/QA gate →
-  signature seal → main, with an audit-event strip. It replaced the short-lived
-  "Currently building" section (`82a4a99`). Build and lint pass; checked in the running site (dark), no horizontal
-  scroll. Phone width not checked.
-- Project map redone against `2b8e0d4` (four components: web, content, resume, build-deploy).
-- Two Foundry bugs reported to Moonlight · Foundry (session `foundry-b5`): ORC-019 recurrence in `foundry init`, and
-  the unquoted `verified.at` date in the FND-2 §3.1 example.
+1. **GAIT-13** (Gait's Orchestrator, session `django-auth-53`): AuthFlow repositioned from "product for companies"
+   to "my internal security system", words only, two passes (public surface, then docs). It needs the human's OK
+   typed **in that session** (a relayed OK does not count) and the human's answer on EarlyAccessPage (Moonlight
+   suggested removing it). It starts after GAIT-8 merges.
+2. **Then ship the Gait card together with GAIT-13:** fetch, fast-forward `main` to `content/gait-internal`, build +
+   lint, push with the human's OK, confirm on anthonynarine.com. The two AuthFlow docs pages the card links to keep
+   their titles and addresses (confirmed by Gait's Orchestrator).
 
-- Foundry card slideshow (4 animated, hand-written SVGs; motion stops under prefers-reduced-motion in `public/screenshots/`): `foundry-flow` (git graph: how a change
-  ships), `foundry-today` (stats + projects it runs), `foundry-guarantees` (five guarantees), `foundry-endgame`
-  (roadmap: now → product core → distribution → proof; target "any team, any stack, any agent, fifteen minutes").
-  Stats and project statuses are a snapshot from Foundry's records on 2026-10-09 and go stale; "Nine days old" too.
+## What changed in this session (2026-10-08/09)
 
-- Gait repositioned from "product for companies" to "my internal security system" (human-approved brief,
-  2026-10-09; scope: words only; claims: in production Gait protects only itself; Lumen (in development) signs in through Gait with gait-sdk — verified in Lumen main's settings — and its security-check reporting is built but not running yet; Lumen is not in production). Portfolio Gait card rewritten on branch
-  `content/gait-internal` (not pushed). AuthFlow is Gait's Orchestrator's job: task GAIT-13, two passes (public
-  surface, then docs), waits for the human's OK in its own session; open question there: keep or drop EarlyAccessPage.
+- **Foundry adopted** (prefix PDH, owner `human:anthony`, policy seq 1 on local state branch `cb8048e`). Map in
+  `.foundry/project/`. `AGENTS.md` defines Moonrise/Moonset and the rules (fetch first; build + lint + look in light
+  and dark; the human's OK before any push). `foundry validate`: 0 errors.
+- **Stale-base incident:** this Mac's `main` was 18 commits behind GitHub; first attempt redone on the real `main`.
+  Lesson recorded in `AGENTS.md` (fetch first). Old attempt kept as `backup/foundry-on-stale-base`.
+- **Foundry is the first featured project (live):** presented as Anthony's custom, language- and provider-agnostic
+  tool; no links (private; frontend planned). Four animated, hand-written SVG slides in `public/screenshots/`:
+  `foundry-flow` (git graph: how a change ships), `foundry-today` (stats + projects, snapshot of 2026-10-09),
+  `foundry-guarantees`, `foundry-endgame` (roadmap). Motion stops under prefers-reduced-motion. In-card animation
+  could not be confirmed from the automation tab (Chrome freezes images in hidden tabs); the files animate standalone.
+- **Gait card rewritten (unpushed):** "the internal security system I built to protect my own applications". Claims,
+  verified: in production Gait protects only itself; Lumen (in development) signs in through Gait with gait-sdk
+  (Lumen main: `gait_sdk.authentication.ExternalJWTAuthentication`); its security-check reporting
+  (`send_gait_self_check`) is built but not running yet. The Lumen card's identity claims are true and stay.
+- **Reported to Moonlight · Foundry** (`foundry-b5`): ORC-019 recurrence in `foundry init` (took the feature branch as
+  `main_branch`) and the unquoted `verified.at` date in the FND-2 §3.1 example that `foundry validate` rejects.
 
 ## Open decisions (human)
 
-- Push `content/gait-internal` (Gait card) — alone, or together with AuthFlow's GAIT-13 release?
-- OneVOne's repo link (`github.com/anthonynarine/tic_tac_toe`) returns 404 publicly: fix, make public, or remove.
-- Remove the unused `src/assets/react.svg` / `public/vite.svg` and untrack `tsconfig.tsbuildinfo`?
+- EarlyAccessPage in AuthFlow: keep or remove (asked in Gait's session).
+- OneVOne's repo link (`github.com/anthonynarine/tic_tac_toe`) returns 404 publicly: make public, or remove the link.
+- Is the Foundry roadmap (end-game slide) fine to keep public? It is live now.
 
-## Next actions
+## Next actions (Moonlight can do these on request)
 
-0. Refresh `foundry-today.svg` (numbers, statuses, "Nine days old") whenever this site is updated.
-1. Check the Foundry card at phone width.
-2. When Foundry's frontend exists, add its link (the top card has no click-through until then).
-3. Old branch `feature/estateiq-featured-project-and-color-accents` was merged as PR #1; it can be deleted.
+1. Check the Foundry and Gait cards at phone width (never checked).
+2. Cleanup: remove unused `src/assets/react.svg` / `public/vite.svg`; untrack `tsconfig.tsbuildinfo`.
+3. Delete merged local branches: `feature/foundry-currently-building`, `feature/estateiq-featured-project-and-color-accents`
+   (merged as PR #1; also on GitHub — deleting that one needs the human's OK), and `backup/foundry-on-stale-base`.
+4. Refresh `foundry-today.svg` (numbers, statuses, "Nine days old") whenever the site is updated.
+5. When Foundry's frontend exists, add its link to the card.
 
 ## Notes
 
-- Lumen's UI dev server holds port 5173 on this Mac; this site runs on 5174.
+- Lumen's UI dev server holds port 5173 on this Mac; this site runs on 5174 (`npm run dev -- --port 5174`).
+- Foundry is not on PATH: `~/Library/Python/3.11/bin/uv run --project ~/Desktop/django-react/foundry foundry <cmd>`.
+- Other sessions: Moonlight · Foundry `foundry-b5`; Gait's Orchestrator `django-auth-53`; Lumen `lumen-reports-14`.
