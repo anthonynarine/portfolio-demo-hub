@@ -14,7 +14,8 @@ Read this first after Moonrise. Moonset rewrites it.
   Fixed: local `main` fast-forwarded to `2b8e0d4`; the branch rebuilt on it; `AGENTS.md` now says fetch first.
 - Foundry adopted (same content, re-applied): `foundry init` `e55f6f1`, owner `human:anthony` policy seq 1
   `4362adb` (state branch `cb8048e`), `AGENTS.md` / `CLAUDE.md` / this file `290bb27`.
-- Foundry is a project card (non-featured, V, before Backend Building Blocks), presented as a custom,
+- Foundry is the FIRST featured project card (I, ahead of Gait; the human's call on 2026-10-09, after Moonlight
+  suggested II behind Gait because Foundry has nothing to click yet), presented as a custom,
   language- and provider-agnostic tool Anthony built so he can build anything. No links: Foundry is private and its
   frontend is planned; promote it to a featured card with a demo once that exists. Its image is a hand-written SVG git graph
   (`public/screenshots/foundry-flow.svg`): outcome → Orchestrator forks agent branches/worktrees → Security/QA gate →
@@ -34,7 +35,7 @@ Read this first after Moonrise. Moonset rewrites it.
 ## Next actions
 
 1. Check the Foundry card at phone width.
-2. When Foundry's frontend exists, add its link and screenshots and make the card featured.
+2. When Foundry's frontend exists, add its link (the top card has no click-through until then).
 3. Old branch `feature/estateiq-featured-project-and-color-accents` was merged as PR #1; it can be deleted.
 
 ## Notes

@@ -34,6 +34,31 @@ const LINKS = {
 
 export const projects: Project[] = [
   {
+    id: "foundry",
+    title: "Foundry",
+    description:
+      "My own engineering tool, built so I can build anything. Foundry runs a governed team of AI agents, an Orchestrator plus backend, frontend, security, and QA specialists, on any codebase in any language. It assumes no framework and no model vendor; every role, decision, handoff, and piece of evidence lives in the repository, and nothing ships without independent review and my signed approval.",
+    highlights: [
+      "Language- and framework-agnostic: the same roles and release gates run Python/Django backends, React frontends, and this TypeScript site",
+      "Provider-neutral: Claude, Codex, other models, or a person can fill any role, following the same instructions",
+      "Evidence-gated releases: tests, security review, and QA are recorded against the exact code, then signed by a human",
+      "Agents are limited to the paths and actions their role allows; durable state in Git means a crashed session loses nothing",
+    ],
+    tryThis: [
+      "See it at work: Gait's production releases now ship through Foundry's evidence gate.",
+      "Ask me for a walkthrough of an agent-built change, from task to signed release.",
+    ],
+    links: {},
+    badges: ["Custom Tooling", "AI Agents", "Language-Agnostic", "In Progress"],
+    featured: true,
+    screenshot: {
+      src: "/screenshots/foundry-flow.svg",
+      alt: "Foundry as a git graph: I state the outcome; the Orchestrator branches backend, frontend, and docs agents off main, each committing in its own worktree; Security and QA review every branch; the work merges into main only at my signature, with an audit log underneath",
+      caption: "Each agent works on its own branch in an isolated worktree. Security and QA review everything, and nothing reaches main until I sign.",
+    },
+  },
+
+  {
     id: "gait-auth",
     title: "Gait Security Platform",
     description:
@@ -235,30 +260,6 @@ export const projects: Project[] = [
     architecture: {
       architecture:
         "Microservices split the work: exams, templates, and structured measurements in Django/DRF; DICOM objects and study metadata in an imaging service; protocol and criteria answers from a retrieval service reading facility-approved documents. Gait provides centralized identity and lumen-logger carries correlation IDs across every hop.",
-    },
-  },
-
-  {
-    id: "foundry",
-    title: "Foundry",
-    description:
-      "My own engineering tool, built so I can build anything. Foundry runs a governed team of AI agents, an Orchestrator plus backend, frontend, security, and QA specialists, on any codebase in any language. It assumes no framework and no model vendor; every role, decision, handoff, and piece of evidence lives in the repository, and nothing ships without independent review and my signed approval.",
-    highlights: [
-      "Language- and framework-agnostic: the same roles and release gates run Python/Django backends, React frontends, and this TypeScript site",
-      "Provider-neutral: Claude, Codex, other models, or a person can fill any role, following the same instructions",
-      "Evidence-gated releases: tests, security review, and QA are recorded against the exact code, then signed by a human",
-      "Agents are limited to the paths and actions their role allows; durable state in Git means a crashed session loses nothing",
-    ],
-    tryThis: [
-      "See it at work: Gait's production releases now ship through Foundry's evidence gate.",
-      "Ask me for a walkthrough of an agent-built change, from task to signed release.",
-    ],
-    links: {},
-    badges: ["Custom Tooling", "AI Agents", "Language-Agnostic", "In Progress"],
-    screenshot: {
-      src: "/screenshots/foundry-flow.svg",
-      alt: "Foundry as a git graph: I state the outcome; the Orchestrator branches backend, frontend, and docs agents off main, each committing in its own worktree; Security and QA review every branch; the work merges into main only at my signature, with an audit log underneath",
-      caption: "Each agent works on its own branch in an isolated worktree. Security and QA review everything, and nothing reaches main until I sign.",
     },
   },
 

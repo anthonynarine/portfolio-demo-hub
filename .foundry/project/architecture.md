@@ -67,8 +67,8 @@ scripts/                   résumé PDF generators (not part of the build)
 ## Data flow
 
 `src/data/projects.ts` → `App` → `ProjectsGrid` (featured first) → `ProjectCard`. A project's position sets its roman
-numeral and, for featured cards, which side the media sits on (alternating). Project order today: Gait, EstateIQ,
-OneVOne, Lumen (all featured), then Foundry and Backend Building Blocks. Everything is static and bundled at build time.
+numeral and, for featured cards, which side the media sits on (alternating). Project order today: Foundry, Gait, EstateIQ,
+OneVOne, Lumen (all featured), then Backend Building Blocks. Everything is static and bundled at build time.
 
 ## Findings (leads, not changes)
 
