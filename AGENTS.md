@@ -39,11 +39,14 @@ Read, in this order:
   change Netlify settings without the human's OK given in your own session. Netlify builds this repository (`netlify.toml`);
   treat a push to `main` as a deploy.
 - **Checks.** There is no test suite: every change must pass `npm run build` (typecheck + build) and `npm run lint`.
-  Look at visual changes in the running site (`npm run dev`, port 5173) before calling them done.
+  Look at visual changes in the running site (`npm run dev -- --port 5174`; Lumen's UI often holds 5173), in a
+  light and a dark theme, before calling them done.
 - **Content is public.** Everything in `src/` and `public/` ships to the live site. Do not add
   private contact details, client data or anything from Foundry's confidential material (Gait triage, maps, plans).
-- **Contract:** a project `id` in `src/data/projects.ts` needs a matching case in `ProjectCard.tsx` (icon and
-  accent), or the card falls back to a generic icon.
+- **Fetch first.** This repo is also edited from other machines and on GitHub. Run `git fetch` and compare
+  `main` with `origin/main` before you plan or build anything; never work from a stale `main`.
+- **Match the design.** Home page content lives in `src/data/projects.ts`; new sections use the existing
+  `neutral-*` palette, `dark:` / `cloudy:` theme variants, the `font-display` headings and `Reveal`.
 - **Records.** Decisions and progress go into `docs/foundry/HANDOFF.md`; work without a handoff is not done.
 
 ## 5. Who else is working

@@ -1,9 +1,9 @@
 # Verified project model: see docs/proposals/FND-2-control-plane.md §3.1
-# Mapped by Moonlight · Portfolio Demo Hub (ORC) at d90a827: every file tracked in Git was read or listed.
+# Mapped by Moonlight · Portfolio Demo Hub (ORC) on origin/main 2b8e0d4 (the live site's code) plus this branch.
 components:
   - id: web
     kind: service
-    paths: [src/main.tsx, src/App.tsx, src/index.css, src/components/**, src/assets/**, src/vite-env.d.ts, index.html]
+    paths: [src/main.tsx, src/App.tsx, src/index.css, src/components/**, src/pages/**, src/assets/**, src/vite-env.d.ts, index.html]
     profile: null            # no profiles are defined yet; stack: React 19 + TypeScript 5.9 + Vite 7 + Tailwind 4
     owner_role: frontend
     commands:
@@ -12,12 +12,12 @@ components:
       typecheck: "npm run build"   # tsc -b runs before vite build
       build: "npm run build"
       dev: "npm run dev"
-    depends_on: [content]
-    verified: { at: "2026-10-08", commit: d90a827, by: ORC }
+    depends_on: [content, resume]
+    verified: { at: "2026-10-09", commit: 2b8e0d4, by: ORC }
 
   - id: content
     kind: domain
-    paths: [src/data/**, src/types/**, public/screenshots/**, public/Anthony-Narine-Resume.html, README.md]
+    paths: [src/data/**, src/types/**, public/screenshots/**, public/videos/**, public/HIPAA-for-Medical-Application-Developers.pdf, public/qr-anthonynarine.svg, README.md]
     profile: null
     owner_role: frontend
     commands:
@@ -25,11 +25,24 @@ components:
       lint: "npm run lint"
       typecheck: "npm run build"
     depends_on: []
-    verified: { at: "2026-10-08", commit: d90a827, by: ORC }
+    verified: { at: "2026-10-09", commit: 2b8e0d4, by: ORC }
+
+  - id: resume
+    kind: domain
+    paths: [src/features/resume/**, public/Anthony-Narine-Resume*, scripts/**]
+    profile: null
+    owner_role: frontend
+    commands:
+      test: null
+      lint: "npm run lint"
+      typecheck: "npm run build"
+      generate: "node scripts/generate-designed-resume.mjs"   # needs chrome-remote-interface installed ad hoc
+    depends_on: []
+    verified: { at: "2026-10-09", commit: 2b8e0d4, by: ORC }
 
   - id: build-deploy
     kind: infra
-    paths: [package.json, package-lock.json, vite.config.ts, tsconfig.json, tsconfig.app.json, tsconfig.node.json, tsconfig.tsbuildinfo, eslint.config.js, netlify.toml, public/favicon.svg, public/vite.svg, .gitignore, .claude/launch.json]
+    paths: [package.json, package-lock.json, vite.config.ts, tsconfig.json, tsconfig.app.json, tsconfig.node.json, tsconfig.tsbuildinfo, eslint.config.js, netlify.toml, public/favicon.svg, public/vite.svg, .gitignore, .claude/launch.json, AGENTS.md, CLAUDE.md]
     profile: null
     owner_role: human
     commands:
@@ -38,4 +51,4 @@ components:
       typecheck: "npm run build"
       build: "npm run build"
     depends_on: []
-    verified: { at: "2026-10-08", commit: d90a827, by: ORC }
+    verified: { at: "2026-10-09", commit: 2b8e0d4, by: ORC }
