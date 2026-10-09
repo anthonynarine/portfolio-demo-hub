@@ -263,3 +263,16 @@ export const projects: Project[] = [
     badges: ["Open Source", "Python SDK", "PyPI", "Tracing"],
   },
 ];
+
+export const currentlyBuilding = {
+  title: "Foundry",
+  status: "In progress · frontend coming",
+  description:
+    "A governed workspace for building software with a team of AI agents. An Orchestrator and specialist agents plan, build, and review the work, while every role, decision, handoff, and piece of evidence lives in the repository, so any agent can pick the work up cold.",
+  highlights: [
+    "Orchestrator plus specialist agents (backend, frontend, security, QA), each limited to the paths and actions its role allows",
+    "Evidence-gated releases: tests, security review, and QA are recorded against the exact code, then signed by a human",
+    "Durable state in Git: sessions crash, the work doesn't",
+    "Already running my own projects, including Gait's releases",
+  ],
+};
