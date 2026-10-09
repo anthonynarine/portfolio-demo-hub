@@ -33,7 +33,7 @@ Read this first after Moonrise. Moonset rewrites it.
   Stats and project statuses are a snapshot from Foundry's records on 2026-10-09 and go stale; "Nine days old" too.
 
 - Gait repositioned from "product for companies" to "my internal security system" (human-approved brief,
-  2026-10-09; scope: words only; claims: in production Gait protects only itself; Lumen is in development and being connected, so every Lumen claim is "in progress", never "live" — correction from GAIT-13's security review). Portfolio Gait card rewritten on branch
+  2026-10-09; scope: words only; claims: in production Gait protects only itself; Lumen (in development) signs in through Gait with gait-sdk — verified in Lumen main's settings — and its security-check reporting is built but not running yet; Lumen is not in production). Portfolio Gait card rewritten on branch
   `content/gait-internal` (not pushed). AuthFlow is Gait's Orchestrator's job: task GAIT-13, two passes (public
   surface, then docs), waits for the human's OK in its own session; open question there: keep or drop EarlyAccessPage.
 
