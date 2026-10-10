@@ -22,6 +22,7 @@ const LINKS = {
   estateiqWebRepo: "https://github.com/anthonynarine/EstateIQ-Web",
 
   tttDemo: "https://onevone.net",
+  foundryDemo: "https://foundry-control-plane.netlify.app/",
   gaitDemo: "https://gaitobservatory.com",
   lumenDemo: "https://lumenfoundry.net",
 
@@ -48,7 +49,7 @@ export const projects: Project[] = [
       "See it at work: Gait's production releases now ship through Foundry's evidence gate.",
       "Ask me for a walkthrough of an agent-built change, from task to signed release.",
     ],
-    links: {},
+    links: { liveDemo: LINKS.foundryDemo },
     badges: ["Custom Tooling", "AI Agents", "Language-Agnostic", "In Progress"],
     featured: true,
     screenshot: {

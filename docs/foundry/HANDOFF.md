@@ -2,6 +2,15 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
+## Current session — Foundry website link (2026-10-10)
+
+- Anthony supplied Foundry's new public website: https://foundry-control-plane.netlify.app/.
+- Added it to the Foundry card using the existing “Visit Site” button in `src/data/projects.ts`.
+- Fetched origin; `main` and `origin/main` still match. Destination responds HTTP 200.
+- `npm run build`, `npm run lint`, and `git diff --check` pass. Reviewed the running Foundry card in light/dark at 1100px; button points to the supplied URL and neither theme has horizontal overflow. Browser automation initially appeared stalled but completed successfully.
+- Change committed locally on `agent/frontend/resume-foundry`; no merge, push, or deployment authorized in this session. Next: request release authorization.
+- This supersedes next-action item 5 below: the website link has now been added locally.
+
 - **Updated:** 2026-10-10 after release by Moonlight · Portfolio Demo Hub
 - **Checked out:** `agent/frontend/resume-foundry`, release `fb979bf` plus this local deployment checkpoint.
 - **Live:** anthonynarine.com = `main` / `origin/main` `fb979bf`; Gait card, Foundry résumé entry, and both résumé PDFs deployed and verified.
