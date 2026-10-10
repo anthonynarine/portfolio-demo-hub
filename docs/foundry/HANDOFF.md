@@ -2,11 +2,10 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-- **Updated:** 2026-10-10 by Moonlight · Portfolio Demo Hub
-- **Checked out:** `agent/frontend/resume-foundry`, based on `content/gait-internal` (`89c4370`). It contains local `main` (`8fea709`).
+- **Updated:** 2026-10-10 (Moonset) by Moonlight · Portfolio Demo Hub
+- **Checked out:** `agent/frontend/resume-foundry` (résumé commit `9322edd`, plus this checkpoint), based on `content/gait-internal` (`89c4370`). It contains local `main` (`8fea709`).
 - **Live:** anthonynarine.com = `origin/main` `5262672` (deployed 2026-10-09 with the human's OK, Netlify ~30 s).
-- **Unpushed:** `main` is 1 ahead of `origin/main` (`8fea709`, records only); `content/gait-internal` (4 commits:
-  Gait card + records), plus the latest checkpoint and the local résumé update on `agent/frontend/resume-foundry`.
+- **Unpushed:** `main` is 1 ahead of `origin/main` (`8fea709`, records only); `content/gait-internal` is 4 commits ahead of local `main` (Gait card + records); the résumé branch adds `9322edd` and this checkpoint. All work committed at Moonset.
 
 ## Résumé update (2026-10-10)
 
@@ -22,11 +21,11 @@ Read this first after Moonrise. Moonset rewrites it.
    to "my internal security system", words only, two passes (public surface, then docs). It needs the human's OK
    typed **in that session** (a relayed OK does not count) and the human's answer on EarlyAccessPage (Moonlight
    suggested removing it). It starts after GAIT-8 merges.
-2. **Then ship the Gait card together with GAIT-13:** fetch, fast-forward `main` to `content/gait-internal`, build +
+2. **Then ship the Gait card together with GAIT-13:** fetch, integrate the latest `agent/frontend/resume-foundry` branch into `main` with the human’s OK, build +
    lint, push with the human's OK, confirm on anthonynarine.com. The two AuthFlow docs pages the card links to keep
    their titles and addresses (confirmed by Gait's Orchestrator).
 
-## What changed in this session (2026-10-08/09)
+## Previous session (2026-10-08/09)
 
 - **Foundry adopted** (prefix PDH, owner `human:anthony`, policy seq 1 on local state branch `cb8048e`). Map in
   `.foundry/project/`. `AGENTS.md` defines Moonrise/Moonset and the rules (fetch first; build + lint + look in light
@@ -59,6 +58,12 @@ Read this first after Moonrise. Moonset rewrites it.
    (merged as PR #1; also on GitHub — deleting that one needs the human's OK), and `backup/foundry-on-stale-base`.
 4. Refresh `foundry-today.svg` (numbers, statuses, "Nine days old") whenever the site is updated.
 5. When Foundry's frontend exists, add its link to the card.
+
+## Moonset / next Moonrise
+
+- Local preview server on 5174 stopped; no worker agents were launched in this session.
+- Résumé and PDFs complete and committed; nothing published.
+- Next Moonrise: fetch first, verify repository state, check GAIT-13 readiness (the status above is inherited and was not reverified), and prepare the combined Gait card + résumé release when authorized.
 
 ## Notes
 
