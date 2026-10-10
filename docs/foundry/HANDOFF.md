@@ -2,11 +2,19 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-- **Updated:** 2026-10-09 (Moonset) by Moonlight · Portfolio Demo Hub
-- **Checked out:** `content/gait-internal` (`0bb0a2c`), the newest work. It contains local `main` (`8fea709`).
+- **Updated:** 2026-10-10 by Moonlight · Portfolio Demo Hub
+- **Checked out:** `agent/frontend/resume-foundry`, based on `content/gait-internal` (`89c4370`). It contains local `main` (`8fea709`).
 - **Live:** anthonynarine.com = `origin/main` `5262672` (deployed 2026-10-09 with the human's OK, Netlify ~30 s).
 - **Unpushed:** `main` is 1 ahead of `origin/main` (`8fea709`, records only); `content/gait-internal` (4 commits:
-  Gait card + records). Nothing uncommitted.
+  Gait card + records), plus the latest checkpoint and the local résumé update on `agent/frontend/resume-foundry`.
+
+## Résumé update (2026-10-10)
+
+- Anthony authorized adding Foundry, emphasizing that it enables him to build independently of language or framework. Added Foundry after EstateIQ, with agent orchestration, evidence gates, and durable Git records; updated summary and skills.
+- Aligned résumé Gait wording with its internal-security role and corrected the ATS template’s old Gait URL. Regenerated both public PDFs. Added Mac/Linux Chrome candidates to the generators.
+- Verified: `npm run build`, `npm run lint`, `git diff --check`; viewed the running résumé in light and dark themes, with no horizontal overflow at 1100px.
+- Local changes only: no merge, push, or deployment authorized. Include this résumé branch when preparing the eventual Gait-card release.
+- Installed `chrome-remote-interface` temporarily with `--no-save --package-lock=false`; no dependency manifest or lockfile changes.
 
 ## Waiting on
 

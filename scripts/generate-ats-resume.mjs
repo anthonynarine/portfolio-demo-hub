@@ -24,6 +24,9 @@ import { fileURLToPath } from "node:url";
 import CDP from "chrome-remote-interface";
 
 const CHROME_CANDIDATES = [
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium",
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
   `${process.env.LOCALAPPDATA}\\Google\\Chrome\\Application\\chrome.exe`,
@@ -93,13 +96,14 @@ const html = `<!doctype html>
         healthcare, and AI-assisted systems with React, TypeScript, Python, Django, FastAPI, PostgreSQL, and
         Redis. Experienced in application architecture, multi-tenant authorization, REST APIs, authentication
         systems, transaction-safe financial workflows, WebSockets, and AI features grounded in verified
-        application data. Brings 17 years of vascular ultrasound experience to healthcare software and
+        application data. Built Foundry, a language- and framework-agnostic engineering control plane that enables building across technology stacks with governed AI agents. Brings 17 years of vascular ultrasound experience to healthcare software and
         clinical workflow design.
       </p>
     </header>
 
     <section class="skills">
       <h2>Technical Skills</h2>
+      <p><span class="label">Engineering Tooling:</span> Language-Agnostic Agent Orchestration, Git Worktrees, Evidence-Gated Releases, Human Approval Gates</p>
       <p><span class="label">Languages:</span> Python, TypeScript, JavaScript, SQL, HTML, CSS</p>
       <p><span class="label">Frontend:</span> React, Next.js, Vite, TanStack Query, Axios, Tailwind CSS</p>
       <p><span class="label">Backend:</span> Django, Django REST Framework, FastAPI, REST APIs, Django Channels, WebSockets, Celery</p>
@@ -123,6 +127,16 @@ const html = `<!doctype html>
       </div>
 
       <div class="item">
+        <h3>Foundry &mdash; Language-Agnostic Engineering Control Plane (In Development)</h3>
+        <p class="meta">AI Agent Orchestration, Git, Developer Tooling, Release Governance</p>
+        <ul>
+          <li>Built my own language- and framework-agnostic engineering tool so I can build across technology stacks, coordinating AI agents on Python/Django, React, and TypeScript projects through the same roles and release gates.</li>
+          <li>Designed provider-neutral orchestration with scoped agent roles and isolated Git worktrees; releases require recorded evidence, independent review, and signed human approval.</li>
+          <li>Stored tasks, decisions, handoffs, and audit records in Git so replacement agents can resume interrupted work from durable repository state.</li>
+        </ul>
+      </div>
+
+      <div class="item">
         <h3>OneVOne &mdash; Real-Time Social Gaming &amp; Poker Platform (Production)</h3>
         <p class="meta">React, Django, DRF, Django Channels, Redis, WebSockets, JWT &nbsp;|&nbsp; onevone.net &nbsp;|&nbsp; github.com/anthonynarine/tic_tac_toe</p>
         <ul>
@@ -134,10 +148,10 @@ const html = `<!doctype html>
       </div>
 
       <div class="item">
-        <h3>Gait Security Platform &mdash; Self-Repairing Security Operating System (Production)</h3>
-        <p class="meta">Django, DRF, JWT, 2FA, RBAC, OpenAI, Security Automation &nbsp;|&nbsp; gait.netlify.app &nbsp;|&nbsp; github.com/anthonynarine/django_auth</p>
+        <h3>Gait &mdash; Internal Security System (Production)</h3>
+        <p class="meta">Django, DRF, JWT, 2FA, RBAC, OpenAI, Security Automation &nbsp;|&nbsp; gaitobservatory.com &nbsp;|&nbsp; github.com/anthonynarine/django_auth</p>
         <ul>
-          <li>Built a self-repairing security platform that combines hardened authentication, continuous control evaluation, evidence-backed findings, constrained AI security agents, validation, and human approval.</li>
+          <li>Built an internal security system for my own applications, combining hardened authentication, evidence-backed findings, constrained AI agents, independent validation, and human approval; Gait protects itself in production, and Lumen signs in through gait-sdk in development.</li>
           <li>Designed deterministic backend boundaries so LLM-assisted agents can investigate failures, reproduce approved weaknesses, and prepare candidate repairs without direct production authority.</li>
           <li>Implemented JWT access/refresh lifecycles, optional 2FA, guest sign-in, protected endpoints, role-based authorization, audit events, and reusable integration patterns for downstream systems.</li>
           <li>Published gait-sdk, an open-source (MIT) Python package on PyPI that lets Django and FastAPI services verify Gait identities through local JWKS validation or token introspection, with live session checks.</li>

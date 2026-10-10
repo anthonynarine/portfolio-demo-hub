@@ -27,6 +27,9 @@ import { fileURLToPath } from "node:url";
 import CDP from "chrome-remote-interface";
 
 const CHROME_CANDIDATES = [
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium",
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
   `${process.env.LOCALAPPDATA}\\Google\\Chrome\\Application\\chrome.exe`,

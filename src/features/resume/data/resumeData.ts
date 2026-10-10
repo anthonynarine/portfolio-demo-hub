@@ -24,7 +24,7 @@ export const resumeProfile = {
   title: "Full-Stack Software Engineer",
   positioning: "Deterministic AI-Native Systems",
   capabilities:
-    "SaaS Systems · Real-Time Applications · Authentication & Security · Healthcare Software",
+    "SaaS Systems · Real-Time Applications · Authentication & Security · Healthcare Software · Developer Tooling",
   location: "Brooklyn, NY",
   email: profileLinks.email,
   github: profileLinks.github,
@@ -36,7 +36,7 @@ export const resumeProfile = {
 };
 
 export const resumeSummary =
-  "Full-stack software engineer designing and building production-oriented SaaS, real-time, security automation, healthcare, and AI-assisted systems with React, TypeScript, Python, Django, FastAPI, PostgreSQL, and Redis. Experienced in application architecture, multi-tenant authorization, REST APIs, authentication systems, transaction-safe financial workflows, WebSockets, and AI features grounded in verified application data. Brings 17 years of vascular ultrasound experience to healthcare software and clinical workflow design.";
+  "Full-stack software engineer designing and building production-oriented SaaS, real-time, security automation, healthcare, and AI-assisted systems with React, TypeScript, Python, Django, FastAPI, PostgreSQL, and Redis. Experienced in application architecture, multi-tenant authorization, REST APIs, authentication systems, transaction-safe financial workflows, WebSockets, and AI features grounded in verified application data. Built Foundry, a language- and framework-agnostic engineering control plane that enables building across technology stacks with governed AI agents. Brings 17 years of vascular ultrasound experience to healthcare software and clinical workflow design.";
 
 export const resumeProjects: ResumeProject[] = [
   {
@@ -66,6 +66,19 @@ export const resumeProjects: ResumeProject[] = [
     weight: "primary",
   },
   {
+    id: "foundry",
+    name: "Foundry",
+    tagline: "Language-Agnostic Engineering Control Plane",
+    status: "In Development",
+    stack: ["AI Agent Orchestration", "Git", "Developer Tooling", "Release Governance"],
+    bullets: [
+      "Built my own language- and framework-agnostic engineering tool so I can build across technology stacks, coordinating AI agents on Python/Django, React, and TypeScript projects through the same roles and release gates.",
+      "Designed provider-neutral orchestration with scoped agent roles and isolated Git worktrees; releases require recorded evidence, independent review, and signed human approval.",
+      "Stored tasks, decisions, handoffs, and audit records in Git so replacement agents can resume interrupted work from durable repository state.",
+    ],
+    weight: "standard",
+  },
+  {
     id: "onevone",
     name: "OneVOne",
     tagline: "Real-Time Social Gaming & Poker Platform",
@@ -85,12 +98,12 @@ export const resumeProjects: ResumeProject[] = [
   },
   {
     id: "gait",
-    name: "Gait Security Platform",
-    tagline: "Self-Repairing Security Operating System",
+    name: "Gait",
+    tagline: "Internal Security System",
     status: "Production",
     stack: ["Django", "DRF", "JWT", "2FA", "RBAC", "OpenAI", "Security Automation"],
     bullets: [
-      "Built a self-repairing security platform that combines hardened authentication, continuous control evaluation, evidence-backed findings, constrained AI security agents, validation, and human approval.",
+      "Built an internal security system for my own applications, combining hardened authentication, evidence-backed findings, constrained AI agents, independent validation, and human approval; Gait protects itself in production, and Lumen signs in through gait-sdk in development.",
       "Designed deterministic backend boundaries so LLM-assisted agents can investigate failures, reproduce approved weaknesses, and prepare candidate repairs without direct production authority.",
       "Implemented JWT access/refresh lifecycles, optional 2FA, guest sign-in, protected endpoints, role-based authorization, audit events, and reusable integration patterns for downstream systems.",
       "Designed multi-tenant isolation: per-company members, applications, hashed connection keys, and findings, with invite-only joining, audited membership changes, and cross-tenant access returning 404.",
@@ -130,6 +143,7 @@ export const resumeProjects: ResumeProject[] = [
 ];
 
 export const resumeSkillGroups = [
+  { label: "Engineering Tooling", items: ["Language-Agnostic Agent Orchestration", "Git Worktrees", "Evidence-Gated Releases", "Human Approval Gates"] },
   { label: "Languages", items: ["Python", "TypeScript", "JavaScript", "SQL", "HTML", "CSS"] },
   {
     label: "Frontend",
