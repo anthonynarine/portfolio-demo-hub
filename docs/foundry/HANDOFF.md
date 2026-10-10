@@ -2,10 +2,10 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-- **Updated:** 2026-10-10 (Moonset) by Moonlight · Portfolio Demo Hub
-- **Checked out:** `agent/frontend/resume-foundry` (résumé commit `9322edd`, plus this checkpoint), based on `content/gait-internal` (`89c4370`). It contains local `main` (`8fea709`).
-- **Live:** anthonynarine.com = `origin/main` `5262672` (deployed 2026-10-09 with the human's OK, Netlify ~30 s).
-- **Unpushed:** `main` is 1 ahead of `origin/main` (`8fea709`, records only); `content/gait-internal` is 4 commits ahead of local `main` (Gait card + records); the résumé branch adds `9322edd` and this checkpoint. All work committed at Moonset.
+- **Updated:** 2026-10-10 after release by Moonlight · Portfolio Demo Hub
+- **Checked out:** `agent/frontend/resume-foundry`, release `fb979bf` plus this local deployment checkpoint.
+- **Live:** anthonynarine.com = `main` / `origin/main` `fb979bf`; Gait card, Foundry résumé entry, and both résumé PDFs deployed and verified.
+- **Unpushed:** only this deployment checkpoint on the work branch. Local `main` and `origin/main` match. Working tree clean after checkpoint commit.
 
 ## Résumé update (2026-10-10)
 
@@ -21,7 +21,7 @@ Read this first after Moonrise. Moonset rewrites it.
 - Release checks: build + lint pass; résumé viewed in light/dark at 1100px; Gait card viewed in light/dark at 390px with no horizontal overflow. Both PDFs regenerated.
 - GAIT-13 completion remains unverified; proceeding with the portfolio release under the latest instruction. No changes to Gait/AuthFlow repositories.
 
-## Previous release dependency
+## Previous release dependency (superseded for this portfolio release)
 
 1. **GAIT-13** (Gait's Orchestrator, session `django-auth-53`): AuthFlow repositioned from "product for companies"
    to "my internal security system", words only, two passes (public surface, then docs). It needs the human's OK
@@ -58,18 +58,19 @@ Read this first after Moonrise. Moonset rewrites it.
 
 ## Next actions (Moonlight can do these on request)
 
-1. Check the Foundry and Gait cards at phone width (never checked).
+1. Foundry card phone review remains optional; Gait card checked at 390px in light/dark during release, with no horizontal overflow.
 2. Cleanup: remove unused `src/assets/react.svg` / `public/vite.svg`; untrack `tsconfig.tsbuildinfo`.
 3. Delete merged local branches: `feature/foundry-currently-building`, `feature/estateiq-featured-project-and-color-accents`
    (merged as PR #1; also on GitHub — deleting that one needs the human's OK), and `backup/foundry-on-stale-base`.
 4. Refresh `foundry-today.svg` (numbers, statuses, "Nine days old") whenever the site is updated.
 5. When Foundry's frontend exists, add its link to the card.
 
-## Moonset / next Moonrise
+## Release verification / next Moonrise
 
-- Local preview server on 5174 stopped; no worker agents were launched in this session.
-- Résumé and PDFs complete and committed; nothing published.
-- Next Moonrise: fetch first, verify repository state, check GAIT-13 readiness (the status above is inherited and was not reverified), and prepare the combined Gait card + résumé release when authorized.
+- Release `fb979bf` pushed with Anthony’s explicit instruction in this session. Netlify deployed successfully.
+- Confirmed the deployed JavaScript includes the new internal-security Gait copy and Foundry’s language-agnostic résumé wording. Both public PDF downloads match local SHA-256 hashes exactly.
+- Local preview server on 5174 stopped; no worker agents launched.
+- Next Moonrise: fetch first and verify state. The combined portfolio release is complete; GAIT-13 remains owned by Gait’s session and was not verified here. Remaining optional cleanup and open decisions are above.
 
 ## Notes
 
