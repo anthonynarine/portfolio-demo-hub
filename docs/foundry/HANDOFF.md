@@ -12,10 +12,16 @@ Read this first after Moonrise. Moonset rewrites it.
 - Anthony authorized adding Foundry, emphasizing that it enables him to build independently of language or framework. Added Foundry after EstateIQ, with agent orchestration, evidence gates, and durable Git records; updated summary and skills.
 - Aligned résumé Gait wording with its internal-security role and corrected the ATS template’s old Gait URL. Regenerated both public PDFs. Added Mac/Linux Chrome candidates to the generators.
 - Verified: `npm run build`, `npm run lint`, `git diff --check`; viewed the running résumé in light and dark themes, with no horizontal overflow at 1100px.
-- Local changes only: no merge, push, or deployment authorized. Include this résumé branch when preparing the eventual Gait-card release.
+- Release authorized on 2026-10-10; included in the combined portfolio release.
 - Installed `chrome-remote-interface` temporarily with `--no-save --package-lock=false`; no dependency manifest or lockfile changes.
 
-## Waiting on
+## Release authorized (2026-10-10)
+
+- Anthony instructed in this session: “lets release them and update the site”. This authorizes integrating and pushing the combined Gait card and résumé update.
+- Release checks: build + lint pass; résumé viewed in light/dark at 1100px; Gait card viewed in light/dark at 390px with no horizontal overflow. Both PDFs regenerated.
+- GAIT-13 completion remains unverified; proceeding with the portfolio release under the latest instruction. No changes to Gait/AuthFlow repositories.
+
+## Previous release dependency
 
 1. **GAIT-13** (Gait's Orchestrator, session `django-auth-53`): AuthFlow repositioned from "product for companies"
    to "my internal security system", words only, two passes (public surface, then docs). It needs the human's OK
