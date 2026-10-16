@@ -2,7 +2,36 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-## Current session — Foundry website link (2026-10-10)
+## Current session — side-scroll home, layout switch, handbook link (2026-10-16, Windows machine)
+
+- **Stale-branch sync:** the side-scroll UI was built uncommitted on `feat/side-scroll-home` from `2b8e0d4` while 23
+  commits landed on `origin/main`. Fast-forwarded the branch to `origin/main` `151c8bf` and reapplied the work; the one
+  conflict (`src/data/projects.ts`, Gait entry) kept main's copy plus the new `kinds` filter tags. Backup of the
+  pre-sync work: `stash@{0}` and the session scratchpad.
+- **New home page (default "story" layout):** `SiteNav`, horizontal `StoryScroller` (one continuous line: opening
+  scribble → chapters I–IV → close), `WorksSection` with a `kinds` filter. Story copy rewritten with Anthony:
+  vascular ultrasound → wanted something new → devCodeCamp year-long bootcamp (started March 16, 2022, ended 2023) →
+  self-taught (Stack Overflow, Google, Udemy/YouTube teachers) → building with AI and Foundry. COVID deliberately
+  removed at Anthony's request. Timeline titled "the whole journey, at a glance"; AI has no year (none given).
+- **Foundry in the story:** "Now" stop lists Foundry first with an F mark traced from the Foundry site favicon.
+- **Layout switch:** Story/Classic buttons beside the theme toggle in both layouts (`useHomeLayout`, saved in
+  `localStorage` `home-layout`, `?ui=story|classic` links). Classic = the previous home page, unchanged
+  (`ClassicHome.tsx`). Sections from Writing down are shared.
+- **Opening line:** starts just after "Full-stack software engineer" (measured from the DOM) and draws in after the
+  first painted frame; a manual reload starts at the top so it replays (back/forward unaffected).
+- **Engineering handbook:** linked as "My engineering handbook" (Writing section entry, footer, Classic header) to
+  https://anthony-narine-engineering-handbook.netlify.app (public repo `anthonynarine/engineering-handbook`).
+  Anthony was advised to skim its Gait security chapters for confidential material; not reviewed here.
+- **Checks:** `npm run build`, `npm run lint`, `git diff --check` pass. Viewed in Chrome (dev server 5174): story and
+  classic in light and dark, the switch, reload behaviour, timeline/Now stop, handbook links; 390px checked for the
+  switch and story (no horizontal overflow). Classic header's handbook link not visually confirmed.
+- **Release authorized:** Anthony said in this session "ok lets make sure it live in production now" — authorizes
+  committing, fast-forwarding `main`, pushing, and verifying on anthonynarine.com.
+- **Records vs machine:** `AGENTS.md` tool paths are Mac-only; this session ran on Windows (`D:\react-django\...`).
+- **Next:** delete `stash@{0}` once production is confirmed; update `.foundry/project/architecture.md` for the new
+  home page structure; open decisions below still stand.
+
+## Previous session — Foundry website link (2026-10-10)
 
 - Anthony supplied Foundry's new public website: https://foundry-control-plane.netlify.app/.
 - Added it to the Foundry card using the existing “Visit Site” button in `src/data/projects.ts`.

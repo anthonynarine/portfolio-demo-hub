@@ -225,7 +225,7 @@ function Lightbox({
   );
 }
 
-function ScreenshotPreview({
+export function ScreenshotPreview({
   screenshot,
 }: {
   screenshot: NonNullable<Project["screenshot"]>;

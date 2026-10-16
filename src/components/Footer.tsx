@@ -33,6 +33,9 @@ export function Footer() {
               HIPAA handbook
             </a>
           ) : null}
+          <a className="hover:text-white dark:hover:text-neutral-950" href={profileLinks.engineeringHandbook} target="_blank" rel="noreferrer">
+            My engineering handbook
+          </a>
           <EmailCopy tone="onInverted" />
         </div>
       </div>

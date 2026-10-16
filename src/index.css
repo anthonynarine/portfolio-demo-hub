@@ -217,6 +217,94 @@ html.cloudy .text-neutral-700 {
   }
 }
 
+/* # Step 2c: home page motion — blur-in reveal, scribble draw-in, WORK tiles */
+html {
+  scroll-behavior: smooth;
+}
+
+.appear {
+  opacity: 0;
+  filter: blur(14px);
+  transform: translateY(10px);
+  transition:
+    opacity 0.7s ease-out,
+    filter 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+
+.appear.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: none;
+}
+
+/* Hidden until the component adds .is-drawing after the first painted frame, so the
+   draw is seen from its start even when the first paint is slow. */
+.draw-in {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.draw-in.is-drawing {
+  animation: draw-in 2.6s cubic-bezier(0.45, 0, 0.2, 1) 0.2s forwards;
+}
+
+@keyframes draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tile {
+  position: relative;
+  transform: perspective(900px) rotateX(0deg);
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.tile.is-flipped {
+  transform: perspective(900px) rotateX(180deg);
+}
+
+.tile-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  font-size: clamp(2.5rem, 9vw, 5.5rem);
+  font-weight: 700;
+}
+
+.tile-front {
+  border: 2px solid #2e2e2e;
+  color: #fafafa;
+}
+
+.tile-back {
+  transform: rotateX(180deg);
+  background: #fafafa;
+  color: #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .appear {
+    filter: none;
+    transform: none;
+  }
+
+  .draw-in,
+  .draw-in.is-drawing {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
 /* # Step 3: print sizing that Tailwind utilities can't express (no config file to extend here) */
 @media print {
   @page {

@@ -21,6 +21,8 @@ export type Project = {
   tryThis: string[];
   links: ProjectLinks;
   badges?: string[];
+  /** Broad categories used by the work filter (e.g. "Production", "Healthcare"). */
+  kinds?: string[];
   featured?: boolean;
   screenshot?: {
     src: string;

@@ -8,6 +8,7 @@ export const profileLinks = {
   linkedin: "https://www.linkedin.com/in/anthony-narine-9ab567245",
   resume: "/resume",
   handbook: "/hipaa",
+  engineeringHandbook: "https://anthony-narine-engineering-handbook.netlify.app",
   portfolio: "https://anthonynarine.com",
   email: "fanarine@pm.me",
 };
@@ -36,6 +37,7 @@ const LINKS = {
 export const projects: Project[] = [
   {
     id: "foundry",
+    kinds: ["AI"],
     title: "Foundry",
     description:
       "My own engineering tool, built so I can build anything. Foundry runs a governed team of AI agents, an Orchestrator plus backend, frontend, security, and QA specialists, on any codebase in any language. It assumes no framework and no model vendor; every role, decision, handoff, and piece of evidence lives in the repository, and nothing ships without independent review and my signed approval.",
@@ -83,6 +85,7 @@ export const projects: Project[] = [
 
   {
     id: "gait-auth",
+    kinds: ["Security", "AI"],
     title: "Gait",
     description:
       "Gait is the internal security system I built to protect my own applications. I built it to secure Lumen, my clinical reporting app: Lumen (in development) already signs in through Gait with gait-sdk, and its security-check reporting is built but not running yet. In production today, Gait protects itself. It brings hardened sign-in, strictly isolated data, and apps that report their own security checks through gait-sdk, my open-source Python package. When a check fails, Gait opens a finding and tracks it until fresh evidence proves the control is healthy again. AI agents investigate failures, reproduce them safely, and prepare fixes, but deterministic code limits what each agent can touch, an independent validator checks every fix, and nothing reaches production without my single-use approval.",
@@ -131,6 +134,7 @@ export const projects: Project[] = [
 
   {
     id: "estateiq",
+    kinds: ["Production", "AI", "Payments"],
     title: "EstateIQ",
     description:
       "A production SaaS financial operating system for small landlords. I designed the ledger model, billing flows, tenant isolation, and AI Copilot architecture so portfolio answers are grounded in computed records instead of invented text.",
@@ -195,6 +199,7 @@ export const projects: Project[] = [
 
   {
     id: "tictactoe-ws",
+    kinds: ["Production", "Real-time"],
     title: "OneVOne",
     description:
       "A real-time social gaming platform with poker tournaments, 2-9 player multiplayer poker tables, board games, AI opponents, friends, lobbies, direct messages, group chat, notifications, and server-authoritative gameplay.",
@@ -228,6 +233,7 @@ export const projects: Project[] = [
 
   {
     id: "lumen",
+    kinds: ["Healthcare"],
     title: "Lumen Vascular Reporting",
     description:
       "A configurable clinical diagnostic platform for vascular ultrasound, shaped by real clinical protocols and 17 years at the probe. Structured reporting, DICOM imaging, AI-retrieved clinical knowledge, and billing preparation run as one workflow — from the order that arrives out of the EHR to the signed final report.",
@@ -288,6 +294,7 @@ export const projects: Project[] = [
 
   {
     id: "infra-packages",
+    kinds: ["Open source", "Security"],
     title: "Backend Building Blocks",
     description:
       "Python packages extracted while building Lumen: gait-sdk, the open-source SDK for the Gait identity service published on PyPI, and lumen-logger, shared structured logging for traceability across services.",
