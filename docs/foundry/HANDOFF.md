@@ -2,11 +2,11 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-## HIPAA page counts fixed (2026-11-18, committed, not yet pushed)
+## HIPAA page counts fixed (2026-11-18, released)
 
 - The HIPAA handbook was described as 52 pages on the home page and in the /hipaa meta description, while
   `src/data/handbook.ts` said 112. The PDF has 112 pages (PDFKit and Spotlight agree). Both texts now read
-  `handbook.pages`, so there is one number. Waiting for Anthony's OK to push.
+  `handbook.pages`, so there is one number. Released at Anthony's instruction ("push it").
 
 ## DICOM handbook written in full, read online, /writing page (2026-11-18, released)
 
