@@ -3,8 +3,8 @@
 /** The DICOM handbook's source is in handbooks/dicom; `npm run build:dicom` writes the PDF served here. */
 export const dicomHandbook = {
   title: "DICOM for Medical Application Developers",
-  strapline: "Network · Data · Workflow · Security · Integration",
-  edition: "Early draft",
+  strapline: "Network · Data · Security · Cloud · Integration · Quality assurance",
+  edition: "First draft",
   date: "November 2026",
   pdf: "/DICOM-for-Medical-Application-Developers.pdf",
 };
@@ -28,7 +28,7 @@ export const dicomChapterLoop = [
   "Evidence",
 ];
 
-export type DicomChapter = { title: string; drafted?: boolean };
+export type DicomChapter = { title: string };
 
 export type DicomPart = {
   numeral: string;
@@ -36,13 +36,14 @@ export type DicomPart = {
   chapters: DicomChapter[];
 };
 
-/** Keep in step with handbooks/dicom/content/contents.md. */
+/** Planned titles. Keep in step with handbooks/dicom/content/contents.md; which chapters are written comes from the
+ * Markdown files themselves (src/data/dicomChapters.ts). */
 export const dicomContents: DicomPart[] = [
   {
     numeral: "I",
     title: "From the tech's chair",
     chapters: [
-      { title: "What happens when you press End Exam", drafted: true },
+      { title: "What happens when you press End Exam" },
       { title: "PACS, modalities, worklists: who's who on an imaging network" },
       { title: "A study's life: order, worklist, scan, send, read, report" },
     ],
@@ -95,8 +96,23 @@ export const dicomContents: DicomPart[] = [
       { title: "Gateway to ingest to storage" },
       { title: "Matching images to exams, and the hold queue" },
       { title: "Testing an imaging integration without a scanner" },
-      { title: "Capstone: a study from order to signed report" },
     ],
+  },
+  {
+    numeral: "VII",
+    title: "Quality assurance",
+    chapters: [
+      { title: "What \u201ccorrect\u201d means for an imaging integration" },
+      { title: "Conformance and interoperability testing" },
+      { title: "Image and data integrity" },
+      { title: "Go-live and acceptance testing with a facility" },
+      { title: "QA in production" },
+    ],
+  },
+  {
+    numeral: "",
+    title: "Capstone",
+    chapters: [{ title: "Capstone: a study from order to signed report" }],
   },
 ];
 
@@ -108,7 +124,8 @@ export const numberedDicomContents = dicomContents.map((part, index) => ({
 }));
 
 export const dicomChapterCount = dicomContents.reduce((total, part) => total + part.chapters.length, 0);
-export const dicomDraftedCount = dicomContents.reduce(
-  (total, part) => total + part.chapters.filter((chapter) => chapter.drafted).length,
-  0,
-);
+
+const titles = dicomContents.flatMap((part) => part.chapters.map((chapter) => chapter.title));
+
+/** The planned title of chapter `number` (1-based), or "" if there is none. */
+export const dicomChapterTitle = (number: number) => titles[number - 1] ?? "";

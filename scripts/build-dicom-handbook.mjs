@@ -7,7 +7,7 @@
 // so building needs a network connection.
 
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -74,13 +74,19 @@ const contents = `
   ${marked.parse(read("content/contents.md"))}
 </section>`;
 
-const chapters = book.chapters
+// Every Markdown file in content/chapters is a written chapter; NN-slug.md sorts them into order.
+const chapterFiles = readdirSync(join(root, "content", "chapters"))
+  .filter((name) => /^\d+-.+\.md$/.test(name))
+  .sort()
+  .map((name) => `content/chapters/${name}`);
+
+const chapters = chapterFiles
   .map((path) => {
     const { meta, body } = parseChapter(read(path));
     const numeral = String(meta.number).padStart(2, "0");
     const draft =
       meta.status === "draft"
-        ? `<div class="draft">Draft: written from our lesson notes, to be rewritten in the author's own voice before publishing.</div>`
+        ? `<div class="draft">Draft: this chapter is still being reviewed. The DICOM Standard controls wherever it disagrees.</div>`
         : "";
     return `
 <section class="chapter">
@@ -100,7 +106,7 @@ const html = `<!doctype html>
 <title>${escape(book.title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=block" rel="stylesheet">
 <style>${read("styles/book.css")}</style>
 </head>
 <body>

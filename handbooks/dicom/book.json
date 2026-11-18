@@ -6,8 +6,20 @@
   "edition": "Developer learning edition",
   "date": "Draft · November 2026",
   "pdf": "DICOM-for-Medical-Application-Developers.pdf",
-  "themes": ["Network", "Data", "Workflow", "Security", "Integration"],
-  "loop": ["At the machine", "On the wire", "Lab", "In Lumen", "How it fails", "Evidence"],
-  "promise": "By the end, you should be able to look at any imaging integration and answer five questions: Who is calling whom? What is being sent, and in what form? How does each image find its patient and exam? Who is allowed to send, and how do we know? What evidence proves an image landed where it belongs?",
-  "chapters": ["content/chapters/01-end-exam.md"]
+  "themes": [
+    "Network",
+    "Data",
+    "Workflow",
+    "Security",
+    "Integration"
+  ],
+  "loop": [
+    "At the machine",
+    "On the wire",
+    "Lab",
+    "In Lumen",
+    "How it fails",
+    "Evidence"
+  ],
+  "promise": "By the end, you should be able to look at any imaging integration and answer five questions: Who is calling whom? What is being sent, and in what form? How does each image find its patient and exam? Who is allowed to send, and how do we know? What evidence proves an image landed where it belongs?"
 }

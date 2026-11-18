@@ -25,6 +25,9 @@ export function SiteNav() {
         <a className={linkClass} href="#work">
           work
         </a>
+        <a className={linkClass} href={profileLinks.writing}>
+          writing
+        </a>
         <a className={linkClass} href={profileLinks.resume}>
           resume
         </a>

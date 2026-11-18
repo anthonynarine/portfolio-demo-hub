@@ -1,6 +1,6 @@
 ## I. From the tech's chair
 
-1. What happens when you press End Exam *(drafted)*
+1. What happens when you press End Exam
 2. PACS, modalities, worklists: who's who on an imaging network
 3. A study's life: order, worklist, scan, send, read, report
 
@@ -38,4 +38,15 @@
 21. Gateway to ingest to storage
 22. Matching images to exams, and the hold queue
 23. Testing an imaging integration without a scanner
-24. Capstone: a study from order to signed report
+
+## VII. Quality assurance
+
+24. What "correct" means for an imaging integration
+25. Conformance and interoperability testing
+26. Image and data integrity
+27. Go-live and acceptance testing with a facility
+28. QA in production
+
+## Capstone
+
+29. Capstone: a study from order to signed report

@@ -9,6 +9,7 @@ export const profileLinks = {
   resume: "/resume",
   handbook: "/hipaa",
   dicomHandbook: "/dicom",
+  writing: "/writing",
   engineeringHandbook: "https://anthony-narine-engineering-handbook.netlify.app",
   portfolio: "https://anthonynarine.com",
   email: "fanarine@pm.me",

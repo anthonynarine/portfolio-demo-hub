@@ -2,6 +2,26 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
+## DICOM handbook written in full, read online, /writing page (2026-11-18, released)
+
+- Anthony asked for every lesson to be written ("build out the entire lessons... put it on my website"), with
+  diagrams, a robust quality-assurance section, and workbook answers; then for a Writing tab; and authorized the
+  push ("push it when they're done", "yes add it in this release").
+- Content: 29 chapters in `handbooks/dicom/content/chapters/` (Parts I-VI, new Part VII Quality assurance 24-28,
+  capstone 29), 42 inline-SVG diagrams, labs, Workbook + Answers. Drafted by seven writer agents to
+  `handbooks/dicom/notes/WRITERS_BRIEF.md`, then fact-checked by three independent reviewers against the current
+  DICOM Standard and tool docs; labs were run (Orthanc 24.10.1, DCMTK, pydicom 3.0.1, pynetdicom 3.0.1). All
+  chapters stay `status: draft` until Anthony has read them.
+- Site: `/dicom/N` renders each chapter from the same Markdown (`src/data/dicomChapters.ts` lazy-loads one chunk
+  per chapter; `src/pages/DicomChapterPage.tsx`; prose and diagram styles in `src/index.css` "Step 9"); answers
+  start collapsed on the web. `/dicom` links every written chapter. `marked` is now a runtime dependency.
+- New `/writing` page (`src/data/writing.ts`, `src/pages/WritingPage.tsx`), "writing" in the story nav; footer and
+  classic header collapse the three handbook links into one Writing link; home Writing section ends with
+  "See all writing".
+- PDF: 248 pages, ~4.2 MB, chapters discovered from the folder (`book.json` no longer lists them).
+- Checks: build, lint, diff --check; structural checker over all chapters; pages viewed in the browser (light and
+  dark) and headless; PDF pages rendered and inspected.
+
 ## DICOM handbook moved into the site (2026-11-18, released)
 
 - Anthony asked for the new DICOM handbook (drafted in a Lumen session, first in a standalone local repo

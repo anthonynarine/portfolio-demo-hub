@@ -1,15 +1,15 @@
 // # Filename: src/pages/DicomHandbookPage.tsx
 
 import { useEffect } from "react";
-import { ArrowLeft, ArrowUpRight, Download } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, Download } from "lucide-react";
 import { EmailCopy } from "../components/EmailCopy";
 import { Footer } from "../components/Footer";
 import { Reveal } from "../components/Reveal";
 import { ThemeToggle } from "../components/ThemeToggle";
+import { chapterPath, isChapterWritten, writtenChapterNumbers } from "../data/dicomChapters";
 import {
   dicomChapterCount,
   dicomChapterLoop,
-  dicomDraftedCount,
   dicomHandbook,
   dicomPromiseQuestions,
   numberedDicomContents,
@@ -36,6 +36,8 @@ function useDocumentMeta() {
 
 export default function DicomHandbookPage() {
   useDocumentMeta();
+  const writtenCount = writtenChapterNumbers.length;
+  const firstChapter = writtenChapterNumbers[0];
 
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-neutral-950 cloudy:bg-[#D7DDE1] dark:bg-neutral-950 rainy:bg-[#0F1113] thunderstorm:bg-[#2D333B] dark:text-neutral-50">
@@ -60,7 +62,7 @@ export default function DicomHandbookPage() {
 
         <div className="pb-16 pt-20 sm:pt-24">
           <p className="animate-fade-up text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
-            Free handbook · Written in the open
+            Free handbook
           </p>
 
           <h1 className="font-display animate-fade-up mt-6 max-w-2xl text-5xl font-medium leading-[1.04] tracking-tight text-neutral-950 [animation-delay:90ms] dark:text-neutral-50 sm:text-6xl">
@@ -69,28 +71,37 @@ export default function DicomHandbookPage() {
 
           <p className="animate-fade-up mt-7 max-w-xl text-lg leading-relaxed text-neutral-600 [animation-delay:180ms] dark:text-neutral-400">
             For 17 years I pressed End Exam and the images just appeared in PACS. Now I am building
-            the system on the other end of that button. This book is what I am learning about DICOM
-            to do it, one chapter per lesson, each with a lab I ran myself.
+            the system on the other end of that button. This book is everything you need to know about
+            DICOM to do the same: the network, the data, security, the cloud, and quality assurance,
+            with a lab in every chapter you can run on a laptop.
           </p>
 
           <p className="animate-fade-up mt-5 text-sm text-neutral-500 [animation-delay:180ms] dark:text-neutral-400">
             {dicomHandbook.strapline}
           </p>
 
-          <div className="animate-fade-up mt-9 flex flex-wrap items-center gap-x-7 gap-y-4 [animation-delay:270ms]">
+          <div className="animate-fade-up mt-9 flex flex-wrap items-center gap-x-5 gap-y-4 [animation-delay:270ms]">
+            {firstChapter ? (
+              <a
+                href={chapterPath(firstChapter)}
+                className="inline-flex items-center justify-center gap-2 bg-neutral-950 px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
+              >
+                <BookOpen size={15} />
+                Start reading
+              </a>
+            ) : null}
             <a
               href={dicomHandbook.pdf}
               download
-              className="inline-flex items-center justify-center gap-2 bg-neutral-950 px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-neutral-800 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-200"
+              className="inline-flex items-center justify-center gap-2 border border-neutral-400 px-5 py-3.5 text-sm font-semibold text-neutral-900 transition hover:border-neutral-900 dark:border-neutral-600 dark:text-neutral-100 dark:hover:border-neutral-50"
             >
               <Download size={15} />
-              Download the draft
+              PDF
             </a>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              {dicomHandbook.edition} · {dicomDraftedCount} of {dicomChapterCount} chapters written ·{" "}
-              {dicomHandbook.date}
-            </p>
           </div>
+          <p className="animate-fade-up mt-5 text-sm text-neutral-500 [animation-delay:270ms] dark:text-neutral-400">
+            {dicomHandbook.edition} · {writtenCount} of {dicomChapterCount} chapters written · {dicomHandbook.date}
+          </p>
         </div>
       </header>
 
@@ -159,18 +170,18 @@ export default function DicomHandbookPage() {
               Contents
             </p>
             <h2 className="font-display mt-3 text-4xl font-medium tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-5xl">
-              Six parts, twenty-four chapters.
+              Seven parts and a capstone, twenty-nine chapters.
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-              Chapters are added as they are written. Lumen, a vascular ultrasound reporting platform,
+              Every written chapter can be read here or in the PDF. Lumen, a vascular ultrasound reporting platform,
               is the running case study: the book ends by bringing a study from the machine into a
-              signed report. Every example uses synthetic data.
+              signed report. Part VII is quality assurance: how you prove the integration is correct before go-live and keep it correct after. Every example uses synthetic data.
             </p>
           </Reveal>
 
           <div className="mt-12 space-y-12">
             {numberedDicomContents.map((part) => (
-              <Reveal key={part.numeral}>
+              <Reveal key={part.title}>
                 <div className="grid gap-y-5 sm:grid-cols-[3rem_1fr] sm:gap-x-8">
                   <div aria-hidden="true" className="hidden sm:block">
                     <span className="font-display text-2xl text-neutral-300 dark:text-neutral-700">
@@ -187,26 +198,38 @@ export default function DicomHandbookPage() {
                     </h3>
 
                     <ol className="mt-4 divide-y divide-neutral-200 border-t border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
-                      {part.chapters.map((chapter, chapterIndex) => (
-                        <li
-                          key={chapter.title}
-                          className={`flex gap-4 py-3 text-sm leading-relaxed ${
-                            chapter.drafted
-                              ? "text-neutral-900 dark:text-neutral-100"
-                              : "text-neutral-500 dark:text-neutral-500"
-                          }`}
-                        >
-                          <span className="font-display w-6 shrink-0 text-neutral-400 dark:text-neutral-600">
-                            {part.firstChapter + chapterIndex}
-                          </span>
-                          <span className="min-w-0 flex-1">{chapter.title}</span>
-                          {chapter.drafted ? (
-                            <span className="shrink-0 self-start border border-neutral-300 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-neutral-700 dark:border-neutral-700 dark:text-neutral-300">
-                              Draft
+                      {part.chapters.map((chapter, chapterIndex) => {
+                        const number = part.firstChapter + chapterIndex;
+                        const label = (
+                          <>
+                            <span className="font-display w-6 shrink-0 text-neutral-400 dark:text-neutral-600">
+                              {number}
                             </span>
-                          ) : null}
-                        </li>
-                      ))}
+                            <span className="min-w-0 flex-1">{chapter.title}</span>
+                          </>
+                        );
+                        return (
+                          <li key={chapter.title}>
+                            {isChapterWritten(number) ? (
+                              <a
+                                href={chapterPath(number)}
+                                className="group flex gap-4 py-3 text-sm leading-relaxed text-neutral-900 transition hover:text-neutral-600 dark:text-neutral-100 dark:hover:text-neutral-300"
+                              >
+                                {label}
+                                <ArrowRight
+                                  size={15}
+                                  className="mt-0.5 shrink-0 text-neutral-400 transition group-hover:translate-x-0.5 dark:text-neutral-600"
+                                />
+                              </a>
+                            ) : (
+                              <div className="flex gap-4 py-3 text-sm leading-relaxed text-neutral-500">
+                                {label}
+                                <span className="shrink-0 text-xs text-neutral-400 dark:text-neutral-600">Coming</span>
+                              </div>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ol>
                   </div>
                 </div>
@@ -222,7 +245,8 @@ export default function DicomHandbookPage() {
             </p>
             <div className="mt-6 space-y-5 border-l-2 border-neutral-300 pl-5 text-sm leading-relaxed text-neutral-600 dark:border-neutral-700 dark:text-neutral-400">
               <p>
-                This is an educational engineering handbook and an early draft. It is not a substitute
+                This is an educational engineering handbook, published as a first draft that is still
+                being reviewed. It is not a substitute
                 for the DICOM Standard, a vendor&apos;s DICOM Conformance Statement, or your
                 organization&apos;s PACS, biomedical engineering, and security teams. The DICOM
                 Standard (NEMA PS3) controls wherever this book conflicts with it.
@@ -254,11 +278,11 @@ export default function DicomHandbookPage() {
                 Free · No sign-up
               </p>
               <h2 className="font-display mt-4 max-w-md text-4xl font-medium leading-tight tracking-tight sm:text-5xl">
-                Read along as it is written.
+                Read it, then run the labs.
               </h2>
               <p className="mt-5 max-w-md text-sm leading-relaxed text-neutral-400 dark:text-neutral-600">
-                If you work with imaging networks and a chapter gets something wrong, I would genuinely
-                like to hear about it.
+                Every chapter ends with workbook questions and answers. If you work with imaging
+                networks and a chapter gets something wrong, I would genuinely like to hear about it.
               </p>
             </div>
 
@@ -269,7 +293,7 @@ export default function DicomHandbookPage() {
                 className="inline-flex items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200 dark:bg-neutral-950 dark:text-neutral-50 dark:hover:bg-neutral-800"
               >
                 <Download size={16} />
-                Download the draft
+                Download the PDF
               </a>
               <EmailCopy tone="onInverted" className="justify-center" />
             </div>

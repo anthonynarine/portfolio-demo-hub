@@ -6,7 +6,6 @@ import { EmailCopy } from "./EmailCopy";
 export function Footer() {
   const year = new Date().getFullYear();
   const hasResume = Boolean(profileLinks.resume);
-  const hasHandbook = Boolean(profileLinks.handbook);
 
   return (
     <footer className="bg-neutral-950 px-5 py-12 text-sm text-neutral-400 dark:bg-neutral-50 dark:text-neutral-600 sm:px-8 lg:px-10">
@@ -28,16 +27,8 @@ export function Footer() {
               Resume
             </a>
           ) : null}
-          {hasHandbook ? (
-            <a className="hover:text-white dark:hover:text-neutral-950" href={profileLinks.handbook}>
-              HIPAA handbook
-            </a>
-          ) : null}
-          <a className="hover:text-white dark:hover:text-neutral-950" href={profileLinks.dicomHandbook}>
-            DICOM handbook
-          </a>
-          <a className="hover:text-white dark:hover:text-neutral-950" href={profileLinks.engineeringHandbook} target="_blank" rel="noreferrer">
-            My engineering handbook
+          <a className="hover:text-white dark:hover:text-neutral-950" href={profileLinks.writing}>
+            Writing
           </a>
           <EmailCopy tone="onInverted" />
         </div>

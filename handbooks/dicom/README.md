@@ -16,23 +16,24 @@ npm run build:dicom   # handbooks/dicom/dist/book.html and public/DICOM-for-Medi
 
 ## Layout
 
-- `book.json`: title, edition, the promise, the per-chapter loop, and the chapter order.
-- `content/contents.md`: the planned table of contents. Mark drafted chapters `*(drafted)*`.
+- `book.json`: title, edition, the promise and the per-chapter loop.
+- `content/contents.md`: the planned table of contents (also in `src/data/dicomHandbook.ts`).
 - `content/chapters/NN-slug.md`: one chapter each, with frontmatter (`number`, `title`, `objective`, `status`).
+  Every file here is a written chapter: the PDF includes it and the site serves it at `/dicom/NN`.
+- `notes/WRITERS_BRIEF.md`: chapter format, accuracy and public-safety rules, and how to draw diagrams.
   `status: draft` prints a draft notice on the chapter.
 - `styles/book.css`: the print design (matches the HIPAA handbook).
 - `scripts/build-dicom-handbook.mjs` (at the site root): Markdown to HTML to PDF.
 
-When a chapter is added, also update `src/data/dicomHandbook.ts` (its status in the contents) and rebuild the PDF.
+When a chapter is added, rebuild the PDF; the site picks the file up by itself.
 
 Every chapter follows the same loop: **At the machine, On the wire, Lab, In Lumen, How it fails, Evidence**, then a
 short **Workbook** of questions and a **Sources** line.
 
 ## Ground rules
 
-1. **The author's voice, the author's understanding.** A chapter is written after its lesson and lab are done,
-   drafted from the lesson, and rewritten by the author until it reads in his voice. Nothing goes in that he
-   can't explain himself. Drafts stay marked `status: draft` until then.
+1. **Reviewed before it is final.** Chapters are drafted to the brief and published as drafts so the author can
+   read and work through them; a chapter stays `status: draft` until the author has reviewed it.
 2. **Checked against the standard.** Technical claims are verified in the DICOM Standard (NEMA PS3, current
    edition at dicom.nema.org) and cited in the chapter's Sources line, not written from memory.
 3. **Synthetic only.** No patient data, real or realistic, in any figure, example, or lab file.

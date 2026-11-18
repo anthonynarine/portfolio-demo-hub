@@ -9,7 +9,7 @@ import { StoryScroller } from "./components/story/StoryScroller";
 import { WorksSection } from "./components/works/WorksSection";
 import { Reveal } from "./components/Reveal";
 import { EmailCopy } from "./components/EmailCopy";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { profileLinks, projects } from "./data/projects";
 
 // # Step 0: a manual reload starts at the top so the opening scribble draws again.
@@ -86,7 +86,7 @@ export default function App() {
           <Reveal className="mx-auto grid max-w-3xl gap-10 border-t border-neutral-300 px-5 py-16 cloudy:border-neutral-400 sm:px-8 lg:max-w-3xl lg:grid-cols-[1.05fr_1fr] lg:px-10 lg:py-20 dark:border-neutral-800">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-neutral-500 dark:text-neutral-400">
-                In progress
+                New
               </p>
               <h2 className="font-display mt-4 text-3xl font-medium leading-tight tracking-tight text-neutral-950 dark:text-neutral-50 sm:text-4xl">
                 DICOM for Medical Application Developers
@@ -95,15 +95,16 @@ export default function App() {
 
             <div className="space-y-5 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
               <p>
-                The companion handbook, written in the open as I learn it: what happens on the network
-                when a technologist presses End Exam, and how to build the system that receives those
-                images safely. One chapter per lesson, each with a lab.
+                The companion handbook: what happens on the network when a technologist presses End
+                Exam, and how to build a system that receives those images safely, from associations
+                and tags to gateways, DICOMweb and quality assurance. Twenty-nine chapters, each with
+                diagrams, a lab, and workbook answers.
               </p>
               <a
                 href={profileLinks.dicomHandbook}
                 className="inline-flex items-center gap-2 border-b border-neutral-400 pb-0.5 text-sm font-semibold text-neutral-900 transition hover:border-neutral-900 dark:border-neutral-600 dark:text-neutral-100 dark:hover:border-neutral-50"
               >
-                See the contents and the draft
+                Read it online or download it
                 <ArrowUpRight size={15} />
               </a>
             </div>
@@ -130,6 +131,16 @@ export default function App() {
                 <ArrowUpRight size={15} />
               </a>
             </div>
+          </Reveal>
+
+          <Reveal className="mx-auto max-w-3xl border-t border-neutral-300 px-5 py-10 cloudy:border-neutral-400 sm:px-8 lg:px-10 dark:border-neutral-800">
+            <a
+              href={profileLinks.writing}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 transition hover:gap-3 dark:text-neutral-100"
+            >
+              See all writing
+              <ArrowRight size={15} />
+            </a>
           </Reveal>
         </section>
 
