@@ -16,7 +16,7 @@ import {
 
 const PAGE_TITLE = "HIPAA for Medical Application Developers | Anthony Narine";
 const PAGE_DESCRIPTION =
-  "A free 52-page engineering handbook and workbook on building HIPAA-regulated medical applications: trust boundaries, minimum-necessary APIs, audit controls, HL7 and DICOM interfaces, and the evidence that proves a control works.";
+  `A free ${handbook.pages}-page engineering handbook and workbook on building HIPAA-regulated medical applications: trust boundaries, minimum-necessary APIs, audit controls, HL7 and DICOM interfaces, and the evidence that proves a control works.`;
 
 function useDocumentMeta() {
   useEffect(() => {

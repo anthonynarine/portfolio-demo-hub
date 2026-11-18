@@ -10,6 +10,7 @@ import { WorksSection } from "./components/works/WorksSection";
 import { Reveal } from "./components/Reveal";
 import { EmailCopy } from "./components/EmailCopy";
 import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { handbook } from "./data/handbook";
 import { profileLinks, projects } from "./data/projects";
 
 // # Step 0: a manual reload starts at the top so the opening scribble draws again.
@@ -65,7 +66,7 @@ export default function App() {
 
             <div className="space-y-5 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
               <p>
-                A 52-page engineering handbook and workbook on building regulated medical software —
+                A {handbook.pages}-page engineering handbook and workbook on building regulated medical software —
                 trust boundaries, minimum-necessary APIs, audit controls, HL7 and DICOM interfaces,
                 and the evidence that proves a control actually works. Lumen is the running case
                 study.
