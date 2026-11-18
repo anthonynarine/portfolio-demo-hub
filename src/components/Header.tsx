@@ -79,6 +79,7 @@ export function Header({ name, headline, subhead }: HeaderProps) {
           {hasHandbook ? (
             <TextLink href={profileLinks.handbook} label="HIPAA handbook" icon={null} />
           ) : null}
+          <TextLink href={profileLinks.dicomHandbook} label="DICOM handbook" icon={null} />
           <TextLink href={profileLinks.engineeringHandbook} label="My engineering handbook" icon={null} />
         </div>
 

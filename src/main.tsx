@@ -4,12 +4,14 @@ import './index.css'
 import App from './App'
 import ResumePage from './pages/ResumePage'
 import HandbookPage from './pages/HandbookPage'
+import DicomHandbookPage from './pages/DicomHandbookPage'
 
 // # Step 2: minimal pathname routing (a couple of extra routes don't warrant a router library)
 const path = window.location.pathname.replace(/\/+$/, "") || "/";
 const ROUTES: Record<string, typeof App> = {
   "/resume": ResumePage,
   "/hipaa": HandbookPage,
+  "/dicom": DicomHandbookPage,
 };
 const Page = ROUTES[path] ?? App;
 

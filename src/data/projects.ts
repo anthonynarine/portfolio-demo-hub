@@ -8,6 +8,7 @@ export const profileLinks = {
   linkedin: "https://www.linkedin.com/in/anthony-narine-9ab567245",
   resume: "/resume",
   handbook: "/hipaa",
+  dicomHandbook: "/dicom",
   engineeringHandbook: "https://anthony-narine-engineering-handbook.netlify.app",
   portfolio: "https://anthonynarine.com",
   email: "fanarine@pm.me",

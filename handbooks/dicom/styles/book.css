@@ -1,0 +1,174 @@
+/* Print layout for the DICOM handbook: Letter, a companion to the HIPAA handbook's design
+   (black serif cover, monospace small-caps labels, serif body, large chapter numerals). */
+
+@page {
+  size: Letter;
+  margin: 0.85in 0.9in 0.9in;
+  @bottom-center {
+    content: counter(page);
+    font: 8pt "IBM Plex Mono", monospace;
+    color: #777;
+  }
+  @top-left {
+    content: "DICOM FOR MEDICAL APPLICATION DEVELOPERS";
+    font: 6.5pt "IBM Plex Mono", monospace;
+    letter-spacing: 0.14em;
+    color: #888;
+  }
+}
+@page cover {
+  margin: 0;
+  @bottom-center { content: none; }
+  @top-left { content: none; }
+}
+
+:root {
+  --ink: #141414;
+  --muted: #5f5f5f;
+  --rule: #d9d6cf;
+  --panel: #efede7;
+  --accent: #1f5f7a;
+}
+
+* { box-sizing: border-box; }
+html { font-size: 10.5pt; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Newsreader", Georgia, serif;
+  line-height: 1.55;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.mono, .label {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 6.8pt;
+  color: var(--muted);
+}
+
+/* ── cover ── */
+.cover {
+  page: cover;
+  break-after: page;
+  height: 11in;
+  background: #121212;
+  color: #f2f0ea;
+  padding: 0.9in 0.75in;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.cover .label { color: #9a9a9a; }
+.cover h1 {
+  font-family: "Newsreader", serif;
+  font-weight: 400;
+  font-size: 46pt;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0.55in 0 0;
+}
+.cover h1 em { font-style: italic; }
+.cover .strap {
+  font-style: italic;
+  font-size: 13pt;
+  color: #c9c6be;
+  max-width: 4.6in;
+  margin-top: 0.35in;
+}
+.cover .mark {
+  position: absolute;
+  right: -0.35in;
+  top: 4.3in;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 150pt;
+  color: #1d1d1d;
+  letter-spacing: -0.04em;
+}
+.cover .themes {
+  margin-top: auto;
+  border-top: 1px solid #3a3a3a;
+  padding-top: 12pt;
+  display: flex;
+  justify-content: space-between;
+}
+.cover .author { font-size: 17pt; margin-top: 0.4in; }
+.cover .edition { margin-top: 6pt; }
+
+/* ── front matter ── */
+.front { break-after: page; padding-top: 3.6in; max-width: 5.2in; }
+.front h2 { font-size: 11pt; font-weight: 500; margin: 0 0 10pt; }
+.front p { font-size: 8.6pt; color: #3d3d3d; margin: 0 0 8pt; }
+.promise { border-top: 1.5px solid var(--ink); margin-top: 16pt; padding-top: 8pt; }
+.promise p { font-style: italic; font-size: 10pt; color: var(--ink); }
+
+.loop {
+  background: var(--panel);
+  padding: 12pt 14pt;
+  margin-bottom: 22pt;
+}
+.loop .label { color: #333; line-height: 1.9; }
+
+.contents { break-after: page; }
+.contents h2 { font-size: 11.5pt; font-weight: 600; margin: 11pt 0 3pt; }
+.contents ol { margin: 0; padding-left: 18pt; }
+.contents li { margin: 0; line-height: 1.45; }
+.contents em { color: var(--accent); font-size: 9pt; }
+
+/* ── chapters ── */
+.chapter { break-before: page; }
+.chapter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 4pt;
+}
+.chapter-head .numeral { font-size: 44pt; line-height: 1; font-weight: 300; }
+.chapter h1 { font-size: 22pt; font-weight: 500; line-height: 1.15; margin: 14pt 0 10pt; }
+.objective { display: grid; grid-template-columns: 1.05in 1fr; gap: 10pt; margin: 6pt 0 18pt; }
+.objective p { margin: 0; font-style: italic; color: #3b3b3b; }
+.draft {
+  border: 1px dashed var(--accent);
+  color: var(--accent);
+  padding: 6pt 10pt;
+  margin-bottom: 14pt;
+  font-size: 8.5pt;
+}
+
+.chapter h2 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  border-top: 1px solid var(--rule);
+  padding-top: 10pt;
+  margin: 22pt 0 8pt;
+  break-after: avoid;
+}
+.chapter h3 { font-size: 12.5pt; font-weight: 600; margin: 14pt 0 4pt; break-after: avoid; }
+.chapter p, .chapter li { orphans: 3; widows: 3; }
+blockquote {
+  margin: 10pt 0;
+  padding: 2pt 0 2pt 12pt;
+  border-left: 2px solid var(--accent);
+  font-style: italic;
+  color: #2e2e2e;
+}
+code { font-family: "IBM Plex Mono", monospace; font-size: 8.6pt; background: var(--panel); padding: 0 3pt; }
+
+.pairs { border-top: 1px solid var(--rule); margin: 8pt 0 12pt; break-inside: avoid; }
+.pairs > div { display: grid; grid-template-columns: 1.05in 1fr; gap: 10pt; border-bottom: 1px solid var(--rule); padding: 5pt 0; }
+.pairs span { font-family: "IBM Plex Mono", monospace; font-size: 7.4pt; letter-spacing: 0.1em; text-transform: uppercase; padding-top: 2pt; }
+.pairs p { margin: 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 8pt 0 12pt; font-size: 9.2pt; break-inside: avoid; }
+th { text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 6.8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--ink); padding: 4pt 6pt 4pt 0; }
+td { border-bottom: 1px solid var(--rule); padding: 4pt 6pt 4pt 0; vertical-align: top; }
+
+.sources { font-size: 8pt; font-style: italic; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 8pt; margin-top: 22pt; }

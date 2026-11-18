@@ -2,6 +2,24 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
+## DICOM handbook moved into the site (2026-11-18, unpushed)
+
+- Anthony asked for the new DICOM handbook (drafted in a Lumen session, first in a standalone local repo
+  `~/Desktop/django-react/dicom-handbook`) to live in this application. Branch `agent/frontend/dicom-handbook`
+  (worktree `../portfolio-dicom`), based on `origin/main` `6085cbf`.
+- Source: `handbooks/dicom/` (book.json, Markdown chapters, print CSS, README with the ground rules);
+  `npm run build:dicom` (`scripts/build-dicom-handbook.mjs`, headless Chrome) writes
+  `public/DICOM-for-Medical-Application-Developers.pdf`. New devDependency `marked` 15.0.12 (exact pin).
+- `/dicom` page (`src/pages/DicomHandbookPage.tsx`, data `src/data/dicomHandbook.ts`), modelled on `/hipaa`:
+  promise, chapter loop, contents with a Draft tag on written chapters, disclaimer, download. Linked from the
+  home Writing section ("In progress"), the classic header and the footer (`profileLinks.dicomHandbook`).
+- Status: 1 of 24 chapters, and Chapter 1 is a draft still to be rewritten in Anthony's voice (the PDF prints a
+  draft notice on it). **Not pushed**: pushing deploys the draft publicly; needs Anthony's OK.
+- Checks: `npm run build`, `npm run lint`, `git diff --check` pass. Viewed `/dicom` in dark and light at 1470px
+  and at 390px (iframe; no horizontal overflow); home Writing section viewed; the PDF serves as application/pdf.
+- When a chapter is added: update `handbooks/dicom/content/contents.md`, `book.json` chapters, and the
+  `drafted` flag in `src/data/dicomHandbook.ts`, then `npm run build:dicom`.
+
 ## Current session — side-scroll home, layout switch, handbook link (2026-10-16, Windows machine)
 
 - **Stale-branch sync:** the side-scroll UI was built uncommitted on `feat/side-scroll-home` from `2b8e0d4` while 23
