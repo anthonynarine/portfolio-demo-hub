@@ -2,7 +2,7 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-## DICOM handbook moved into the site (2026-11-18, unpushed)
+## DICOM handbook moved into the site (2026-11-18, released)
 
 - Anthony asked for the new DICOM handbook (drafted in a Lumen session, first in a standalone local repo
   `~/Desktop/django-react/dicom-handbook`) to live in this application. Branch `agent/frontend/dicom-handbook`
@@ -14,7 +14,8 @@ Read this first after Moonrise. Moonset rewrites it.
   promise, chapter loop, contents with a Draft tag on written chapters, disclaimer, download. Linked from the
   home Writing section ("In progress"), the classic header and the footer (`profileLinks.dicomHandbook`).
 - Status: 1 of 24 chapters, and Chapter 1 is a draft still to be rewritten in Anthony's voice (the PDF prints a
-  draft notice on it). **Not pushed**: pushing deploys the draft publicly; needs Anthony's OK.
+  draft notice on it). Anthony authorized the release in this session ("ok push it"), publishing it as an
+  open draft; fast-forwarded `main` and pushed. The old standalone repo was moved to the Trash at his request.
 - Checks: `npm run build`, `npm run lint`, `git diff --check` pass. Viewed `/dicom` in dark and light at 1470px
   and at 390px (iframe; no horizontal overflow); home Writing section viewed; the PDF serves as application/pdf.
 - When a chapter is added: update `handbooks/dicom/content/contents.md`, `book.json` chapters, and the
