@@ -186,6 +186,14 @@ figure.diagram svg .box { fill: var(--panel); stroke: currentColor; }
 figure.diagram svg .accent { stroke: var(--accent); stroke-width: 2; }
 figure.diagram svg text.accent { fill: var(--accent); stroke: none; }
 figure.diagram svg .small { font-size: 10px; }
+figure.diagram svg .hit { fill: none; stroke: none; }
+/* A figure with a key is too tall to keep whole: keep the drawing together and let the key flow on. */
+figure.diagram:has(dl.figure-key) { break-inside: auto; }
+figure.diagram svg, figure.diagram figcaption { break-inside: avoid; }
+figure.diagram dl.figure-key { margin: 8pt 0 0; font-size: 9pt; line-height: 1.4; }
+figure.diagram dl.figure-key > div { display: grid; grid-template-columns: 9.5em 1fr; gap: 0 8pt; margin-bottom: 3pt; }
+figure.diagram dl.figure-key dt { font-weight: 600; }
+figure.diagram dl.figure-key dd { margin: 0; }
 figure.diagram svg .muted { opacity: 0.6; }
 figure.diagram svg .dashed { stroke-dasharray: 5 4; }
 figure.diagram svg .bold { font-weight: 600; }

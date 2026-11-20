@@ -487,6 +487,33 @@ html {
 .dicom-prose figure.diagram svg .muted { opacity: 0.6; }
 .dicom-prose figure.diagram svg .dashed { stroke-dasharray: 5 4; }
 .dicom-prose figure.diagram svg .bold { font-weight: 600; }
+/* Figure key: a list of what each part of a drawing is. On the web, a figure with a key is made clickable
+   (DicomChapterPage) and shows only the selected entry; the PDF prints the whole key. */
+.dicom-prose figure.diagram svg .hit { fill: transparent; stroke: none; }
+.dicom-prose figure.diagram dl.figure-key { margin: 1rem 0 0; display: grid; gap: 0.6rem; font-size: 0.9rem; line-height: 1.55; }
+.dicom-prose dl.figure-key dt { font-weight: 600; }
+.dicom-prose dl.figure-key dd { margin: 0; color: var(--prose-muted); }
+.dicom-prose figure.is-interactive g.part { cursor: pointer; outline: none; }
+.dicom-prose figure.is-interactive g.part .box { transition: fill 120ms, stroke 120ms; }
+.dicom-prose figure.is-interactive g.part:hover .box,
+.dicom-prose figure.is-interactive g.part:focus-visible .box { stroke: var(--prose-accent); stroke-width: 2; }
+.dicom-prose figure.is-interactive g.part.is-selected .box {
+  stroke: var(--prose-accent);
+  stroke-width: 2.5;
+  fill: color-mix(in srgb, var(--prose-accent) 16%, var(--prose-panel));
+}
+.dicom-prose figure.is-interactive dl.figure-key { display: block; min-height: 4.5rem; }
+.dicom-prose figure.is-interactive dl.figure-key > div { display: none; }
+.dicom-prose figure.is-interactive dl.figure-key > div.is-active {
+  display: block;
+  border-left: 2px solid var(--prose-accent);
+  padding-left: 0.85rem;
+}
+.dicom-prose figure.is-interactive dl.figure-key:not(:has(.is-active))::before {
+  content: "Select any part of the figure to see what it does.";
+  font-size: 0.85rem;
+  color: var(--prose-muted);
+}
 .dicom-prose figure.diagram figcaption {
   margin-top: 0.75rem;
   font-size: 0.85rem;

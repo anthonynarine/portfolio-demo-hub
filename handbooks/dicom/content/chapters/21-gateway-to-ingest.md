@@ -17,7 +17,7 @@ The rest of this chapter is the Lumen case study. Everything in it about receivi
 
 ### The whole system first
 
-Before following one image hop by hop, place the image path inside the facility. Figure 21.1 shows every system that touches a study, from the order to the viewer. The numbers match the five steps listed under it.
+Before following one image hop by hop, place the image path inside the facility. Figure 21.1 shows every system that touches a study, from the order to the viewer. The numbers match the five steps listed under it. On the website, select any part of the figure to see what it does.
 
 <figure class="diagram">
 <svg viewBox="0 0 720 490" role="img" aria-label="Planned architecture. Inside the facility network: the EHR sends HL7 orders to an interface engine, which forwards them to Lumen, where they create exams; the same order reaches the RIS or worklist broker, which the ultrasound machine queries with C-FIND; the machine sends C-STORE to the facility gateway and its own copy to the hospital PACS. The gateway keeps the original, queues it, and sends STOW-RS over mutual TLS on port 443 to Lumen's DICOM ingest, which takes the organization from the certificate and matches images to exams by accession number, then hands them to Media and the exam image viewer.">
@@ -26,38 +26,58 @@ Before following one image hop by hop, place the image path inside the facility.
 <text x="20" y="44" class="muted small">Facility network (hospital LAN)</text>
 <rect x="476" y="24" width="236" height="456" rx="6" class="dashed"/>
 <text x="488" y="44" class="muted small">Lumen (cloud)</text>
-<rect x="20" y="56" width="120" height="48" rx="4" class="box"/>
-<text x="80" y="84" text-anchor="middle">EHR / scheduler</text>
 <line x1="140" y1="80" x2="260" y2="80" marker-end="url(#ch21-arrow)"/>
 <text x="200" y="72" text-anchor="middle" class="small">HL7 ORM / ADT</text>
-<rect x="260" y="56" width="140" height="48" rx="4" class="box"/>
-<text x="330" y="84" text-anchor="middle">Interface engine</text>
 <line x1="400" y1="80" x2="500" y2="80" marker-end="url(#ch21-arrow)"/>
 <text x="428" y="72" text-anchor="middle" class="small">HL7 order</text>
 <circle cx="428" cy="96" r="9" class="box"/>
 <text x="428" y="100" text-anchor="middle" class="small bold">1</text>
-<rect x="500" y="56" width="200" height="48" rx="4" class="box"/>
-<text x="600" y="76" text-anchor="middle" class="bold">Exams</text>
-<text x="600" y="94" text-anchor="middle" class="small muted">created from the HL7 order</text>
 <line x1="80" y1="104" x2="80" y2="150" marker-end="url(#ch21-arrow)"/>
 <text x="88" y="132" class="small">order</text>
-<rect x="20" y="150" width="120" height="56" rx="4" class="box"/>
-<text x="80" y="174" text-anchor="middle">RIS or broker</text>
-<text x="80" y="192" text-anchor="middle" class="small muted">worklist SCP</text>
 <line x1="60" y1="270" x2="60" y2="206" marker-end="url(#ch21-arrow)"/>
 <line x1="100" y1="206" x2="100" y2="270" marker-end="url(#ch21-arrow)" class="dashed"/>
 <circle cx="160" cy="214" r="9" class="box"/>
 <text x="160" y="218" text-anchor="middle" class="small bold">2</text>
 <text x="176" y="232" class="small">C-FIND query (up)</text>
 <text x="176" y="248" class="small">worklist entries (down)</text>
-<rect x="20" y="270" width="120" height="56" rx="4" class="box"/>
-<text x="80" y="292" text-anchor="middle">Ultrasound</text>
-<text x="80" y="310" text-anchor="middle" class="small muted">AE US_ROOM3</text>
 <line x1="140" y1="298" x2="200" y2="298" marker-end="url(#ch21-arrow)"/>
 <text x="170" y="290" text-anchor="middle" class="small">C-STORE</text>
 <text x="170" y="314" text-anchor="middle" class="small muted">automatic</text>
 <circle cx="170" cy="334" r="9" class="box"/>
 <text x="170" y="338" text-anchor="middle" class="small bold">3</text>
+<polyline points="80,326 80,438 200,438" fill="none" marker-end="url(#ch21-arrow)"/>
+<text x="140" y="432" text-anchor="middle" class="small">C-STORE</text>
+<line x1="600" y1="104" x2="600" y2="262" marker-end="url(#ch21-arrow)" class="dashed"/>
+<text x="608" y="180" class="small muted">accession</text>
+<text x="608" y="194" class="small muted">to match</text>
+<line x1="600" y1="342" x2="600" y2="366" marker-end="url(#ch21-arrow)"/>
+<line x1="600" y1="406" x2="600" y2="428" marker-end="url(#ch21-arrow)"/>
+<circle cx="488" cy="448" r="9" class="box"/>
+<text x="488" y="452" text-anchor="middle" class="small bold">5</text>
+<g class="part" data-part="ehr">
+<rect x="20" y="56" width="120" height="48" rx="4" class="box"/>
+<text x="80" y="84" text-anchor="middle">EHR / scheduler</text>
+</g>
+<g class="part" data-part="engine">
+<rect x="260" y="56" width="140" height="48" rx="4" class="box"/>
+<text x="330" y="84" text-anchor="middle">Interface engine</text>
+</g>
+<g class="part" data-part="exams">
+<rect x="500" y="56" width="200" height="48" rx="4" class="box"/>
+<text x="600" y="76" text-anchor="middle" class="bold">Exams</text>
+<text x="600" y="94" text-anchor="middle" class="small muted">created from the HL7 order</text>
+</g>
+<g class="part" data-part="ris">
+<rect x="20" y="150" width="120" height="56" rx="4" class="box"/>
+<text x="80" y="174" text-anchor="middle">RIS or broker</text>
+<text x="80" y="192" text-anchor="middle" class="small muted">worklist SCP</text>
+</g>
+<g class="part" data-part="ultrasound">
+<rect x="20" y="270" width="120" height="56" rx="4" class="box"/>
+<text x="80" y="292" text-anchor="middle">Ultrasound</text>
+<text x="80" y="310" text-anchor="middle" class="small muted">AE US_ROOM3</text>
+</g>
+<g class="part" data-part="gateway">
 <rect x="200" y="262" width="200" height="130" rx="4" class="box"/>
 <text x="300" y="286" text-anchor="middle" class="bold">Facility gateway</text>
 <text x="300" y="306" text-anchor="middle" class="small">Storage SCP</text>
@@ -65,36 +85,52 @@ Before following one image hop by hop, place the image path inside the facility.
 <text x="300" y="342" text-anchor="middle" class="small">keeps the original,</text>
 <text x="300" y="358" text-anchor="middle" class="small">queues it, and retries</text>
 <text x="300" y="374" text-anchor="middle" class="small">until Lumen confirms</text>
-<polyline points="80,326 80,438 200,438" fill="none" marker-end="url(#ch21-arrow)"/>
-<text x="140" y="432" text-anchor="middle" class="small">C-STORE</text>
+</g>
+<g class="part" data-part="pacs">
 <rect x="200" y="420" width="200" height="36" rx="4" class="box"/>
 <text x="300" y="436" text-anchor="middle">Hospital PACS</text>
 <text x="300" y="450" text-anchor="middle" class="small muted">archive of record</text>
+</g>
+<g class="part" data-part="stow">
+<rect x="402" y="278" width="96" height="70" class="hit"/>
 <line x1="400" y1="300" x2="500" y2="300" marker-end="url(#ch21-arrow)" class="accent"/>
 <text x="428" y="292" text-anchor="middle" class="small accent">STOW-RS</text>
 <text x="428" y="316" text-anchor="middle" class="small">mTLS, 443</text>
 <circle cx="428" cy="336" r="9" class="box"/>
 <text x="428" y="340" text-anchor="middle" class="small bold">4</text>
-<line x1="600" y1="104" x2="600" y2="262" marker-end="url(#ch21-arrow)" class="dashed"/>
-<text x="608" y="180" class="small muted">accession</text>
-<text x="608" y="194" class="small muted">to match</text>
+</g>
+<g class="part" data-part="ingest">
 <rect x="500" y="262" width="200" height="80" rx="4" class="box accent"/>
 <text x="600" y="284" text-anchor="middle" class="bold">DICOM ingest</text>
 <text x="600" y="304" text-anchor="middle" class="small">organization from certificate</text>
 <text x="600" y="320" text-anchor="middle" class="small">match by accession,</text>
 <text x="600" y="334" text-anchor="middle" class="small">else the hold queue</text>
-<line x1="600" y1="342" x2="600" y2="366" marker-end="url(#ch21-arrow)"/>
+</g>
+<g class="part" data-part="media">
 <rect x="500" y="366" width="200" height="40" rx="4" class="box"/>
 <text x="600" y="382" text-anchor="middle" class="bold">Media</text>
 <text x="600" y="398" text-anchor="middle" class="small muted">object storage + image record</text>
-<line x1="600" y1="406" x2="600" y2="428" marker-end="url(#ch21-arrow)"/>
+</g>
+<g class="part" data-part="viewer">
 <rect x="500" y="428" width="200" height="40" rx="4" class="box"/>
 <text x="600" y="445" text-anchor="middle" class="bold">Exam image viewer</text>
 <text x="600" y="460" text-anchor="middle" class="small muted">images appear as they arrive</text>
-<circle cx="488" cy="448" r="9" class="box"/>
-<text x="488" y="452" text-anchor="middle" class="small bold">5</text>
+</g>
 </svg>
 <figcaption>Figure 21.1 — The planned architecture. Orders reach Lumen as HL7; the worklist stays with the hospital's RIS or broker; images stay DICOM inside the facility and cross into Lumen only as STOW-RS over mutual TLS. Adapted from an AI-drawn overview.</figcaption>
+<dl class="figure-key">
+<div data-part="ehr"><dt>EHR / scheduler</dt><dd>Where the study starts. Booking a carotid duplex creates an order with the patient's MRN and an accession number, sent out as HL7: ORM for the order, ADT for registration and arrival. Chapters 2 and 3.</dd></div>
+<div data-part="engine"><dt>Interface engine</dt><dd>The hospital's message router. It copies each order to every system that needs it, translating fields on the way. For Lumen it forwards the order as HL7, which creates the exam. Chapter 3.</dd></div>
+<div data-part="exams"><dt>Exams</dt><dd>The order becomes an exam in Lumen, carrying the accession number. That number is what later ties incoming images to this exam. Chapter 22.</dd></div>
+<div data-part="ris"><dt>RIS or worklist broker</dt><dd>The worklist SCP. It turns orders into Modality Worklist entries and answers the machine's C-FIND query, so the technologist picks the patient instead of typing them in. Lumen does not provide a worklist. Chapter 8.</dd></div>
+<div data-part="ultrasound"><dt>Ultrasound machine</dt><dd>The SCU: it starts every exchange. It queries the worklist, reports progress with MPPS, and at End Exam sends the images with C-STORE to both the gateway and PACS. Its AE title, here US_ROOM3, names it but proves nothing about who it is. Chapters 4, 7 and 14.</dd></div>
+<div data-part="gateway"><dt>Facility gateway</dt><dd>A Storage SCP inside the hospital, AE LUMEN_GATEWAY on port 11112. It stores the original before acknowledging the machine, then forwards from a persistent queue and keeps retrying until Lumen confirms each instance. It can be a router the hospital already runs or a dedicated Orthanc. Chapters 16 and 20.</dd></div>
+<div data-part="pacs"><dt>Hospital PACS</dt><dd>The archive of record. The machine keeps sending its usual copy here; Lumen is a reporting system, not a replacement for the archive. Chapter 2.</dd></div>
+<div data-part="stow"><dt>STOW-RS over mutual TLS</dt><dd>The only hop that leaves the hospital: HTTPS on port 443, opened outbound by the gateway. Both sides present certificates, and the gateway's certificate is how Lumen knows which organization and facility is sending. Chapters 15, 19 and 21.</dd></div>
+<div data-part="ingest"><dt>DICOM ingest</dt><dd>Lumen's front door for images. It takes the organization from the certificate, never from the DICOM tags, checks the SOP class, answers per instance, and matches each image to an exam by accession number, or puts it in the hold queue for a person to resolve. Chapters 21 and 22.</dd></div>
+<div data-part="media"><dt>Media</dt><dd>Stores the original file in object storage and a database row for it. The row is the source of truth, and object keys carry no patient information. This part runs today, for uploaded images. Chapter 21.</dd></div>
+<div data-part="viewer"><dt>Exam image viewer</dt><dd>Where the technologist and physician see the images inside the exam and cut snips for the report. It runs today for uploaded images; with the gateway, images appear as they arrive. Chapters 21 and 29.</dd></div>
+</dl>
 </figure>
 
 The flow at a glance:

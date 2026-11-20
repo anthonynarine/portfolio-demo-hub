@@ -1,6 +1,6 @@
 // # Filename: src/pages/DicomChapterPage.tsx
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { marked } from "marked";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Footer } from "../components/Footer";
@@ -48,6 +48,60 @@ function renderChapter(markdown: string) {
   return `${render(before)}<details class="answers"><summary>Answers</summary>${render(match[1])}</details>${render(after)}`;
 }
 
+/** A figure with a key (dl.figure-key) becomes clickable on the web: selecting a part of the drawing (g.part) shows that
+ * part's entry from the key. The PDF runs no script, so there the key prints as a plain list under the figure. */
+function enhanceFigures(root: HTMLElement) {
+  const cleanups: Array<() => void> = [];
+  root.querySelectorAll<HTMLElement>("figure.diagram").forEach((figure) => {
+    const key = figure.querySelector<HTMLElement>("dl.figure-key");
+    const parts = Array.from(figure.querySelectorAll<SVGGElement>("g.part[data-part]"));
+    if (!key || parts.length === 0) return;
+
+    figure.classList.add("is-interactive");
+    // An SVG with role="img" hides its children from assistive technology, so the buttons inside need role="group".
+    figure.querySelector("svg")?.setAttribute("role", "group");
+    key.setAttribute("aria-live", "polite");
+
+    let selected: string | null = null;
+    const select = (name: string | null) => {
+      selected = name;
+      for (const part of parts) {
+        const on = part.dataset.part === name;
+        part.classList.toggle("is-selected", on);
+        part.setAttribute("aria-pressed", String(on));
+      }
+      key.querySelectorAll<HTMLElement>(":scope > div[data-part]").forEach((entry) => {
+        entry.classList.toggle("is-active", entry.dataset.part === name);
+      });
+    };
+
+    for (const part of parts) {
+      const name = part.dataset.part as string;
+      part.setAttribute("tabindex", "0");
+      part.setAttribute("role", "button");
+      part.setAttribute("aria-pressed", "false");
+      part.setAttribute("aria-label", key.querySelector(`div[data-part="${name}"] dt`)?.textContent ?? name);
+
+      const onClick = () => select(selected === name ? null : name);
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick();
+        } else if (event.key === "Escape") {
+          select(null);
+        }
+      };
+      part.addEventListener("click", onClick);
+      part.addEventListener("keydown", onKeyDown);
+      cleanups.push(() => {
+        part.removeEventListener("click", onClick);
+        part.removeEventListener("keydown", onKeyDown);
+      });
+    }
+  });
+  return () => cleanups.forEach((cleanup) => cleanup());
+}
+
 export default function DicomChapterPage({ number }: Props) {
   const state = useChapter(number);
   const title = state.status === "ready" ? state.chapter.title : dicomChapterTitle(number);
@@ -59,6 +113,12 @@ export default function DicomChapterPage({ number }: Props) {
   }, [number, title]);
 
   const html = useMemo(() => (state.status === "ready" ? renderChapter(state.chapter.markdown) : ""), [state]);
+  const articleRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!articleRef.current || !html) return;
+    return enhanceFigures(articleRef.current);
+  }, [html]);
 
   const previous = neighbour(number, -1);
   const next = neighbour(number, 1);
@@ -122,7 +182,7 @@ export default function DicomChapterPage({ number }: Props) {
           </div>
         ) : null}
 
-        {state.status === "ready" ? <article className="dicom-prose" dangerouslySetInnerHTML={{ __html: html }} /> : null}
+        {state.status === "ready" ? <article ref={articleRef} className="dicom-prose" dangerouslySetInnerHTML={{ __html: html }} /> : null}
 
         {state.status !== "loading" ? (
           <nav className="mt-16 grid gap-4 border-t border-neutral-200 pt-8 dark:border-neutral-800 sm:grid-cols-2">

@@ -2,14 +2,18 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
-## DICOM handbook: whole-system figure in Chapter 21 (2026-11-20, not pushed)
+## DICOM handbook: interactive whole-system figure in Chapter 21 (2026-11-20, released)
 
 - New Figure 21.1 at the start of Chapter 21's "On the wire": the whole planned architecture (EHR, interface engine,
   RIS or broker, ultrasound, gateway, PACS, Lumen exams, ingest, Media, viewer) with five numbered steps listed under it.
 - Redrawn as inline SVG from an AI-made PNG the owner supplied. The PNG named a real hospital and a PACS vendor and drew
   the worklist C-FIND from the gateway; the redraw drops the names and has the machine query the RIS or broker.
 - Old 21.1 and 21.2 are now 21.2 and 21.3; the old 21.2 figure has its own marker id (`ch21-arrow-b`).
-- Checked in light, dark and the PDF (249 pages). `npm run build` and `npm run lint` pass. Push needs the owner's OK.
+- Interactive: parts of the drawing are `<g class="part" data-part>`; a `<dl class="figure-key">` inside the figure holds
+  one entry per part. `enhanceFigures()` in `DicomChapterPage.tsx` makes the parts buttons (click, Enter/Space, Escape)
+  and shows only the selected entry; the PDF has no script and prints the whole key. Any other figure can opt in the same way.
+- Checked with real clicks and keys in headless Chrome (light and dark) and in the PDF (250 pages). Build and lint pass.
+  Pushed with the owner's OK ("do it", answering build-and-push).
 
 ## HIPAA page counts fixed (2026-11-18, released)
 
