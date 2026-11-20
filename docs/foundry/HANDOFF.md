@@ -2,6 +2,15 @@
 
 Read this first after Moonrise. Moonset rewrites it.
 
+## DICOM handbook: whole-system figure in Chapter 21 (2026-11-20, not pushed)
+
+- New Figure 21.1 at the start of Chapter 21's "On the wire": the whole planned architecture (EHR, interface engine,
+  RIS or broker, ultrasound, gateway, PACS, Lumen exams, ingest, Media, viewer) with five numbered steps listed under it.
+- Redrawn as inline SVG from an AI-made PNG the owner supplied. The PNG named a real hospital and a PACS vendor and drew
+  the worklist C-FIND from the gateway; the redraw drops the names and has the machine query the RIS or broker.
+- Old 21.1 and 21.2 are now 21.2 and 21.3; the old 21.2 figure has its own marker id (`ch21-arrow-b`).
+- Checked in light, dark and the PDF (249 pages). `npm run build` and `npm run lint` pass. Push needs the owner's OK.
+
 ## HIPAA page counts fixed (2026-11-18, released)
 
 - The HIPAA handbook was described as 52 pages on the home page and in the /hipaa meta description, while

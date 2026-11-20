@@ -15,46 +15,138 @@ The rest of this chapter is the Lumen case study. Everything in it about receivi
 
 ## On the wire
 
+### The whole system first
+
+Before following one image hop by hop, place the image path inside the facility. Figure 21.1 shows every system that touches a study, from the order to the viewer. The numbers match the five steps listed under it.
+
+<figure class="diagram">
+<svg viewBox="0 0 720 490" role="img" aria-label="Planned architecture. Inside the facility network: the EHR sends HL7 orders to an interface engine, which forwards them to Lumen, where they create exams; the same order reaches the RIS or worklist broker, which the ultrasound machine queries with C-FIND; the machine sends C-STORE to the facility gateway and its own copy to the hospital PACS. The gateway keeps the original, queues it, and sends STOW-RS over mutual TLS on port 443 to Lumen's DICOM ingest, which takes the organization from the certificate and matches images to exams by accession number, then hands them to Media and the exam image viewer.">
+<defs><marker id="ch21-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect x="8" y="24" width="452" height="456" rx="6" class="dashed"/>
+<text x="20" y="44" class="muted small">Facility network (hospital LAN)</text>
+<rect x="476" y="24" width="236" height="456" rx="6" class="dashed"/>
+<text x="488" y="44" class="muted small">Lumen (cloud)</text>
+<rect x="20" y="56" width="120" height="48" rx="4" class="box"/>
+<text x="80" y="84" text-anchor="middle">EHR / scheduler</text>
+<line x1="140" y1="80" x2="260" y2="80" marker-end="url(#ch21-arrow)"/>
+<text x="200" y="72" text-anchor="middle" class="small">HL7 ORM / ADT</text>
+<rect x="260" y="56" width="140" height="48" rx="4" class="box"/>
+<text x="330" y="84" text-anchor="middle">Interface engine</text>
+<line x1="400" y1="80" x2="500" y2="80" marker-end="url(#ch21-arrow)"/>
+<text x="428" y="72" text-anchor="middle" class="small">HL7 order</text>
+<circle cx="428" cy="96" r="9" class="box"/>
+<text x="428" y="100" text-anchor="middle" class="small bold">1</text>
+<rect x="500" y="56" width="200" height="48" rx="4" class="box"/>
+<text x="600" y="76" text-anchor="middle" class="bold">Exams</text>
+<text x="600" y="94" text-anchor="middle" class="small muted">created from the HL7 order</text>
+<line x1="80" y1="104" x2="80" y2="150" marker-end="url(#ch21-arrow)"/>
+<text x="88" y="132" class="small">order</text>
+<rect x="20" y="150" width="120" height="56" rx="4" class="box"/>
+<text x="80" y="174" text-anchor="middle">RIS or broker</text>
+<text x="80" y="192" text-anchor="middle" class="small muted">worklist SCP</text>
+<line x1="60" y1="270" x2="60" y2="206" marker-end="url(#ch21-arrow)"/>
+<line x1="100" y1="206" x2="100" y2="270" marker-end="url(#ch21-arrow)" class="dashed"/>
+<circle cx="160" cy="214" r="9" class="box"/>
+<text x="160" y="218" text-anchor="middle" class="small bold">2</text>
+<text x="176" y="232" class="small">C-FIND query (up)</text>
+<text x="176" y="248" class="small">worklist entries (down)</text>
+<rect x="20" y="270" width="120" height="56" rx="4" class="box"/>
+<text x="80" y="292" text-anchor="middle">Ultrasound</text>
+<text x="80" y="310" text-anchor="middle" class="small muted">AE US_ROOM3</text>
+<line x1="140" y1="298" x2="200" y2="298" marker-end="url(#ch21-arrow)"/>
+<text x="170" y="290" text-anchor="middle" class="small">C-STORE</text>
+<text x="170" y="314" text-anchor="middle" class="small muted">automatic</text>
+<circle cx="170" cy="334" r="9" class="box"/>
+<text x="170" y="338" text-anchor="middle" class="small bold">3</text>
+<rect x="200" y="262" width="200" height="130" rx="4" class="box"/>
+<text x="300" y="286" text-anchor="middle" class="bold">Facility gateway</text>
+<text x="300" y="306" text-anchor="middle" class="small">Storage SCP</text>
+<text x="300" y="322" text-anchor="middle" class="small muted">AE LUMEN_GATEWAY, port 11112</text>
+<text x="300" y="342" text-anchor="middle" class="small">keeps the original,</text>
+<text x="300" y="358" text-anchor="middle" class="small">queues it, and retries</text>
+<text x="300" y="374" text-anchor="middle" class="small">until Lumen confirms</text>
+<polyline points="80,326 80,438 200,438" fill="none" marker-end="url(#ch21-arrow)"/>
+<text x="140" y="432" text-anchor="middle" class="small">C-STORE</text>
+<rect x="200" y="420" width="200" height="36" rx="4" class="box"/>
+<text x="300" y="436" text-anchor="middle">Hospital PACS</text>
+<text x="300" y="450" text-anchor="middle" class="small muted">archive of record</text>
+<line x1="400" y1="300" x2="500" y2="300" marker-end="url(#ch21-arrow)" class="accent"/>
+<text x="428" y="292" text-anchor="middle" class="small accent">STOW-RS</text>
+<text x="428" y="316" text-anchor="middle" class="small">mTLS, 443</text>
+<circle cx="428" cy="336" r="9" class="box"/>
+<text x="428" y="340" text-anchor="middle" class="small bold">4</text>
+<line x1="600" y1="104" x2="600" y2="262" marker-end="url(#ch21-arrow)" class="dashed"/>
+<text x="608" y="180" class="small muted">accession</text>
+<text x="608" y="194" class="small muted">to match</text>
+<rect x="500" y="262" width="200" height="80" rx="4" class="box accent"/>
+<text x="600" y="284" text-anchor="middle" class="bold">DICOM ingest</text>
+<text x="600" y="304" text-anchor="middle" class="small">organization from certificate</text>
+<text x="600" y="320" text-anchor="middle" class="small">match by accession,</text>
+<text x="600" y="334" text-anchor="middle" class="small">else the hold queue</text>
+<line x1="600" y1="342" x2="600" y2="366" marker-end="url(#ch21-arrow)"/>
+<rect x="500" y="366" width="200" height="40" rx="4" class="box"/>
+<text x="600" y="382" text-anchor="middle" class="bold">Media</text>
+<text x="600" y="398" text-anchor="middle" class="small muted">object storage + image record</text>
+<line x1="600" y1="406" x2="600" y2="428" marker-end="url(#ch21-arrow)"/>
+<rect x="500" y="428" width="200" height="40" rx="4" class="box"/>
+<text x="600" y="445" text-anchor="middle" class="bold">Exam image viewer</text>
+<text x="600" y="460" text-anchor="middle" class="small muted">images appear as they arrive</text>
+<circle cx="488" cy="448" r="9" class="box"/>
+<text x="488" y="452" text-anchor="middle" class="small bold">5</text>
+</svg>
+<figcaption>Figure 21.1 — The planned architecture. Orders reach Lumen as HL7; the worklist stays with the hospital's RIS or broker; images stay DICOM inside the facility and cross into Lumen only as STOW-RS over mutual TLS. Adapted from an AI-drawn overview.</figcaption>
+</figure>
+
+The flow at a glance:
+
+1. **Order created.** The EHR sends the order as HL7; the interface engine passes it to Lumen, which creates the exam with its accession number.
+2. **Worklist query.** The machine asks the RIS or worklist broker for today's patients with C-FIND. Lumen is not in this exchange (Chapter 8).
+3. **Scan and send.** At End Exam the machine sends C-STORE to the gateway automatically, and its usual copy to the hospital PACS. Lumen does not replace the archive of record.
+4. **Secure transfer.** The gateway stores the original, queues it, and sends STOW-RS to Lumen over mutual TLS on port 443. It deletes nothing until Lumen confirms each instance (Chapter 20).
+5. **Images in Lumen.** Ingest matches each image to its exam by accession number, or holds it for review; Media stores it, and it appears in the exam's viewer.
+
+The gateway can be a router the hospital has already approved or a dedicated Orthanc deployment; either way it plays the same role. All of this is a design, and the real routing in any hospital needs its IT team's approval.
+
 ### The whole path, one hop at a time
 
-Figure 21.1 shows the planned path. It crosses two networks and one trust boundary that matters more than all the others.
+Figure 21.2 shows the planned path. It crosses two networks and one trust boundary that matters more than all the others.
 
 <figure class="diagram">
 <svg viewBox="0 0 720 300" role="img" aria-label="The planned path: the machine sends C-STORE to a gateway inside the facility; the gateway sends STOW-RS over mutual TLS to Lumen's ingest endpoint, which takes the organization from the gateway's certificate, then hands the validated object to Media, which writes the file to object storage and a database row.">
-<defs><marker id="ch21-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<defs><marker id="ch21-arrow-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
 <rect x="8" y="24" width="310" height="150" rx="6" class="dashed"/>
 <text x="20" y="44" class="muted small">Facility network</text>
 <rect x="414" y="24" width="298" height="268" rx="6" class="dashed"/>
 <text x="426" y="44" class="muted small">Lumen</text>
 <rect x="20" y="80" width="120" height="56" rx="4" class="box"/>
 <text x="80" y="113" text-anchor="middle">Ultrasound</text>
-<line x1="140" y1="108" x2="196" y2="108" marker-end="url(#ch21-arrow)"/>
+<line x1="140" y1="108" x2="196" y2="108" marker-end="url(#ch21-arrow-b)"/>
 <text x="168" y="100" text-anchor="middle" class="small">C-STORE</text>
 <rect x="196" y="80" width="116" height="56" rx="4" class="box"/>
 <text x="254" y="113" text-anchor="middle">Gateway</text>
 <text x="254" y="158" text-anchor="middle" class="muted small">device certificate</text>
-<line x1="312" y1="96" x2="430" y2="96" marker-end="url(#ch21-arrow)" class="accent"/>
+<line x1="312" y1="96" x2="430" y2="96" marker-end="url(#ch21-arrow-b)" class="accent"/>
 <text x="366" y="88" text-anchor="middle" class="small">STOW-RS, mTLS</text>
-<line x1="430" y1="124" x2="312" y2="124" marker-end="url(#ch21-arrow)" class="dashed"/>
+<line x1="430" y1="124" x2="312" y2="124" marker-end="url(#ch21-arrow-b)" class="dashed"/>
 <text x="366" y="146" text-anchor="middle" class="small">STOW response</text>
 <rect x="430" y="80" width="130" height="56" rx="4" class="box accent"/>
 <text x="495" y="113" text-anchor="middle">Ingest endpoint</text>
 <text x="572" y="100" class="muted small">org from certificate,</text>
 <text x="572" y="116" class="muted small">never from tags</text>
-<line x1="495" y1="136" x2="495" y2="200" marker-end="url(#ch21-arrow)"/>
+<line x1="495" y1="136" x2="495" y2="200" marker-end="url(#ch21-arrow-b)"/>
 <text x="503" y="172" class="small">validated object</text>
 <rect x="430" y="200" width="130" height="56" rx="4" class="box"/>
 <text x="495" y="233" text-anchor="middle">Media service</text>
-<line x1="560" y1="210" x2="598" y2="210" marker-end="url(#ch21-arrow)"/>
+<line x1="560" y1="210" x2="598" y2="210" marker-end="url(#ch21-arrow-b)"/>
 <text x="579" y="204" text-anchor="middle" class="small">file</text>
 <rect x="598" y="180" width="106" height="40" rx="4" class="box"/>
 <text x="651" y="205" text-anchor="middle">Object storage</text>
-<line x1="560" y1="246" x2="598" y2="246" marker-end="url(#ch21-arrow)"/>
+<line x1="560" y1="246" x2="598" y2="246" marker-end="url(#ch21-arrow-b)"/>
 <text x="579" y="240" text-anchor="middle" class="small">row</text>
 <rect x="598" y="236" width="106" height="40" rx="4" class="box"/>
 <text x="651" y="261" text-anchor="middle">Database row</text>
 </svg>
-<figcaption>Figure 21.1 — The planned path. DICOM stays inside the facility; only HTTPS with mutual TLS crosses the internet, and the ingest endpoint is where Lumen decides who is sending.</figcaption>
+<figcaption>Figure 21.2 — The planned path. DICOM stays inside the facility; only HTTPS with mutual TLS crosses the internet, and the ingest endpoint is where Lumen decides who is sending.</figcaption>
 </figure>
 
 <div class="pairs">
@@ -163,7 +255,7 @@ The response body is the Store Instances Response Module (PS3.18 Annex I). Store
 <line x1="250" y1="118" x2="250" y2="160" marker-end="url(#ch21-arrow2)"/>
 <text x="258" y="144" class="small">not allowed</text>
 </svg>
-<figcaption>Figure 21.2 — One instance's states. Rejected objects are never stored; stored objects either match exactly one exam or wait in the hold queue.</figcaption>
+<figcaption>Figure 21.3 — One instance's states. Rejected objects are never stored; stored objects either match exactly one exam or wait in the hold queue.</figcaption>
 </figure>
 
 Each state change is a row update with a timestamp, so "where is this image?" always has an answer.
@@ -204,7 +296,7 @@ curl -s -X POST http://localhost:8042/dicom-web/studies \
 
 What exists today: the Media service stores uploaded stills, cine and DICOM files in S3-compatible object storage, with the database row as the source of truth; every request is scoped to an organization and facility; object keys contain no patient information; an exam's image pane shows what was uploaded; and a technologist can cut a labelled snip for the Final Report.
 
-What is planned, in this chapter's order: a gateway identity registry tied to one organization and facility; an ingest endpoint that speaks STOW-RS over mutual TLS and answers per instance; the SOP class allow-list; the per-instance states of Figure 21.2; idempotency on (organization, SOP Instance UID) enforced by the database; and renditions made from the stored original by a background job.
+What is planned, in this chapter's order: a gateway identity registry tied to one organization and facility; an ingest endpoint that speaks STOW-RS over mutual TLS and answers per instance; the SOP class allow-list; the per-instance states of Figure 21.3; idempotency on (organization, SOP Instance UID) enforced by the database; and renditions made from the stored original by a background job.
 
 ## How it fails
 
@@ -216,7 +308,7 @@ What is planned, in this chapter's order: a gateway identity registry tied to on
 
 ## Evidence
 
-You understand this chapter when you can take one synthetic image and show, for each hop in Figure 21.1, the record that proves it happened: the gateway's send log, the TLS identity the endpoint saw, the organization it resolved, the STOW response listing that SOP Instance UID, the database row and its state, and the object key in storage that contains no patient information.
+You understand this chapter when you can take one synthetic image and show, for each hop in Figure 21.2, the record that proves it happened: the gateway's send log, the TLS identity the endpoint saw, the organization it resolved, the STOW response listing that SOP Instance UID, the database row and its state, and the object key in storage that contains no patient information.
 
 ## Workbook
 
